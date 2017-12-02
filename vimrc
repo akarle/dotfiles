@@ -34,6 +34,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Colorscheme
+Plugin 'rakr/vim-one'
+
 " Plugin nerdtree for tree package explorer
 Plugin 'scrooloose/nerdtree.git'
 
@@ -81,20 +84,28 @@ syntax on
 " Encoding
 set encoding=utf-8
 
-"colorscheme
+" COLORSCHEME
+" use iterm profiles to determin background
 if $ITERM_PROFILE=='light_background'
     set background=light
 else
     set background=dark
 endif
 
-colorscheme one
-set termguicolors
+" load colorscheme if plugins installed
+if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
+    colorscheme one
+endif
+
+" if can use truecolor, do
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 let g:airline_theme = 'onedark'
 
 " Show whitespace with 'set: list' (disable: set: nolist)
 set listchars=space:·,tab:>–,trail:~,eol:¬
-set list
 
 " Syntastic Default Settings
 set statusline+=%#warningmsg#
