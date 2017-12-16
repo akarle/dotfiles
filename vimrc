@@ -65,6 +65,10 @@ Plugin 'irrationalistic/vim-tasks'
 " Simple latex tools
 Plugin 'lervag/vimtex'
 
+" fzf -- fuzzy finder
+set rtp+=/usr/local/opt/fzf
+Plugin 'junegunn/fzf.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -118,6 +122,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E116'
 
 " vimtex stuff
 " Set pdf viewer to sim
@@ -134,6 +139,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+"Map ctrl-p to fuzzy finder
+nnoremap <C-p> :GFiles<CR>
 
 " Link clipboard to mac
 set clipboard=unnamed
