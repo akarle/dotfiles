@@ -36,7 +36,10 @@ set encoding=utf-8
 set listchars=space:·,tab:>–,trail:~,eol:¬
 
 " Source helper files
-source ~/.vim/plugins.vim
-source ~/.vim/pluginsettings.vim
+" Only load plugins if vim-plug installed!
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+    source ~/.vim/plugins.vim
+    source ~/.vim/pluginsettings.vim
+endif
 source ~/.vim/theme.vim
 source ~/.vim/keys.vim

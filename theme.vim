@@ -1,15 +1,6 @@
 "================================
 "             THEME
 "================================
-"for airline status bar -- need to include font
-if filereadable(expand("~/.vim/bundle/vim-airline/plugin/airline.vim"))
-    let g:airline_powerline_fonts = 1
-endif
-
-if filereadable(expand("~/.vim/bundle/vim-airline-themes/plugin/airline-themes.vim"))
-    let g:airline_theme = 'onedark'
-endif
-
 "Syntax highlighting on
 syntax on
 

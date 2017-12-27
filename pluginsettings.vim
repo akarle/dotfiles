@@ -14,3 +14,7 @@
 " vimtex stuff
 " Set pdf viewer to sim
 let g:vimtex_view_method='skim'
+
+"for airline status bar -- need to include font
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'onedark'
