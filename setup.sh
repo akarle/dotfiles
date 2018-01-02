@@ -2,7 +2,7 @@
 # this file sets up vimrc and tmux.conf
 
 # Set up vimrc
-VIMHOME="~/.vim"
+VIMHOME=~/.vim
 if [ ! -d $VIMHOME ]; then
     echo "Making ~/.vim"
     mkdir $VIMHOME
