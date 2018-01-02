@@ -5,7 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="refined"
 
 # Zsh plugins ( Example format: plugins=(rails git textmate ruby lighthouse) )
-plugins=(git)
+# note: zsh-syntax must be last!
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,7 +36,3 @@ alias vim='nvim'
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }
-
-# syntax highlighting in commands
-# must be at end of file
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
