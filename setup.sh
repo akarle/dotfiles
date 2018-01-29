@@ -22,3 +22,6 @@ if [ ! -d $FTPLUGDIR ]; then
 fi
 
 ln -s $GITVIM/ftplugin/tex.vim $FTPLUGDIR/tex.vim
+
+# Link tmux conf
+ln -s ~/git/dotfiles/tmux.conf ~/.tmux.conf
