@@ -12,6 +12,9 @@ source $ZSH/oh-my-zsh.sh
 
 export DEFAULT_USER="$(whoami)"
 
+# prevent zsh from renaming tmux windows
+DISABLE_AUTO_TITLE="true"
+
 # vi keymap in terminal
 # credit: Doug Black (https://dougblack.io/words/zsh-vi-mode.html)
 bindkey -v
