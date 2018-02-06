@@ -30,12 +30,12 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 # alias for homebrew versions of things
-alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
-alias python python2
+# alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+# alias python python2
 
 # other alias'
-alias pgp='open -a "PariGP"'
-alias vim='nvim'
+# alias pgp='open -a "PariGP"'
+# alias vim='nvim'
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }
