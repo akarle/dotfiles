@@ -25,3 +25,6 @@ ln -s $GITVIM/ftplugin/tex.vim $FTPLUGDIR/tex.vim
 
 # Link tmux conf
 ln -s ~/git/dotfiles/tmux.conf ~/.tmux.conf
+
+# Link zshrc
+ln -s ~/git/dotfiles/zshrc ~/.zshrc
