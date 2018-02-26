@@ -5,7 +5,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'rakr/vim-one'
 
 " Plug nerdtree for tree package explorer
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Airline = status bar for vime
 Plug 'vim-airline/vim-airline'
@@ -21,13 +21,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 
 " Syntastic for syntax checks
-Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic', { 'for': 'python' }
 
 " todo task plugin
-Plug 'irrationalistic/vim-tasks'
+" Plug 'irrationalistic/vim-tasks'
 
 " Simple latex tools
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " fzf -- fuzzy finder
 Plug 'junegunn/fzf.vim'

@@ -36,6 +36,7 @@ zle -N zle-keymap-select
 # other alias'
 # alias pgp='open -a "PariGP"'
 # alias vim='nvim'
+alias dps="docker ps -a"
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }
