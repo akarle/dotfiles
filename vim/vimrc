@@ -38,6 +38,9 @@ set encoding=utf-8
 " Show whitespace with 'set: list' (disable: set: nolist)
 set listchars=space:·,tab:>–,trail:~,eol:¬
 
+" Prevent {}, (), [] commands from opening folds
+set foldopen-=block
+
 " Source helper files
 " Only load plugins if vim-plug installed!
 if filereadable(expand("~/.vim/autoload/plug.vim"))

@@ -24,7 +24,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic', { 'for': 'python' }
 
 " todo task plugin
-" Plug 'irrationalistic/vim-tasks'
+Plug 'irrationalistic/vim-tasks'
 
 " Simple latex tools
 Plug 'lervag/vimtex', { 'for': 'tex' }
