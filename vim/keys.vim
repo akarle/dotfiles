@@ -15,3 +15,6 @@ nnoremap <C-p> :GFiles<CR>
 
 " HTML autoclose tag
 iabbrev </ </<C-X><C-O>
+
+" Elim Whitespace (through regexp)
+nmap _$ :call CMDPreserve("%s/\\s\\+$//e")<CR>

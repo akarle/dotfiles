@@ -48,4 +48,5 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     source ~/.vim/pluginsettings.vim
 endif
 source ~/.vim/theme.vim
+source ~/.vim/functions.vim
 source ~/.vim/keys.vim

@@ -14,6 +14,7 @@ ln -s $GITVIM/theme.vim $VIMHOME/theme.vim
 ln -s $GITVIM/plugins.vim $VIMHOME/plugins.vim
 ln -s $GITVIM/pluginsettings.vim $VIMHOME/pluginsettings.vim
 ln -s $GITVIM/keys.vim $VIMHOME/keys.vim
+ln -s $GITVIM/functions.vim $VIMHOME/functions.vim
 
 # filetype plugins
 FTPLUGDIR=$VIMHOME/ftplugin
@@ -22,6 +23,7 @@ if [ ! -d $FTPLUGDIR ]; then
 fi
 
 ln -s $GITVIM/ftplugin/tex.vim $FTPLUGDIR/tex.vim
+ln -s $GITVIM/ftplugin/python.vim $FTPLUGDIR/python.vim
 
 # Link tmux conf
 ln -s ~/git/dotfiles/tmux.conf ~/.tmux.conf
