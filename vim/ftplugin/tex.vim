@@ -6,3 +6,7 @@ noremap  <buffer> <silent> $ g$
 
 " spell check!
 setlocal spell spelllang=en_us
+
+" soft word wrap should not break words
+" NOTE: don't use listchars with this feature
+set linebreak

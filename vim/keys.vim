@@ -2,7 +2,7 @@
 "        KEY MAPPINGS
 "================================
 "Map 'jk' to ESC (its wonderful)
-inoremap jk <ESC>
+" inoremap jk <ESC> "TEMPORARILY COMMENTING IN FAVOR OF ctrl-[
 
 "Map ctrl-i/j/k/h to switch between splits
 nnoremap <C-j> <C-w>j
@@ -18,3 +18,6 @@ iabbrev </ </<C-X><C-O>
 
 " Elim Whitespace (through regexp)
 nmap _$ :call CMDPreserve("%s/\\s\\+$//e")<CR>
+
+" save session
+nnoremap <leader>s :mksession!<CR>

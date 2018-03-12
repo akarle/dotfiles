@@ -3,7 +3,7 @@
 "=============================
 "line numbers on
 set number
-set relativenumber
+"set relativenumber
 "tab is really spaces
 set expandtab
 "4 spaces per tab
@@ -40,6 +40,18 @@ set listchars=space:·,tab:>–,trail:~,eol:¬
 
 " Prevent {}, (), [] commands from opening folds
 set foldopen-=block
+
+" Prevent windows resizing when split opened/closed
+set noequalalways
+
+" Show the command being typed
+set showcmd
+
+" More visual completion for command mode
+set wildmenu
+
+" Set key code timeout to be less to avoid <ESC> delay
+set ttimeoutlen=30
 
 " Source helper files
 " Only load plugins if vim-plug installed!

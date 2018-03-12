@@ -4,22 +4,29 @@
 "Syntax highlighting on
 syntax on
 
+" Set cursor line when in insert mode (to indicate insert mode)
+if(has('autocmd'))
+    autocmd InsertEnter,InsertLeave * set cul!
+endif
+
 " COLORSCHEME
-" use iterm profiles to determin background
+" use iterm profiles to determine background
 if $ITERM_PROFILE=='light_background'
     set background=light
 else
     set background=dark
 endif
 
-" load colorscheme if plugins installed
-if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
-    colorscheme one
-endif
-
 " if can use truecolor, do
 if (has("termguicolors"))
     set termguicolors
+
+    " load colorscheme if plugins installed
+    if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
+        colorscheme one
+        " reverse one-dark's fold colors
+        highlight Folded guibg=#282c34 guifg=#5c6370
+    endif
 
     " Needed for termgui in tmux--&term begins w screen-...
     if &term =~# '^screen'
