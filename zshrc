@@ -15,6 +15,9 @@ export DEFAULT_USER="$(whoami)"
 # prevent zsh from renaming tmux windows
 DISABLE_AUTO_TITLE="true"
 
+# export editor for tmuxinator
+# export EDITOR="vim"
+
 # vi keymap in terminal
 # credit: Doug Black (https://dougblack.io/words/zsh-vi-mode.html)
 bindkey -v
@@ -37,6 +40,9 @@ zle -N zle-keymap-select
 # alias pgp='open -a "PariGP"'
 # alias vim='nvim'
 alias dps="docker ps -a"
+
+# ITALICS UPDATE: may break ssh?
+# alias ssh='TERM=xterm-256color ssh'
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }

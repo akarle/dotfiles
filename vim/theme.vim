@@ -23,13 +23,14 @@ if (has("termguicolors"))
 
     " load colorscheme if plugins installed
     if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
+        let g:one_allow_italics = 1
         colorscheme one
         " reverse one-dark's fold colors
         highlight Folded guibg=#282c34 guifg=#5c6370
     endif
 
     " Needed for termgui in tmux--&term begins w screen-...
-    if &term =~# '^screen'
+    if &term =~# '^tmux'
         " Set the terminal foreground+background colors
         " See :h xterm-true-color
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
