@@ -18,8 +18,9 @@ set smarttab
 "backspace should function as expected
 set backspace=indent,eol,start
 
-"search highlighting
+"search highlighting and incremental search
 set hlsearch
+set incsearch
 
 set rtp+=/usr/local/opt/fzf
 filetype plugin indent on
@@ -46,11 +47,13 @@ set noequalalways
 
 " Show the command being typed
 set showcmd
+set history=1000
 
 " More visual completion for command mode
 set wildmenu
 
 " Set key code timeout to be less to avoid <ESC> delay
+set ttimeout
 set ttimeoutlen=30
 
 " Source helper files
