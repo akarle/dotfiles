@@ -7,6 +7,7 @@ syntax on
 " Set cursor line when in insert mode (to indicate insert mode)
 if(has('autocmd'))
     autocmd InsertEnter,InsertLeave * set cul!
+    autocmd BufNewFile,BufRead *.notes set filetype=markdown
 endif
 
 " COLORSCHEME

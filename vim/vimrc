@@ -56,6 +56,13 @@ set wildmenu
 set ttimeout
 set ttimeoutlen=30
 
+" Scroll when cursor gets within 5 rows of screen end
+set scrolloff=5
+
+" When in MacVim don't show the scrollbars
+set guioptions-=r
+set guioptions-=L
+
 " Source helper files
 " Only load plugins if vim-plug installed!
 if filereadable(expand("~/.vim/autoload/plug.vim"))
