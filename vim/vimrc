@@ -63,6 +63,17 @@ set scrolloff=5
 set guioptions-=r
 set guioptions-=L
 
+" Persistent undo
+if(has('persistent_undo'))
+    set undodir=~/.vim/undo/
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+endif
+
+" Backup files
+set directory=~/.vim/swp
+
 " Source helper files
 " Only load plugins if vim-plug installed!
 if filereadable(expand("~/.vim/autoload/plug.vim"))
