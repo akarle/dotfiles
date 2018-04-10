@@ -24,9 +24,9 @@ try_mkdir() {
 }
 
 try_ln() {
-    if [ ! -f $1 ]; then
-        echo "Creating soft symlink from $2 to $1"
-        ln -s $2 $1
+    if [ ! -f $2 ]; then
+        echo "Creating soft symlink from $1 to $2"
+        ln -s $1 $2
     fi
 }
 
