@@ -6,7 +6,7 @@ ZSH_THEME="refined"
 
 # Zsh plugins ( Example format: plugins=(rails git textmate ruby lighthouse) )
 # note: zsh-syntax must be last!
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -16,12 +16,15 @@ export DEFAULT_USER="$(whoami)"
 DISABLE_AUTO_TITLE="true"
 
 # export editor for tmuxinator
-# export EDITOR="vim"
+export EDITOR="vim"
+
+# 10ms for key sequences
+KEYTIMEOUT=1
 
 # vi keymap in terminal
 # credit: Doug Black (https://dougblack.io/words/zsh-vi-mode.html)
 bindkey -v
-bindkey jk vi-cmd-mode
+# bindkey jk vi-cmd-mode
 
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
@@ -42,7 +45,15 @@ zle -N zle-keymap-select
 alias dps="docker ps -a"
 
 # ITALICS UPDATE: may break ssh?
-# alias ssh='TERM=xterm-256color ssh'
+if [ $TERM = 'xterm-256color-italic' ]; then
+    alias ssh="TERM='xterm-256color' ssh"
+    alias vsh="TERM='xterm-256color' vagrant ssh"
+else
+    alias vsh="vagrant ssh"
+fi
+
+alias vsus="vagrant suspend"
+alias vup="vagrant up"
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }
