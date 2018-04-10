@@ -20,11 +20,11 @@ endif
 
 " if can use truecolor, do
 if (has("termguicolors"))
-    set termguicolors
 
     " load colorscheme if plugins installed
     if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
         let g:one_allow_italics = 1
+        set termguicolors
         colorscheme one
         " reverse one-dark's fold colors
         highlight Folded guibg=#282c34 guifg=#5c6370
