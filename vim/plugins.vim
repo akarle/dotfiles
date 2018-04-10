@@ -21,7 +21,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 
 " Syntastic for syntax checks
-Plug 'vim-syntastic/syntastic', { 'for': 'python' }
+"Plug 'vim-syntastic/syntastic', { 'for': 'python' }
 
 " todo task plugin
 Plug 'irrationalistic/vim-tasks'
@@ -30,7 +30,7 @@ Plug 'irrationalistic/vim-tasks'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " fzf -- fuzzy finder
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf.vim'
 
 " surround for parens and such
 Plug 'tpope/vim-surround'

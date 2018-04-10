@@ -4,4 +4,4 @@
 "        instead:
 "   zc -- close a fold by indent (at cursor until end indent)
 "   zo -- open a closed fold
-set foldmethod=indent
+setlocal foldmethod=indent

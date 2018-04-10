@@ -10,8 +10,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-"Map ctrl-p to fuzzy finder
-nnoremap <C-p> :GFiles<CR>
+"Map ctrl-p to toggle paste mode
+nnoremap <C-p> :set paste!<CR>
 
 " HTML autoclose tag
 iabbrev </ </<C-X><C-O>
