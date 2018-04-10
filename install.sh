@@ -1,5 +1,19 @@
 #!/bin/bash
 # This script sets up the dotfiles
+# PREREQS: git
+# NOTE: will not overwrite anything that already exists
+# other than .akarledots (which will get backed up)
+
+# Before anything, require git to be installed
+if ! [ -x "$(command -v git)" ]; then
+  echo "Error: git is not installed. Aborting..." >&2
+  exit 1
+fi
+
+# Establish Globals
+HOMEDOTS=$HOME/.dotfiles
+VIMHOME=$HOME/.vim
+DOTSVIM=$HOMEDOTS/vim
 
 # Helper functions
 try_mkdir() {
@@ -16,25 +30,36 @@ try_ln() {
     fi
 }
 
-# Set up vimrc
-VIMHOME=$HOME/.vim
-GITVIM=$HOME/git/dotfiles/vim
-FTPLUGDIR=$VIMHOME/ftplugin
+# First, backup old copies
+if [ -d $HOMEDOTS ]; then
+    BACKUP="${HOMEDOTS}_backup_$(date +%s)"
+    mv $HOMEDOTS $BACKUP
+    echo "Backing up old $HOMEDOTS to $BACKUP"
+fi
 
+# Next, clone a fresh one
+try_mkdir $HOMEDOTS
+git clone https://github.com/akarle/dotfiles.git $HOMEDOTS
+
+# Special $HOME level ln's
+try_ln $DOTSVIM/vimrc $HOME/.vimrc
+try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
+try_ln $HOMEDOTS/zshrc $HOME/.zshrc
+
+# Extra Vim setup
 try_mkdir $VIMHOME
-try_mkdir $FTPLUGDIR
+try_mkdir $VIMHOME/undo
+try_mkdir $VIMHOME/swp
+try_mkdir $VIMHOME/ftplugin
 
-try_ln $GITVIM/vimrc $HOME/.vimrc
-try_ln $GITVIM/theme.vim $VIMHOME/theme.vim
-try_ln $GITVIM/plugins.vim $VIMHOME/plugins.vim
-try_ln $GITVIM/pluginsettings.vim $VIMHOME/pluginsettings.vim
-try_ln $GITVIM/keys.vim $VIMHOME/keys.vim
-try_ln $GITVIM/functions.vim $VIMHOME/functions.vim
-try_ln $GITVIM/ftplugin/tex.vim $FTPLUGDIR/tex.vim
-try_ln $GITVIM/ftplugin/python.vim $FTPLUGDIR/python.vim
+# all non-ftplugins
+for file in $DOTSVIM/*.vim; do
+    [ -e "$file" ] || continue
+    try_ln $file $VIMHOME/$(basename $file)
+done
 
-# Link tmux conf
-try_ln $HOME/git/dotfiles/tmux.conf $HOME/.tmux.conf
-
-# Link zshrc
-try_ln $HOME/git/dotfiles/zshrc $HOME/.zshrc
+# ftplugins TODO: better way of recursing through subdirectories
+for file in $DOTSVIM/ftplugin/*.vim; do
+    [ -e "$file" ] || continue
+    try_ln $file $VIMHOME/ftplugin/$(basename $file)
+done
