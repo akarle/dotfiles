@@ -11,7 +11,7 @@ if ! [ -x "$(command -v git)" ]; then
 fi
 
 # Establish Globals
-HOMEDOTS=$HOME/.dotfiles
+HOMEDOTS=$HOME/.akarledots
 VIMHOME=$HOME/.vim
 DOTSVIM=$HOMEDOTS/vim
 
