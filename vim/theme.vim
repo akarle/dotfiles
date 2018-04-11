@@ -28,6 +28,8 @@ if (has("termguicolors"))
         colorscheme one
         " reverse one-dark's fold colors
         highlight Folded guibg=#282c34 guifg=#5c6370
+        " make pythonSelf red not grey
+        highlight pythonSelf ctermfg=168 guifg=#e06c75
     endif
 
     " Needed for termgui in tmux--&term begins w screen-...
@@ -38,3 +40,8 @@ if (has("termguicolors"))
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
 endif
+
+" Allow cursor to change shape
+" https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/42118416#42118416
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
