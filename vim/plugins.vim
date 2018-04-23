@@ -2,12 +2,16 @@
 call plug#begin('~/.vim/bundle')
 
 " Colorscheme
-Plug 'rakr/vim-one'
+Plug 'morhetz/gruvbox'
+
+" Extra syntax files
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'posva/vim-vue'
 
 " Plug nerdtree for tree package explorer
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" Airline = status bar for vime
+" Airline = status bar for vim
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 

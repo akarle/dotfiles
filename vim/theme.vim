@@ -11,25 +11,18 @@ if(has('autocmd'))
 endif
 
 " COLORSCHEME
-" use iterm profiles to determine background
-if $ITERM_PROFILE=='light_background'
-    set background=light
-else
-    set background=dark
-endif
-
 " if can use truecolor, do
 if (has("termguicolors"))
-
     " load colorscheme if plugins installed
-    if filereadable(expand("~/.vim/bundle/vim-one/colors/one.vim"))
-        let g:one_allow_italics = 1
+    if filereadable(expand("~/.vim/bundle/gruvbox/colors/gruvbox.vim"))
+        let g:gruvbox_italic = 1
         set termguicolors
-        colorscheme one
-        " reverse one-dark's fold colors
-        highlight Folded guibg=#282c34 guifg=#5c6370
+        colorscheme gruvbox
+        "let g:gruvbox_contrast_dark='hard'
         " make pythonSelf red not grey
-        highlight pythonSelf ctermfg=168 guifg=#e06c75
+        highlight link pythonSelf GruvboxBlue
+        " make functions no longer bold
+        " hi! link Function GruvboxGreen
     endif
 
     " Needed for termgui in tmux--&term begins w screen-...
@@ -40,6 +33,9 @@ if (has("termguicolors"))
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
 endif
+
+set background=dark  " seems to need to be after gruvbox
+
 
 " Allow cursor to change shape
 " https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/42118416#42118416

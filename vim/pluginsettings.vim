@@ -17,4 +17,4 @@ let g:vimtex_view_method='skim'
 
 "for airline status bar -- need to include font
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'gruvbox'
