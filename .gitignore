@@ -3,6 +3,9 @@ vim/*/*
 !vim/ftplugin/*
 !vim/syntax/*
 
+# Ignore symlink artifact
+vim/vim
+
 # Ignore the Vagrant machine stuff used in testing
 Vagrantfile
 *.log
