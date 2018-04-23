@@ -24,9 +24,41 @@ try_mkdir() {
 }
 
 try_ln() {
+    # if it doesn't exist, just create it -- works for broken symlinks too!
     if [ ! -f $2 ]; then
         echo "Creating soft symlink from $1 to $2"
         ln -s $1 $2
+    # if its a symlink replace it
+    elif [ -L $2 ]; then
+        echo "$2 is a symlink already, replacing it with a symlink to $1"
+        rm $2
+        ln -s $1 $2
+    # if it exists but is not a symlink
+    else
+        echo "$2 exists as a file that is NOT a symlink. What would you like to do?"
+        OPT1="Move it to $HOMEDOTS for further inspection and add akarledots link in its place"
+        OPT2="Delete and replace it with akarledots link"
+        OPT3="Keep it and do not create akarledots link"
+        select opt in "$OPT1" "$OPT2" "$OPT3"; do
+            case $opt in
+                $OPT1 )
+                    TMPFILE=$2.BACKUP
+                    mv $2 $TMPFILE
+                    mv $TMPFILE $HOMEDOTS/
+                    ln -s $1 $2
+                    break
+                    ;;
+                $OPT2 )
+                    rm $2
+                    ln -s $1 $2
+                    break
+                    ;;
+                $OPT3 )
+                    echo "Not altering $2"
+                    break
+                    ;;
+            esac
+        done
     fi
 }
 
@@ -41,32 +73,14 @@ fi
 try_mkdir $HOMEDOTS
 git clone https://github.com/akarle/dotfiles.git $HOMEDOTS
 
-# Special $HOME level ln's
+# $HOME level ln's
 try_ln $DOTSVIM/vimrc $HOME/.vimrc
 try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zshrc $HOME/.zshrc
 
-# Extra Vim setup
-try_mkdir $VIMHOME
+# Symlink HOMEDOTS/vim -> ~/.vim
+try_ln $HOMEDOTS/vim $VIMHOME
+
+# Make the swp and undo folders in ~/.vim
 try_mkdir $VIMHOME/undo
 try_mkdir $VIMHOME/swp
-try_mkdir $VIMHOME/ftplugin
-try_mkdir $VIMHOME/syntax
-
-# all non-ftplugins
-for file in $DOTSVIM/*.vim; do
-    [ -e "$file" ] || continue
-    try_ln $file $VIMHOME/$(basename $file)
-done
-
-# ftplugins TODO: better way of recursing through subdirectories
-for file in $DOTSVIM/ftplugin/*.vim; do
-    [ -e "$file" ] || continue
-    try_ln $file $VIMHOME/ftplugin/$(basename $file)
-done
-
-# syntax TODO: better way of recursing through subdirectories
-for file in $DOTSVIM/syntax/*.vim; do
-    [ -e "$file" ] || continue
-    try_ln $file $VIMHOME/syntax/$(basename $file)
-done

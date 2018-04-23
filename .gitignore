@@ -1,0 +1,9 @@
+# Ignore all vim subdirectories (due to symlink ~/.vim -> HOMEDOTS/vim)
+vim/*/*
+!vim/ftplugin/*
+!vim/syntax/*
+
+# Ignore the Vagrant machine stuff used in testing
+Vagrantfile
+*.log
+.vagrant
