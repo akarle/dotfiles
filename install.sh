@@ -51,6 +51,7 @@ try_mkdir $VIMHOME
 try_mkdir $VIMHOME/undo
 try_mkdir $VIMHOME/swp
 try_mkdir $VIMHOME/ftplugin
+try_mkdir $VIMHOME/syntax
 
 # all non-ftplugins
 for file in $DOTSVIM/*.vim; do
@@ -62,4 +63,10 @@ done
 for file in $DOTSVIM/ftplugin/*.vim; do
     [ -e "$file" ] || continue
     try_ln $file $VIMHOME/ftplugin/$(basename $file)
+done
+
+# syntax TODO: better way of recursing through subdirectories
+for file in $DOTSVIM/syntax/*.vim; do
+    [ -e "$file" ] || continue
+    try_ln $file $VIMHOME/syntax/$(basename $file)
 done
