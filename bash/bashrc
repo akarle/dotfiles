@@ -1,0 +1,8 @@
+# if interactive shell, disable XON/XOFF to allow forward search w CTRL-S
+[[ $- == *i* ]] && stty -ixon
+
+# Load the shell dotfiles
+for file in ~/.{bash_path,bash_prompt,bash_exports,aliases}; do
+  [ -r "$file" ] && source "$file"
+done
+unset file
