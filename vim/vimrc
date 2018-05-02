@@ -157,12 +157,13 @@ set guioptions-=L
 "Syntax highlighting on
 syntax on
 
-" Set cursor line when in insert mode (to indicate insert mode)
+" auto commands (grouped so that resourcing doesn't pile up)
 if(has('autocmd'))
     augroup MyCustomAucmds
         " removes all autocmds from this group (needed when re-sourcing)
         autocmd!
 
+        " Set cursor line when in insert mode (to indicate insert mode)
         autocmd InsertEnter,InsertLeave * set cul!
         autocmd BufNewFile,BufRead *.notes set filetype=markdown
     augroup END  " goes back to default augroup
@@ -211,7 +212,7 @@ function! CMDPreserve(command) abort
   " Clean up: restore previous search history, and cursor position
   let @/=_s
   call cursor(l, c)
-endfunction 
+endfunction
 " }}}
 
 " KEY MAPPINGS {{{
@@ -237,4 +238,8 @@ nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>e :e %:h/
 nnoremap <leader>v :vsp %:h/
 nnoremap <leader>s :vsp %:h/
+
+" quick toggle for light/dark background
+nnoremap <leader>L :set background=light<CR>
+nnoremap <leader>D :set background=dark<CR>
 " }}}
