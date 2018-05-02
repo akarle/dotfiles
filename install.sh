@@ -15,10 +15,46 @@ HOMEDOTS=$HOME/.akarledots
 VIMHOME=$HOME/.vim
 DOTSVIM=$HOMEDOTS/vim
 
+# Define colors (for printouts)
+if tput setaf 1 &> /dev/null; then tput sgr0
+    BOLD="$(tput bold)"
+    MAGENTA="$(tput setaf 5)"
+    GREEN="$(tput setaf 2)"
+    RED="$(tput setaf 1)"
+    RESET="$(tput sgr0)"
+    if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
+        BLUE="$(tput setaf 12)"
+        ORANGE="$(tput setaf 11)"
+    else
+        BLUE="$(tput setaf 4)"
+        ORANGE="$(tput setaf 3)"
+    fi
+else
+    BLUE=""
+    BOLD=""
+    ORANGE=""
+    RED=""
+    GREEN=""
+    RESET=""
+fi
+
+
 # Helper functions
+success_msg() {
+    echo "${GREEN}$1${RESET}"
+}
+
+warn_msg() {
+    echo "${ORANGE}$1${RESET}"
+}
+
+error_msg() {
+    echo "${RED}$1${RESET}"
+}
+
 try_mkdir() {
     if [ ! -d $1 ]; then
-        echo "Making directory $1"
+        success_msg "Making directory $1"
         mkdir $1
     fi
 }
@@ -26,16 +62,16 @@ try_mkdir() {
 try_ln() {
     # if it doesn't exist, just create it -- works for broken symlinks too!
     if [ ! -f $2 ]; then
-        echo "Creating soft symlink from $1 to $2"
+        success_msg "Creating soft symlink from $1 to $2"
         ln -s $1 $2
     # if its a symlink replace it
     elif [ -L $2 ]; then
-        echo "$2 is a symlink already, replacing it with a symlink to $1"
+        warn_msg "$2 is a symlink already, replacing it with a symlink to $1"
         rm $2
         ln -s $1 $2
     # if it exists but is not a symlink
     else
-        echo "$2 exists as a file that is NOT a symlink. What would you like to do?"
+        error_msg "$2 exists as a file that is NOT a symlink. What would you like to do?"
         OPT1="Move it to $HOMEDOTS for further inspection and add akarledots link in its place"
         OPT2="Delete and replace it with akarledots link"
         OPT3="Keep it and do not create akarledots link"
@@ -66,7 +102,7 @@ try_ln() {
 if [ -d $HOMEDOTS ]; then
     BACKUP="${HOMEDOTS}_backup_$(date +%s)"
     mv $HOMEDOTS $BACKUP
-    echo "Backing up old $HOMEDOTS to $BACKUP"
+    warn_msg "Backing up old $HOMEDOTS to $BACKUP"
 fi
 
 # Next, clone a fresh one
@@ -92,6 +128,7 @@ try_mkdir $VIMHOME/undo
 try_mkdir $VIMHOME/swp
 
 # Optional install of vim-plug:
+printf "\n\n"
 echo "Would you like to install vim-plug (via curl)"
 select opt in "Yes" "No"; do
     case $opt in
@@ -108,26 +145,8 @@ select opt in "Yes" "No"; do
 done
 
 # Logo a la oh-my-zsh (for funsies)
-
-if tput setaf 1 &> /dev/null; then tput sgr0
-    BOLD="$(tput bold)"
-    MAGENTA="$(tput setaf 5)"
-    RESET="$(tput sgr0)"
-    if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
-        BLUE="$(tput setaf 12)"
-        ORANGE="$(tput setaf 11)"
-    else
-        BLUE="$(tput setaf 4)"
-        ORANGE="$(tput setaf 3)"
-    fi
-else
-    BLUE=""
-    BOLD=""
-    ORANGE=""
-    RESET=""
-fi
-
-printf ${ORANGE}
+printf ${MAGENTA}
+echo ""
 echo "Thank you for installing..."
 printf ${BOLD}${BLUE}
 echo "          _              _          _       _        "
