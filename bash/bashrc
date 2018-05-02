@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # if interactive shell, disable XON/XOFF to allow forward search w CTRL-S
 [[ $- == *i* ]] && stty -ixon
 
@@ -6,3 +9,18 @@ for file in ~/.{bash_path,bash_prompt,bash_exports,aliases}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize

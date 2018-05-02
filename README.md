@@ -8,6 +8,8 @@ My dotfiles.
 
 ## Install
 
+Note that bash is required for this install (as some of the interactive options depend on bash).
+
 ```
-curl -fsSL https://raw.githubusercontent.com/akarle/dotfiles/master/install.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/akarle/dotfiles/master/install.sh)"
 ```
