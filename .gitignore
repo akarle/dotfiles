@@ -6,6 +6,9 @@ vim/*/*
 # Ignore symlink artifact
 vim/vim
 
+# ignore files starting with dot in .vim
+vim/.*
+
 # Ignore the Vagrant machine stuff used in testing
 Vagrantfile
 *.log

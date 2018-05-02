@@ -62,7 +62,7 @@ set guioptions-=r
 set guioptions-=L
 
 " Persistent undo
-if(has('persistent_undo'))
+if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
     set undodir=~/.vim/undo/
     set undofile
     set undolevels=1000

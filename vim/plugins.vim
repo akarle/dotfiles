@@ -39,5 +39,8 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 " surround for parens and such
 Plug 'tpope/vim-surround'
 
+" markdown rendering
+Plug 'suan/vim-instant-markdown'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
