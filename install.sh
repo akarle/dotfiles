@@ -157,3 +157,6 @@ echo "${MAGENTA} _${BLUE} | (_| |   ( (_| | |  | |  __/ (_| | (_) | |_\__ \ "
 echo "${MAGENTA}(_)${BLUE} \__,_|_|\_\__,_|_|  |_|\___|\__,_|\___/ \__|___/ "
 printf ${RESET}
 echo ""
+
+# source bash
+source ~/.bashrc
