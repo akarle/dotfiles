@@ -1,6 +1,14 @@
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+	colorflag="--color"
+else # macOS `ls`
+	colorflag="-G"
+fi
+
 # ls aliases
-alias l='ls -lAh'
-alias ll='ls -lh'
+alias ls='ls ${colorflag}'
+alias l='ls -lAh ${colorflag}'
+alias ll='ls -lh ${colorflag}'
 
 # Git aliases
 alias ga='git add'
