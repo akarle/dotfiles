@@ -108,6 +108,8 @@ fi
 # Next, clone a fresh one
 try_mkdir $HOMEDOTS
 git clone https://github.com/akarle/dotfiles.git $HOMEDOTS
+success_msg "Clone successful! Putting you on your own branch '$(whoami)' so you can make changes!"
+(cd $HOMEDOTS && exec git checkout -b $(whoami))
 
 # $HOME level ln's
 try_ln $DOTSVIM/vimrc $HOME/.vimrc
