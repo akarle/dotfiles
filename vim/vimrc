@@ -1,17 +1,13 @@
-"=============================
-"tab and line number stuff
-"=============================
 "line numbers on
 set number
-"set relativenumber
+
 "tab is really spaces
 set expandtab
+
 "4 spaces per tab
-set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-"set smartindent --> temp. turned off due to
-"python # bug... theres a workaround somewhere
+set expandtab
 set autoindent
 set smarttab
 
@@ -69,8 +65,8 @@ if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
     set undoreload=10000
 endif
 
-" Backup files
-set directory=~/.vim/swp
+" Backup files to ~/.vim/swp if present, else .
+set directory=~/.vim/swp,.
 
 " Source helper files
 " Only load plugins if vim-plug installed!

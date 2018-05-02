@@ -1,6 +1,6 @@
 " A function to execute a command and return to the old position
 " CREDIT: http://vimcasts.org/episodes/tidying-whitespace/
-function! CMDPreserve(command)
+function! CMDPreserve(command) abort
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")

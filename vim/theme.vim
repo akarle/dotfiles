@@ -6,8 +6,13 @@ syntax on
 
 " Set cursor line when in insert mode (to indicate insert mode)
 if(has('autocmd'))
-    autocmd InsertEnter,InsertLeave * set cul!
-    autocmd BufNewFile,BufRead *.notes set filetype=markdown
+    augroup MyCustomAucmds
+        " removes all autocmds from this group (needed when re-sourcing)
+        autocmd!
+
+        autocmd InsertEnter,InsertLeave * set cul!
+        autocmd BufNewFile,BufRead *.notes set filetype=markdown
+    augroup END  " goes back to default augroup
 endif
 
 " COLORSCHEME
@@ -18,11 +23,8 @@ if (has("termguicolors"))
         let g:gruvbox_italic = 1
         set termguicolors
         colorscheme gruvbox
-        "let g:gruvbox_contrast_dark='hard'
         " make pythonSelf red not grey
         highlight link pythonSelf GruvboxBlue
-        " make functions no longer bold
-        " hi! link Function GruvboxGreen
     endif
 
     " Needed for termgui in tmux--&term begins w screen-...
