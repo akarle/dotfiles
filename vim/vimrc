@@ -1,15 +1,19 @@
-"line numbers on
-set number
+" .vimrc by Alex Karle
+" Hosted at https://github.com/akarle/dotfiles
+"
+" Inspired by tips all over the interwebs
+" For best results install vim-plug:
+"   https://github.com/june-gunn/vim-plug
 
-"tab is really spaces
-set expandtab
+" GENERAL SETTINGS {{{
+set number              " Line numbers on
 
-"4 spaces per tab
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-set smarttab
+" Space settings
+set softtabstop=4       " <TAB> is 4 spaces (when expandtab set)
+set shiftwidth=4        " >> will indent 4 spaces
+set expandtab           " Needed to replace <TAB> with spaces
+set autoindent          " Indent carries over on new line
+set smarttab            " Use shiftwidth for <TAB> and <BS>
 
 "backspace should function as expected
 set backspace=indent,eol,start
@@ -18,13 +22,14 @@ set backspace=indent,eol,start
 set hlsearch
 set incsearch
 
+" detect filetype + load plugins + indent accordingly
 filetype plugin indent on
 
-" OTHER
-" Link clipboard to mac
+" Link unnamed register to system clipboard
+" (effectively d, x, y, etc all write to system clipboard)
 set clipboard=unnamed
 
-"For security (modeline vulnerability)
+" Disable  modelines for security (modeline vulnerability)
 set modelines=0
 
 " Encoding
@@ -53,10 +58,6 @@ set ttimeoutlen=30
 " Scroll when cursor gets within 5 rows of screen end
 set scrolloff=5
 
-" When in MacVim don't show the scrollbars
-set guioptions-=r
-set guioptions-=L
-
 " Persistent undo
 if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
     set undodir=~/.vim/undo/
@@ -67,13 +68,173 @@ endif
 
 " Backup files to ~/.vim/swp if present, else .
 set directory=~/.vim/swp,.
+" }}}
 
-" Source helper files
+" PLUGIN RELATED SETTINGS {{{
 " Only load plugins if vim-plug installed!
 if filereadable(expand("~/.vim/autoload/plug.vim"))
-    source ~/.vim/plugins.vim
-    source ~/.vim/pluginsettings.vim
+    " INSTALL PLUGINS {{{
+    " Plugs will be downloaded under the specified directory.
+    call plug#begin('~/.vim/bundle')
+
+    " Colorscheme
+    Plug 'morhetz/gruvbox'
+
+    " Extra syntax files
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'posva/vim-vue'
+
+    " Plug nerdtree for tree package explorer
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+
+    " Airline = status bar for vim
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    " Fugitive = git for vim
+    Plug 'tpope/vim-fugitive'
+
+    " NERD Commenter = for comments
+    Plug 'scrooloose/nerdcommenter'
+
+    " Git Gutter
+    Plug 'airblade/vim-gitgutter'
+
+    " Syntastic for syntax checks
+    "Plug 'vim-syntastic/syntastic', { 'for': 'python' }
+
+    " todo task plugin
+    Plug 'irrationalistic/vim-tasks'
+
+    " Simple latex tools
+    Plug 'lervag/vimtex', { 'for': 'tex' }
+
+    " fzf -- fuzzy finder
+    "Plug 'junegunn/fzf.vim'
+
+    " surround for parens and such
+    Plug 'tpope/vim-surround'
+
+    " markdown rendering
+    Plug 'suan/vim-instant-markdown'
+
+    " List ends here. Plugins become visible to Vim after this call.
+    call plug#end()
+    " }}}
+
+    " PLUGIN SETTINGS {{{
+    " Syntastic Default Settings
+    set statusline+=%#warningmsg#
+    "set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    "let g:syntastic_always_populate_loc_list = 1
+    "let g:syntastic_auto_loc_list = 1
+    "let g:syntastic_check_on_open = 0
+    "let g:syntastic_check_on_wq = 0
+
+    "let g:syntastic_python_checkers = ['flake8']
+    "let g:syntastic_python_flake8_post_args='--ignore=E116'
+
+    " vimtex stuff
+    " Set pdf viewer to sim
+    let g:vimtex_view_method='skim'
+
+    "for airline status bar -- need to include font
+    let g:airline_powerline_fonts = 0
+
+    " don't open instant markown on open md
+    let g:instant_markdown_autostart = 0
+    " }}}
 endif
-source ~/.vim/theme.vim
-source ~/.vim/functions.vim
-source ~/.vim/keys.vim
+" }}}
+
+" THEME {{{
+" When in MacVim don't show the scrollbars
+set guioptions-=r
+set guioptions-=L
+
+"Syntax highlighting on
+syntax on
+
+" Set cursor line when in insert mode (to indicate insert mode)
+if(has('autocmd'))
+    augroup MyCustomAucmds
+        " removes all autocmds from this group (needed when re-sourcing)
+        autocmd!
+
+        autocmd InsertEnter,InsertLeave * set cul!
+        autocmd BufNewFile,BufRead *.notes set filetype=markdown
+    augroup END  " goes back to default augroup
+endif
+
+" COLORSCHEME
+" if can use truecolor, do
+if (has("termguicolors"))
+    " load colorscheme if plugins installed
+    if filereadable(expand("~/.vim/bundle/gruvbox/colors/gruvbox.vim"))
+        let g:gruvbox_italic = 1
+        set termguicolors
+        colorscheme gruvbox
+        " make pythonSelf red not grey
+        highlight link pythonSelf GruvboxBlue
+    endif
+
+    " Needed for termgui in tmux--&term begins w screen-...
+    if &term =~# '^tmux'
+        " Set the terminal foreground+background colors
+        " See :h xterm-true-color
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+endif
+
+set background=dark  " seems to need to be after gruvbox
+
+
+" Allow cursor to change shape
+" https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/42118416#42118416
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+" }}}
+
+" FUNCTIONS {{{
+" A function to execute a command and return to the old position
+" CREDIT: http://vimcasts.org/episodes/tidying-whitespace/
+function! CMDPreserve(command) abort
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction 
+" }}}
+
+" KEY MAPPINGS {{{
+" set leader to be spacebar
+let mapleader = " "
+
+"Map ctrl-i/j/k/h to switch between splits
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+"Map ctrl-p to toggle paste mode
+nnoremap <C-p> :set paste!<CR>
+
+" Elim Whitespace (through regexp)
+nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
+
+" save session
+" nnoremap <leader>s :mksession!<CR>
+
+" edit in current buffer dir
+nnoremap <leader>e :e %:h/
+nnoremap <leader>v :vsp %:h/
+nnoremap <leader>s :vsp %:h/
+" }}}
