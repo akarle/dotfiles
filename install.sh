@@ -78,9 +78,63 @@ try_ln $DOTSVIM/vimrc $HOME/.vimrc
 try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zshrc $HOME/.zshrc
 
+for file in $HOMEDOTS/bash/*; do
+    [ -e "$file" ] || continue
+    try_ln $file $HOME/.$(basename $file)
+done
+unset file
+
 # Symlink HOMEDOTS/vim -> ~/.vim
 try_ln $HOMEDOTS/vim $VIMHOME
 
 # Make the swp and undo folders in ~/.vim
 try_mkdir $VIMHOME/undo
 try_mkdir $VIMHOME/swp
+
+# Optional install of vim-plug:
+echo "Would you like to install vim-plug (via curl)"
+select opt in "Yes" "No"; do
+    case $opt in
+        "Yes" )
+            curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+                    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            break
+            ;;
+        "No" )
+            echo "Not installing vim-plug"
+            break
+            ;;
+    esac
+done
+
+# Logo a la oh-my-zsh (for funsies)
+
+if tput setaf 1 &> /dev/null; then tput sgr0
+    BOLD="$(tput bold)"
+    MAGENTA="$(tput setaf 5)"
+    RESET="$(tput sgr0)"
+    if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
+        BLUE="$(tput setaf 12)"
+        ORANGE="$(tput setaf 11)"
+    else
+        BLUE="$(tput setaf 4)"
+        ORANGE="$(tput setaf 3)"
+    fi
+else
+    BLUE=""
+    BOLD=""
+    ORANGE=""
+    RESET=""
+fi
+
+printf ${ORANGE}
+echo "Thank you for installing..."
+printf ${BOLD}${BLUE}
+echo "          _              _          _       _        "
+echo "         | |            | |        | |     | |       "
+echo "     __ _| | ____ _ _ __| | ___  __| | ___ | |_ ___  "
+echo "    / _  | |/ / _  | '__| |/ _ \/ _  |/ _ \| __/ __| "
+echo "${MAGENTA} _${BLUE} | (_| |   ( (_| | |  | |  __/ (_| | (_) | |_\__ \ "
+echo "${MAGENTA}(_)${BLUE} \__,_|_|\_\__,_|_|  |_|\___|\__,_|\___/ \__|___/ "
+printf ${RESET}
+echo ""
