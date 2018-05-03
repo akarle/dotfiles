@@ -213,6 +213,14 @@ function! CMDPreserve(command) abort
   let @/=_s
   call cursor(l, c)
 endfunction
+
+function! ToggleColorColumn() abort
+    if &colorcolumn == ""
+        set colorcolumn=80
+    else
+        set colorcolumn=""
+    endif
+endfunction
 " }}}
 
 " KEY MAPPINGS {{{
@@ -237,9 +245,12 @@ nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
 " edit in current buffer dir
 nnoremap <leader>e :e %:h/
 nnoremap <leader>v :vsp %:h/
-nnoremap <leader>s :vsp %:h/
+nnoremap <leader>s :sp %:h/
 
 " quick toggle for light/dark background
 nnoremap <leader>L :set background=light<CR>
 nnoremap <leader>D :set background=dark<CR>
+
+" toggle color column (to ensure short lines)
+nnoremap <leader>C :call ToggleColorColumn()<CR>
 " }}}
