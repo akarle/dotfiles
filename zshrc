@@ -25,7 +25,12 @@ KEYTIMEOUT=1
 # vi keymap in terminal
 # credit: Doug Black (https://dougblack.io/words/zsh-vi-mode.html)
 bindkey -v
-# bindkey jk vi-cmd-mode
+
+# backspace works past insert mode location
+bindkey '^?' backward-delete-char
+
+# ctrl-r starts searching history backward
+bindkey '^r' history-incremental-search-backward
 
 function zle-line-init zle-keymap-select {
     VIM_NORMAL_PROMPT="%{$fg_bold[yellow]%}[% N]% %{$reset_color%}"
