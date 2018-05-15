@@ -82,6 +82,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
     " Extra syntax files
     Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'pangloss/vim-javascript'
     Plug 'posva/vim-vue'
 
     " Plug nerdtree for tree package explorer
