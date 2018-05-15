@@ -9,6 +9,7 @@ ZSH_THEME="refined"
 plugins=(git zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
+REFINED_PROMPT="$PROMPT"  # store the prompt (we append to it for insert/normal mode!)
 
 export DEFAULT_USER="$(whoami)"
 
@@ -27,8 +28,9 @@ bindkey -v
 # bindkey jk vi-cmd-mode
 
 function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    VIM_NORMAL_PROMPT="%{$fg_bold[yellow]%}[% N]% %{$reset_color%}"
+    VIM_INSERT_PROMPT="%{$fg_bold[blue]%}[% I]% %{$reset_color%}"
+    PS1="${${KEYMAP/vicmd/$VIM_NORMAL_PROMPT}/(main|viins)/$VIM_INSERT_PROMPT} $REFINED_PROMPT"
     zle reset-prompt
 }
 
