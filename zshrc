@@ -9,7 +9,6 @@ ZSH_THEME="refined"
 plugins=(git zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
-REFINED_PROMPT="$PROMPT"  # store the prompt (we append to it for insert/normal mode!)
 
 export DEFAULT_USER="$(whoami)"
 
@@ -23,7 +22,6 @@ export EDITOR="vim"
 KEYTIMEOUT=1
 
 # vi keymap in terminal
-# credit: Doug Black (https://dougblack.io/words/zsh-vi-mode.html)
 bindkey -v
 
 # backspace works past insert mode location
@@ -32,15 +30,8 @@ bindkey '^?' backward-delete-char
 # ctrl-r starts searching history backward
 bindkey '^r' history-incremental-search-backward
 
-function zle-line-init zle-keymap-select {
-    VIM_NORMAL_PROMPT="%{$fg_bold[yellow]%}[% N]% %{$reset_color%}"
-    VIM_INSERT_PROMPT="%{$fg_bold[blue]%}[% I]% %{$reset_color%}"
-    PS1="${${KEYMAP/vicmd/$VIM_NORMAL_PROMPT}/(main|viins)/$VIM_INSERT_PROMPT} $REFINED_PROMPT"
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
+# Indicate vi mode!
+source ~/.akarledots/zsh/vi_prompt_append.zsh
 
 # alias for homebrew versions of things
 # alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
