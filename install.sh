@@ -114,7 +114,7 @@ success_msg "Clone successful! Putting you on your own branch '$(whoami)' so you
 # $HOME level ln's
 try_ln $DOTSVIM/vimrc $HOME/.vimrc
 try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
-try_ln $HOMEDOTS/zshrc $HOME/.zshrc
+try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
 
 for file in $HOMEDOTS/bash/*; do
     [ -e "$file" ] || continue
