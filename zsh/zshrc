@@ -31,15 +31,16 @@ bindkey '^?' backward-delete-char
 bindkey '^r' history-incremental-search-backward
 
 # Indicate vi mode!
-source ~/.akarledots/zsh/vi_prompt_append.zsh
+local VI_PROMPT_APPEND_FILE=~/.akarledots/zsh/vi_prompt_append.zsh
+if [[ -f "$VI_PROMPT_APPEND_FILE" ]]; then
+    source "$VI_PROMPT_APPEND_FILE"
+fi
 
 # alias for homebrew versions of things
 # alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 # alias python python2
 
 # other alias'
-# alias pgp='open -a "PariGP"'
-# alias vim='nvim'
 alias dps="docker ps -a"
 
 # ITALICS UPDATE: may break ssh?
