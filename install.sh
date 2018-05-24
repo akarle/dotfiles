@@ -98,6 +98,24 @@ try_ln() {
     fi
 }
 
+install_via_curl() {
+    echo "Would you like to install $1 (via curl)"
+    select opt in "Yes" "No"; do
+        case $opt in
+            "Yes" )
+                curl -fLo "$3" --create-dirs "$2"
+                break
+                ;;
+            "No" )
+                echo "Not installing $1"
+                break
+                ;;
+        esac
+    done
+    echo ""
+    echo ""
+}
+
 # First, backup old copies
 if [ -d $HOMEDOTS ]; then
     BACKUP="${HOMEDOTS}_backup_$(date +%s)"
@@ -115,6 +133,7 @@ success_msg "Clone successful! Putting you on your own branch '$(whoami)' so you
 try_ln $DOTSVIM/vimrc $HOME/.vimrc
 try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
+try_ln $HOMEDOTS/inputrc $HOME/.inputrc
 
 for file in $HOMEDOTS/bash/*; do
     [ -e "$file" ] || continue
@@ -129,22 +148,22 @@ try_ln $HOMEDOTS/vim $VIMHOME
 try_mkdir $VIMHOME/undo
 try_mkdir $VIMHOME/swp
 
-# Optional install of vim-plug:
 printf "\n\n"
-echo "Would you like to install vim-plug (via curl)"
-select opt in "Yes" "No"; do
-    case $opt in
-        "Yes" )
-            curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-                    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            break
-            ;;
-        "No" )
-            echo "Not installing vim-plug"
-            break
-            ;;
-    esac
-done
+
+# Optional installs via curl:
+if [ -x "$(command -v curl)" ]; then
+    # vim-plug
+    install_via_curl \
+        "vim-plug" \
+        "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
+        "$HOME/.vim/autoload/plug.vim"
+
+    # git bash/zsh completion
+    install_via_curl \
+        "bash completion" \
+        "https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash" \
+        "$HOME/.bash/git-completion.bash"
+fi
 
 # Logo a la oh-my-zsh (for funsies)
 printf ${MAGENTA}
