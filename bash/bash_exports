@@ -1,0 +1,7 @@
+# if nvim exists, set it to the editor!
+if [ -x "$(command -v nvim)" ]; then
+  export EDITOR="nvim"
+  export MANPAGER="nvim -c 'set ft=man' -"
+else
+  export EDITOR="vim"
+fi

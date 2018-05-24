@@ -1,8 +1,8 @@
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+  colorflag="--color"
 else # macOS `ls`
-	colorflag="-G"
+  colorflag="-G"
 fi
 
 # ls aliases
@@ -12,7 +12,17 @@ alias ll='ls -lh ${colorflag}'
 
 # Git aliases
 alias ga='git add'
-alias gc='git commit'
+alias gc='git commit --verbose'
+alias gd='git diff'
 alias gp='git push'
 alias gst='git status'
-alias gl='git log --stat'
+alias gl='git pull'
+alias gco='git checkout'
+alias gf='git fetch'
+alias glg='git log --stat'
+
+# Alias vim / vi to nvim if there
+if [ -x "$(command -v nvim)" ]; then
+  alias vi="nvim"
+  alias vim="nvim"
+fi

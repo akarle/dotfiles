@@ -3,7 +3,12 @@
 
 # if you got xterm-256, export it!
 if infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color
+    # override xterm-256 if in tmux
+    if ! [ -z "$TMUX" ]; then
+        export TERM=tmux-256color
+    else
+        export TERM=xterm-256color
+    fi
 fi
 
 function parse_git_dirty() {
