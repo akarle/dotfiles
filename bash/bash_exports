@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # if nvim exists, set it to the editor!
 if [ -x "$(command -v nvim)" ]; then
   export EDITOR="nvim"

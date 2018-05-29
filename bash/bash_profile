@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # sourced by login shells (not interactive shells)
 # Example:
 #   - ssh to Linux --> run bash_profile on login
@@ -8,6 +9,7 @@
 #
 # Takeaway:
 #   ** Write preferences in bashrc, source it from bash_profile **
+
 if [ -r ~/.bashrc ]; then
     source ~/.bashrc
 fi
