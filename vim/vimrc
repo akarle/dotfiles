@@ -68,6 +68,12 @@ endif
 
 " Backup files to ~/.vim/swp if present, else .
 set directory=~/.vim/swp,.
+
+" Faster grepping!
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
@@ -110,14 +116,17 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " Simple latex tools
     Plug 'lervag/vimtex', { 'for': 'tex' }
 
-    " fzf -- fuzzy finder
-    "Plug 'junegunn/fzf.vim'
+    " fzf -- fuzzy finder (installed system wide)
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 
     " surround for parens and such
     Plug 'tpope/vim-surround'
 
     " markdown rendering
     Plug 'suan/vim-instant-markdown'
+
+    " code-completion (leave commented usually -- slows down start)
+    " Plug 'Valloric/YouCompleteMe'
 
     " List ends here. Plugins become visible to Vim after this call.
     call plug#end()
@@ -234,6 +243,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+if(has('terminal'))
+    tnoremap <C-j> <C-w>j
+    tnoremap <C-k> <C-w>k
+    tnoremap <C-h> <C-w>h
+    tnoremap <C-l> <C-w>l
+    tnoremap <C-w>t <C-w>:tabnext<CR>
+endif
+
 "Map ctrl-p to toggle paste mode
 nnoremap <C-p> :set paste!<CR>
 
@@ -254,4 +271,10 @@ nnoremap <leader>D :set background=dark<CR>
 
 " toggle color column (to ensure short lines)
 nnoremap <leader>C :call ToggleColorColumn()<CR>
+
+" easier tab switching (good for use w terminal wher gt doesn't work)
+nnoremap <C-w>t :tabnext<CR>
+
+" call fzf!
+nnoremap <leader>f :FZF<CR>
 " }}}
