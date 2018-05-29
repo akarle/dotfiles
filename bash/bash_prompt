@@ -13,7 +13,8 @@ if infocmp xterm-256color >/dev/null 2>&1; then
 fi
 
 function parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+  [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && \
+  [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "*"
 }
 
 function parse_git_branch() {
