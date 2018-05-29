@@ -15,8 +15,14 @@ export DEFAULT_USER="$(whoami)"
 # prevent zsh from renaming tmux windows
 DISABLE_AUTO_TITLE="true"
 
-# export editor for tmuxinator
-export EDITOR="vim"
+# use nvim as man pager / editor if available
+if (( $+commands[nvim] )); then
+    export EDITOR="nvim"
+    export MANPAGER="nvim -c 'set ft=man' -"
+    alias vim='nvim'
+else
+    export EDITOR="vim"
+fi
 
 # 10ms for key sequences
 KEYTIMEOUT=1
@@ -56,3 +62,5 @@ alias vup="vagrant up"
 
 # cd to a parent directory
 function pcd { cd ${PWD%/$1/*}/$1; }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
