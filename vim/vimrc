@@ -73,6 +73,7 @@ set directory=~/.vim/swp,.
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 endif
 " }}}
 
@@ -90,6 +91,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'pangloss/vim-javascript'
     Plug 'posva/vim-vue'
+    Plug 'cespare/vim-toml'
+    Plug 'cakebaker/scss-syntax.vim'
 
     " Plug nerdtree for tree package explorer
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }

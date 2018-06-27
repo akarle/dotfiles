@@ -7,8 +7,12 @@ set runtimepath+=~/.vim,~/.vim/after
 set packpath+=~/.vim
 source ~/.vimrc
 
-" Custom mappings
-tnoremap <C-h> <C-\><C-n><C-w>hA
-tnoremap <C-j> <C-\><C-n><C-w>jA
-tnoremap <C-k> <C-\><C-n><C-w>kA
-tnoremap <C-l> <C-\><C-n><C-w>lA
+" Custom mappings for terminal
+tnoremap <ESC> <C-\><C-n>
+tnoremap <M-[> <Esc>
+
+" no numbers in terminal
+autocmd TermOpen * setlocal nonumber
+
+" incrementally show substitutions!
+set inccommand=nosplit

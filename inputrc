@@ -1,3 +1,7 @@
 # tab completion
 Tab: menu-complete
 "\e[Z": menu-complete-backward
+
+# vi keys!
+# set editing-mode vi
+# set keymap vi-command
