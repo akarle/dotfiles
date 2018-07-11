@@ -5,76 +5,49 @@
 " For best results install vim-plug:
 "   https://github.com/june-gunn/vim-plug
 
-" GENERAL SETTINGS {{{
-set number              " Line numbers on
+" GENERAL EDITOR SETTINGS {{{
+" Space related
+set softtabstop=4                   " <TAB> is 4 spaces (when expandtab set)
+set shiftwidth=4                    " >> will indent 4 spaces
+set expandtab                       " Needed to replace <TAB> with spaces
+set autoindent                      " Indent carries over on new line
+set smarttab                        " Use shiftwidth for <TAB> and <BS>
 
-" Space settings
-set softtabstop=4       " <TAB> is 4 spaces (when expandtab set)
-set shiftwidth=4        " >> will indent 4 spaces
-set expandtab           " Needed to replace <TAB> with spaces
-set autoindent          " Indent carries over on new line
-set smarttab            " Use shiftwidth for <TAB> and <BS>
+" Search related
+set hlsearch                        " Highlight searches
+set incsearch                       " Incrementally search
 
-"backspace should function as expected
-set backspace=indent,eol,start
-
-"search highlighting and incremental search
-set hlsearch
-set incsearch
-
-" detect filetype + load plugins + indent accordingly
-filetype plugin indent on
-
-" Link unnamed register to system clipboard
-" (effectively d, x, y, etc all write to system clipboard)
-set clipboard=unnamed
-
-" Disable  modelines for security (modeline vulnerability)
-set modelines=0
-
-" Encoding
-set encoding=utf-8
-
-" Show whitespace with 'set: list' (disable: set: nolist)
-set listchars=space:·,tab:>–,trail:~,eol:¬
-
-" Prevent {}, (), [] commands from opening folds
-set foldopen-=block
-
-" Prevent windows resizing when split opened/closed
-set noequalalways
-
-" Show the command being typed
-set showcmd
-set history=1000
-
-" More visual completion for command mode
-set wildmenu
-
-" Set key code timeout to be less to avoid <ESC> delay
-set ttimeout
-set ttimeoutlen=30
-
-" Scroll when cursor gets within 5 rows of screen end
-set scrolloff=5
-
-" Persistent undo
-if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
-    set undodir=~/.vim/undo/
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
-endif
-
-" Backup files to ~/.vim/swp if present, else .
-set directory=~/.vim/swp,.
-
-" Faster grepping!
+" Faster grepping! (use ripgrep if available for :grep and :FZF)
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 endif
+
+" Key related behavior
+set backspace=indent,eol,start      " Backspace should function as expected
+set foldopen-=block                 " {}, (), [] commands don't open folds
+set ttimeout                        " Tell how to interpret key codes (used below)
+set ttimeoutlen=30                  " Low keycode timeout to avoid <ESC> delay
+
+" Other
+set modelines=0                     " Disable modelines for security
+set encoding=utf-8                  " Encoding
+set history=1000                    " Remember last 1000 :commands
+set scrolloff=5                     " Scroll at 5 rows from top/bot of screen
+filetype plugin indent on           " Enable filetype specific plugins/indent
+
+" Persistent undo
+if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
+    set undodir=~/.vim/undo/        " Directory for undo files
+    set undofile                    " Do indeed create said files
+    set undolevels=1000             " Max # changes that can be undone
+    set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
+endif
+
+" Use ~/.vim/swp if avail (else .) for backup and swp files respectively
+set backupdir=~/.vim/swp,.
+set directory=~/.vim/swp,.
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
@@ -110,9 +83,6 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " Git Gutter
     Plug 'airblade/vim-gitgutter'
 
-    " Syntastic for syntax checks
-    "Plug 'vim-syntastic/syntastic', { 'for': 'python' }
-
     " todo task plugin
     Plug 'irrationalistic/vim-tasks'
 
@@ -136,50 +106,32 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " }}}
 
     " PLUGIN SETTINGS {{{
-    " Syntastic Default Settings
-    set statusline+=%#warningmsg#
-    "set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    "let g:syntastic_always_populate_loc_list = 1
-    "let g:syntastic_auto_loc_list = 1
-    "let g:syntastic_check_on_open = 0
-    "let g:syntastic_check_on_wq = 0
-
-    "let g:syntastic_python_checkers = ['flake8']
-    "let g:syntastic_python_flake8_post_args='--ignore=E116'
-
-    " vimtex stuff
-    " Set pdf viewer to sim
+    " Set pdf viewer to skim for vimtex
     let g:vimtex_view_method='skim'
 
-    "for airline status bar -- need to include font
+    " Don't use powerline font in airline (not neces. installed)
     let g:airline_powerline_fonts = 0
 
-    " don't open instant markown on open md
+    " Don't open instant markown on opening a md doc
     let g:instant_markdown_autostart = 0
     " }}}
 endif
 " }}}
 
-" THEME {{{
-" When in MacVim don't show the scrollbars
-set guioptions-=r
-set guioptions-=L
+" THEME AND APPEARANCE {{{
+syntax on                           " Syntax highlighting on
+set number                          " Line numbers on
+set wildmenu                        " Visual completion for command mode
+set showcmd                         " Show the command being typed
+set laststatus=2                    " Always show the statusbar
+set noequalalways                   " Don't resize split on open/close event
 
-"Syntax highlighting on
-syntax on
+" Whitespace chars to display with :set list
+set listchars=space:·,tab:>–,trail:~,eol:¬
 
-" auto commands (grouped so that resourcing doesn't pile up)
-if(has('autocmd'))
-    augroup MyCustomAucmds
-        " removes all autocmds from this group (needed when re-sourcing)
-        autocmd!
-
-        " Set cursor line when in insert mode (to indicate insert mode)
-        autocmd InsertEnter,InsertLeave * set cul!
-        autocmd BufNewFile,BufRead *.notes set filetype=markdown
-    augroup END  " goes back to default augroup
+if(has('gui_running'))
+    " Show no sidebars, etc
+    set guioptions=
 endif
 
 " COLORSCHEME
@@ -205,11 +157,23 @@ endif
 
 set background=dark  " seems to need to be after gruvbox
 
-
 " Allow cursor to change shape
-" https://stackoverflow.com/questions/6488683/how-do-i-change-the-vim-cursor-in-insert-normal-mode/42118416#42118416
+" https://stackoverflow.com/questions/6488683/
+"     how-do-i-change-the-vim-cursor-in-insert-normal-mode/42118416#42118416
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" auto commands (grouped so that re-sourcing vimrc doesn't cause duplicates!)
+if(has('autocmd'))
+    augroup MyCustomAucmds
+        " removes all autocmds from this group (needed when re-sourcing)
+        autocmd!
+
+        " Set cursor line when in insert mode (to indicate insert mode)
+        autocmd InsertEnter,InsertLeave * set cul!
+        autocmd BufNewFile,BufRead *.notes set filetype=markdown
+    augroup END  " goes back to default augroup
+endif
 " }}}
 
 " FUNCTIONS {{{
