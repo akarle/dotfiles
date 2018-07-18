@@ -244,4 +244,8 @@ nnoremap <C-w>t :tabnext<CR>
 
 " call fzf!
 nnoremap <leader>f :FZF<CR>
+
+" 2 space / 4 space toggle
+nnoremap <leader>2 :setlocal softtabstop=2 shiftwidth=2<CR>
+nnoremap <leader>4 :setlocal softtabstop=4 shiftwidth=4<CR>
 " }}}
