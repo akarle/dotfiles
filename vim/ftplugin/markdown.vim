@@ -5,4 +5,4 @@ setlocal linebreak
 setlocal breakindent
 
 " spell check
-set spell
+setlocal spell
