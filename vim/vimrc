@@ -254,4 +254,13 @@ nnoremap <LEFT> :cprev<CR>
 nnoremap <RIGHT> :cnext<CR>
 nnoremap <UP> :prev<CR>
 nnoremap <DOWN> :next<CR>
+
+" Clear that highlight!
+nnoremap <BS> :nohlsearch<CR>
+
+" Get greppin quick!
+nnoremap <leader>g :grep<space>
+
+" Toggle whitespace
+nnoremap <leader>w :set list!<CR>
 " }}}
