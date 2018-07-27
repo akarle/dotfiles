@@ -98,9 +98,9 @@ endif
 
 " COLORSCHEME
 " if can use truecolor, do
-if (has("termguicolors"))
+if (has("termguicolors") || has('gui_running'))
     " load colorscheme if plugins installed
-    if filereadable(expand(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim"))
+    if filereadable(expand(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim")) || filereadable(expand(s:vimdir . "/colors/gruvbox.vim"))
         let g:gruvbox_italic = 1
         set termguicolors
         colorscheme gruvbox

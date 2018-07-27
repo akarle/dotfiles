@@ -1,0 +1,15 @@
+" Disable visual bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+" Gonna be using that system clipboard
+set clipboard=unnamed
+
+" Pretty printing
+set printoptions=left:1in,right:1in,paper:letter
+set printfont=Consolas:h11
+
+" Minimal UI
+set guioptions=                 " Don't show guioptions (toolbar, scrollbar,..)
+set guifont=Consolas:h11        " Font that doesn't hurt my eyes
+set guicursor=a:blinkon0        " Don't blink the cursor (not my thang)
