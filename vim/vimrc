@@ -56,6 +56,8 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
     " INSTALL PLUGINS {{{
     " Plugs will be downloaded under the specified directory.
     call plug#begin('~/.vim/bundle')
+    " Moine!
+    Plug '~/git/vim-mwts'
 
     " Colorscheme
     Plug 'morhetz/gruvbox'
@@ -97,6 +99,9 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
     " markdown rendering
     Plug 'suan/vim-instant-markdown'
+
+    " Async Linting!
+    Plug 'w0rp/ale'
 
     " code-completion (leave commented usually -- slows down start)
     " Plug 'Valloric/YouCompleteMe'
@@ -258,8 +263,8 @@ nnoremap <DOWN> :next<CR>
 " Clear that highlight!
 nnoremap <BS> :nohlsearch<CR>
 
-" Get greppin quick!
-nnoremap <leader>g :grep<space>
+" Get greppin quick! --> search word under cursor
+nnoremap <leader>g yiw:grep <C-R>0<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
