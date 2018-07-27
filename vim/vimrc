@@ -6,6 +6,14 @@
 "   https://github.com/june-gunn/vim-plug
 
 " GENERAL EDITOR SETTINGS {{{
+
+" Try to be platform agnostic:
+if has('win64') || has('win32')
+    let s:vimdir = $HOME . '/vimfiles'
+else
+    let s:vimdir = $HOME . '/.vim'
+endif
+
 " Space related
 set softtabstop=4                   " <TAB> is 4 spaces (when expandtab set)
 set shiftwidth=4                    " >> will indent 4 spaces
@@ -38,24 +46,33 @@ set scrolloff=5                     " Scroll at 5 rows from top/bot of screen
 filetype plugin indent on           " Enable filetype specific plugins/indent
 
 " Persistent undo
-if(has('persistent_undo') && !empty(finddir('~/.vim/undo', '~')))
-    set undodir=~/.vim/undo/        " Directory for undo files
+if(has('persistent_undo') && !empty(finddir(s:vimdir . '/undo', '~')))
+    if has('win64') || has('win32')
+        set undodir=~/vimfiles/undo/
+    else
+        set undodir=~/.vim/undo/   " Directory for undo files
+    endif
     set undofile                    " Do indeed create said files
     set undolevels=1000             " Max # changes that can be undone
     set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
 endif
 
 " Use ~/.vim/swp if avail (else .) for backup and swp files respectively
-set backupdir=~/.vim/swp,.
-set directory=~/.vim/swp,.
+if has('win64') || has('win32')
+    set backupdir=~/vimfiles/swp,.
+    set directory=~/vimfiles/swp,.
+else
+    set backupdir=~/.vim/swp,.
+    set directory=~/.vim/swp,.
+endif
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
 " Only load plugins if vim-plug installed!
-if filereadable(expand("~/.vim/autoload/plug.vim"))
+if filereadable(expand(s:vimdir . "/autoload/plug.vim"))
     " INSTALL PLUGINS {{{
     " Plugs will be downloaded under the specified directory.
-    call plug#begin('~/.vim/bundle')
+    call plug#begin(s:vimdir . '/bundle')
     " Moine!
     Plug '~/git/vim-mwts'
 
@@ -143,7 +160,7 @@ endif
 " if can use truecolor, do
 if (has("termguicolors"))
     " load colorscheme if plugins installed
-    if filereadable(expand("~/.vim/bundle/gruvbox/colors/gruvbox.vim"))
+    if filereadable(expand(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim"))
         let g:gruvbox_italic = 1
         set termguicolors
         colorscheme gruvbox
