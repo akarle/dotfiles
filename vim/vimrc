@@ -2,16 +2,18 @@
 " Hosted at https://github.com/akarle/dotfiles
 "
 " Inspired by tips all over the interwebs
-" For best results install vim-plug:
-"   https://github.com/june-gunn/vim-plug
 
 " GENERAL EDITOR SETTINGS {{{
-
 " Try to be platform agnostic:
 if has('win64') || has('win32')
     let s:vimdir = $HOME . '/vimfiles'
 else
     let s:vimdir = $HOME . '/.vim'
+endif
+
+" Add all the plugins to the path
+if filereadable(expand(s:vimdir . "/autoload/pathogen.vim"))
+    execute pathogen#infect()
 endif
 
 " Space related
@@ -68,76 +70,14 @@ endif
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
-" Only load plugins if vim-plug installed!
-if filereadable(expand(s:vimdir . "/autoload/plug.vim"))
-    " INSTALL PLUGINS {{{
-    " Plugs will be downloaded under the specified directory.
-    call plug#begin(s:vimdir . '/bundle')
-    " Moine!
-    Plug '~/git/vim-mwts'
+" Set pdf viewer to skim for vimtex
+let g:vimtex_view_method='skim'
 
-    " Colorscheme
-    Plug 'morhetz/gruvbox'
+" Don't use powerline font in airline (not neces. installed)
+let g:airline_powerline_fonts = 0
 
-    " Extra syntax files
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'pangloss/vim-javascript'
-    Plug 'posva/vim-vue'
-    Plug 'cespare/vim-toml'
-    Plug 'cakebaker/scss-syntax.vim'
-
-    " Plug nerdtree for tree package explorer
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
-    " Airline = status bar for vim
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-
-    " Fugitive = git for vim
-    Plug 'tpope/vim-fugitive'
-
-    " NERD Commenter = for comments
-    Plug 'scrooloose/nerdcommenter'
-
-    " Git Gutter
-    Plug 'airblade/vim-gitgutter'
-
-    " todo task plugin
-    Plug 'irrationalistic/vim-tasks'
-
-    " Simple latex tools
-    Plug 'lervag/vimtex', { 'for': 'tex' }
-
-    " fzf -- fuzzy finder (installed system wide)
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
-
-    " surround for parens and such
-    Plug 'tpope/vim-surround'
-
-    " markdown rendering
-    Plug 'suan/vim-instant-markdown'
-
-    " Async Linting!
-    Plug 'w0rp/ale'
-
-    " code-completion (leave commented usually -- slows down start)
-    " Plug 'Valloric/YouCompleteMe'
-
-    " List ends here. Plugins become visible to Vim after this call.
-    call plug#end()
-    " }}}
-
-    " PLUGIN SETTINGS {{{
-    " Set pdf viewer to skim for vimtex
-    let g:vimtex_view_method='skim'
-
-    " Don't use powerline font in airline (not neces. installed)
-    let g:airline_powerline_fonts = 0
-
-    " Don't open instant markown on opening a md doc
-    let g:instant_markdown_autostart = 0
-    " }}}
-endif
+" Don't open instant markown on opening a md doc
+let g:instant_markdown_autostart = 0
 " }}}
 
 " THEME AND APPEARANCE {{{
@@ -202,15 +142,15 @@ endif
 " A function to execute a command and return to the old position
 " CREDIT: http://vimcasts.org/episodes/tidying-whitespace/
 function! CMDPreserve(command) abort
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
 endfunction
 
 function! ToggleColorColumn() abort
