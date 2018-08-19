@@ -5,4 +5,7 @@ setlocal linebreak
 setlocal breakindent
 
 " spell check
-setlocal spell
+setlocal spell spelllang=en_us
+
+" Break at 80
+setlocal textwidth=80
