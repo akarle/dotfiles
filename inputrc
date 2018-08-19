@@ -1,11 +1,12 @@
+# vi keys! Needs to be up top
+set editing-mode vi
+
 # tab completion
 Tab: menu-complete
 "\e[Z": menu-complete-backward
 
-# vi keys!
-set editing-mode vi
-
 set keymap vi-command
 Control-l: clear-screen
+
 set keymap vi-insert
 Control-l: clear-screen
