@@ -17,11 +17,14 @@ alias ga='git add'
 alias gc='git commit --verbose'
 alias gd='git diff'
 alias gp='git push'
+alias gs='git status'
 alias gst='git status'
 alias gl='git pull'
 alias gco='git checkout'
 alias gf='git fetch'
 alias glg='git log --stat'
+alias g_='git stash'
+alias g_p='git stash pop'
 
 # Alias vim / vi to nvim if there
 if [ -x "$(command -v nvim)" ]; then
