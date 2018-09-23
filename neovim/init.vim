@@ -7,10 +7,6 @@ set runtimepath+=~/.vim,~/.vim/after
 set packpath+=~/.vim
 source ~/.vimrc
 
-" Custom mappings for terminal
-tnoremap <ESC> <C-\><C-n>
-tnoremap <M-[> <Esc>
-
 " no numbers in terminal
 autocmd TermOpen * setlocal nonumber
 
