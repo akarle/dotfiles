@@ -192,8 +192,8 @@ nnoremap <DOWN> :next<CR>
 " Clear that highlight!
 nnoremap <BS> :nohlsearch<CR>
 
-" Get greppin quick! --> search word under cursor
-nnoremap <leader>g yiw:grep <C-R>0<CR>
+" Get greppin quick! --> search word under cursor (escape # for VimL autoload)
+nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
