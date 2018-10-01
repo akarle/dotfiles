@@ -1,0 +1,5 @@
+# Ignore all but syntax/ftplugin subdirectories
+# Stuff like swp/ and undo/ really shouldn't be tracked
+*/*
+!syntax/*
+!ftplugin/*
