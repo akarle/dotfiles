@@ -12,8 +12,7 @@ fi
 
 # Establish Globals
 HOMEDOTS=$HOME/.akarledots
-VIMHOME=$HOME/.vim
-DOTSVIM=$HOMEDOTS/vim
+DOTVIM=$HOME/.vim
 
 # Define colors (for printouts)
 if tput setaf 1 &> /dev/null; then tput sgr0
@@ -50,13 +49,6 @@ warn_msg() {
 
 error_msg() {
     echo "${RED}$1${RESET}"
-}
-
-try_mkdir() {
-    if [ ! -d $1 ]; then
-        success_msg "Making directory $1"
-        mkdir $1
-    fi
 }
 
 try_ln() {
@@ -124,16 +116,24 @@ if [ -d $HOMEDOTS ]; then
 fi
 
 # Next, clone a fresh one
-try_mkdir $HOMEDOTS
 git clone https://github.com/akarle/dotfiles.git $HOMEDOTS
 success_msg "Clone successful! Putting you on your own branch '$(whoami)' so you can make changes!"
 (cd $HOMEDOTS && exec git checkout -b $(whoami))
 
 # $HOME level ln's
-try_ln $DOTSVIM/vimrc $HOME/.vimrc
 try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
 try_ln $HOMEDOTS/inputrc $HOME/.inputrc
+
+# Now for Vim
+if [ -d $DOTVIM ]; then
+    BACKUP="${DOTVIM}_backup_$(date +%s)"
+    mv $DOTVIM $BACKUP
+    warn_msg "Backing up old $DOTVIM to $BACKUP"
+fi
+
+git clone https://github.com/akarle/dotvim.git $DOTVIM
+success_msg "Successfully cloned dotvim to $DOTVIM. Woot!"
 
 for file in $HOMEDOTS/bash/*; do
     [ -e "$file" ] || continue
@@ -141,22 +141,15 @@ for file in $HOMEDOTS/bash/*; do
 done
 unset file
 
-# Symlink HOMEDOTS/vim -> ~/.vim
-try_ln $HOMEDOTS/vim $VIMHOME
-
-# Make the swp and undo folders in ~/.vim
-try_mkdir $VIMHOME/undo
-try_mkdir $VIMHOME/swp
-
 printf "\n\n"
 
 # Optional installs via curl:
 if [ -x "$(command -v curl)" ]; then
     # vim-plug
     install_via_curl \
-        "vim-plug" \
-        "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
-        "$HOME/.vim/autoload/plug.vim"
+        "vim-pathogen" \
+        "https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim" \
+        "$HOME/.vim/autoload/pathogen.vim"
 
     # git bash/zsh completion
     install_via_curl \
