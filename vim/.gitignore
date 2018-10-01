@@ -3,3 +3,6 @@
 */*
 !syntax/*
 !ftplugin/*
+
+# Ignore plugin artifacts
+.netrwhist
