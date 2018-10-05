@@ -1,0 +1,15 @@
+# My Global .gitignore
+# Set with:
+#     git config --global core.excludesfile 'path/to/.gitignore'
+#
+# For the junk that I create that nobody else needs or wants
+
+# ctags files
+tags
+TAGS
+
+# Vim files
+*.swp
+
+# OS Junk
+.DS_Store
