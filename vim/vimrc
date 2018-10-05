@@ -66,6 +66,10 @@ let g:vimtex_view_method='skim'
 
 " Don't use powerline font in airline (not neces. installed)
 let g:airline_powerline_fonts = 0
+
+" netrw style settings
+let g:netrw_banner=0                " disable banner
+let g:netrw_liststyle=1             " details view
 " }}}
 
 " THEME AND APPEARANCE {{{
