@@ -202,3 +202,5 @@ nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
 " }}}
+
+" vim:fdm=marker:sts=4:sw=4
