@@ -140,6 +140,52 @@ function! ToggleColorColumn() abort
         set colorcolumn=""
     endif
 endfunction
+
+" Searches all of project for word under cursor
+function! GitGrepWordUnderCursor() abort
+    let word = substitute(expand('<cword>'), '#', '\\#', 'g')
+    if s:InGitRepo()
+        let raw = system('git grep -n ' . word)
+        let matches = split(raw, '\n')
+        let qfitems = []
+        for m in matches
+            let items = split(m, ':')
+            let d = {
+                        \'filename': items[0],
+                        \'lnum': items[1],
+                        \'text': join(items[2:], '')
+                    \}
+
+            let qfitems += [d]
+        endfor
+        call setqflist(qfitems, 'r')
+    else
+        call s:warn("called GitGrepWordUnderCursor outside of git repo")
+    endif
+endfunction
+
+function! s:InGitRepo() abort
+    if has('win64') || has('win32')
+        let fsep = '\'
+    else
+        let fsep = '/'
+    endif
+    let dir_list = split(getcwd(), fsep)
+    let running_path = ''
+    for dir in dir_list
+        let running_path = join([running_path, dir], fsep)
+        if isdirectory(running_path . fsep . '.git')
+            return 1
+        endif
+    endfor
+    return 0
+endfunction
+
+function! s:warn(msg) abort
+        echohl WarningMsg
+        echo 'vimrc: ' . a:msg
+        echohl None
+endfunction
 " }}}
 
 " KEY MAPPINGS {{{
@@ -198,6 +244,7 @@ nnoremap <BS> :nohlsearch<CR>
 
 " Get greppin quick! --> search word under cursor (escape # for VimL autoload)
 nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
+nnoremap <silent> <leader>G :call GitGrepWordUnderCursor()<CR>:copen<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
