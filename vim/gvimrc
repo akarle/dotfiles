@@ -10,3 +10,7 @@ set printfont=Consolas:h11
 set guioptions=                 " Don't show guioptions (toolbar, scrollbar,..)
 set guifont=Consolas:h11        " Font that doesn't hurt my eyes
 set guicursor=a:blinkon0        " Don't blink the cursor (not my thang)
+
+" Bigger size on startup
+set lines=50
+set columns=100

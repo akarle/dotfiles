@@ -252,6 +252,9 @@ nnoremap <silent> <leader>G :call GitGrepWordUnderCursor()<CR>:copen<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
+
+" Yank entire file
+nnoremap <leader>y gg"*yG<C-O><C-O>
 " }}}
 
 " COMMANDS {{{
