@@ -149,6 +149,10 @@ function! GitGrep(word) abort
         let qfitems = []
         for m in matches
             let items = split(m, ':')
+            " Rare case that we match a binary file
+            if len(items) < 3
+                continue
+            endif
             let d = {
                         \'filename': items[0],
                         \'lnum': items[1],
