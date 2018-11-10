@@ -32,4 +32,8 @@ if [ -x "$(command -v nvim)" ]; then
   alias vim="nvim"
 fi
 
+# Security aliases
+alias sudovim='sudo vim -u NONE'
+
+# Common cd aliases
 alias cddv='cd ~/.vim'

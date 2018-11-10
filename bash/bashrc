@@ -29,8 +29,5 @@ HISTIGNORE=fg:pwd:ls
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Added by fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # Git Completion
 [ -f ~/.bash/git-completion.bash ] && source ~/.bash/git-completion.bash
