@@ -12,6 +12,12 @@ if infocmp xterm-256color >/dev/null 2>&1; then
     fi
 fi
 
+if [ -n "$SSH_CLIENT" ]; then
+    ssh_text="[$USER@$(hostname)] "
+else
+    ssh_text=""
+fi
+
 function parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && \
   [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "*"
@@ -31,7 +37,7 @@ if tput setaf 1 &> /dev/null; then tput sgr0
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
-        export PS1="\n$BOLD$BLUE\w $RESET$GRAY\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
+        export PS1="\n$BOLD$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
         export PS2="$ORANGE→ $RESET"
     else
         # TODO: write better case for too few colors...
