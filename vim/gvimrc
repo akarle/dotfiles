@@ -8,8 +8,14 @@ set printfont=Consolas:h11
 
 " Minimal UI
 set guioptions=                 " Don't show guioptions (toolbar, scrollbar,..)
-set guifont=Consolas:h11        " Font that doesn't hurt my eyes
 set guicursor=a:blinkon0        " Don't blink the cursor (not my thang)
+
+" Font that doesn't hurt my eyes at a size depending on the screen
+if has('gui_macvim')
+    set guifont=Inconsolata:h15
+else
+    set guifont=Consolas:h11
+end
 
 " Bigger size on startup
 set lines=50
