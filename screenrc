@@ -5,6 +5,9 @@
 # Set the $TERM to be screen-256color
 term screen-256color
 
+# truecolor (hopefully)
+truecolor "on"
+
 # Allow bold colors (don't delete)
 attrcolor b ".I" 
 
