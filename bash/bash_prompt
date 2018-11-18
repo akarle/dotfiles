@@ -37,7 +37,7 @@ if tput setaf 1 &> /dev/null; then tput sgr0
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
-        export PS1="\n$BOLD$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
+        export PS1="$BOLD$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
         export PS2="$ORANGE→ $RESET"
     else
         # TODO: write better case for too few colors...
@@ -49,3 +49,7 @@ else
     export PS1="\w\n\$ "
     export PS2="> "
 fi
+
+# This command runs after each issuing of PS1
+# Used to add a newline after each prompt
+export PROMPT_COMMAND="echo"
