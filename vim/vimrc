@@ -87,7 +87,6 @@ set listchars=space:·,tab:>–,trail:~,eol:¬
 " if can use truecolor, do
 if (has("termguicolors") || has('gui_running')) &&
             \ filereadable(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim")
-    let g:gruvbox_italic = 1
     set termguicolors
     colorscheme gruvbox
 

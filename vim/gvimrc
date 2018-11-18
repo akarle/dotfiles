@@ -14,7 +14,7 @@ set guicursor=a:blinkon0        " Don't blink the cursor (not my thang)
 if has('gui_macvim')
     set guifont=Inconsolata:h15
 else
-    set guifont=Consolas:h11
+    set guifont=Inconsolata:h11
 end
 
 " Bigger size on startup
