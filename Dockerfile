@@ -13,7 +13,7 @@ USER akarle
 
 # copy in install script!
 WORKDIR /home/akarle
-COPY install.sh ./install.sh
+COPY ./bin/install.sh ./install.sh
 
 # Start bash on enter
 CMD ["/bin/bash"]

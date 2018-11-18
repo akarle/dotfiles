@@ -1,8 +1,11 @@
-#!/bin/bash
-# This script sets up the dotfiles
+#!/usr/bin/env bash
+# This script sets up all dotfiles from scratch
 # PREREQS: git
+#
 # NOTE: will not overwrite anything that already exists
 # other than .akarledots (which will get backed up)
+#
+# If you want to just do symlinking, see ./link.sh
 
 # Before anything, require git to be installed
 if ! [ -x "$(command -v git)" ]; then
@@ -14,81 +17,8 @@ fi
 HOMEDOTS=$HOME/.akarledots
 DOTVIM=$HOME/.vim
 
-# Define colors (for printouts)
-if tput setaf 1 &> /dev/null; then tput sgr0
-    BOLD="$(tput bold)"
-    MAGENTA="$(tput setaf 5)"
-    GREEN="$(tput setaf 2)"
-    RED="$(tput setaf 1)"
-    RESET="$(tput sgr0)"
-    if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
-        BLUE="$(tput setaf 12)"
-        ORANGE="$(tput setaf 11)"
-    else
-        BLUE="$(tput setaf 4)"
-        ORANGE="$(tput setaf 3)"
-    fi
-else
-    BLUE=""
-    BOLD=""
-    ORANGE=""
-    RED=""
-    GREEN=""
-    RESET=""
-fi
-
-
-# Helper functions
-success_msg() {
-    echo "${GREEN}$1${RESET}"
-}
-
-warn_msg() {
-    echo "${ORANGE}$1${RESET}"
-}
-
-error_msg() {
-    echo "${RED}$1${RESET}"
-}
-
-try_ln() {
-    # if it doesn't exist, just create it -- works for broken symlinks too!
-    if [ ! -f $2 ]; then
-        success_msg "Creating soft symlink from $1 to $2"
-        ln -s $1 $2
-    # if its a symlink replace it
-    elif [ -L $2 ]; then
-        warn_msg "$2 is a symlink already, replacing it with a symlink to $1"
-        rm $2
-        ln -s $1 $2
-    # if it exists but is not a symlink
-    else
-        error_msg "$2 exists as a file that is NOT a symlink. What would you like to do?"
-        OPT1="Move it to $HOMEDOTS for further inspection and add akarledots link in its place"
-        OPT2="Delete and replace it with akarledots link"
-        OPT3="Keep it and do not create akarledots link"
-        select opt in "$OPT1" "$OPT2" "$OPT3"; do
-            case $opt in
-                $OPT1 )
-                    TMPFILE=$2.BACKUP
-                    mv $2 $TMPFILE
-                    mv $TMPFILE $HOMEDOTS/
-                    ln -s $1 $2
-                    break
-                    ;;
-                $OPT2 )
-                    rm $2
-                    ln -s $1 $2
-                    break
-                    ;;
-                $OPT3 )
-                    echo "Not altering $2"
-                    break
-                    ;;
-            esac
-        done
-    fi
-}
+# Load messages colors + functions
+source $HOMEDOTS/bin/messages.sh
 
 install_via_curl() {
     echo "Would you like to install $1 (via curl)"
@@ -120,10 +50,9 @@ git clone https://github.com/akarle/dotfiles.git $HOMEDOTS
 success_msg "Clone successful! Putting you on your own branch '$(whoami)' so you can make changes!"
 (cd $HOMEDOTS && exec git checkout -b $(whoami))
 
-# $HOME level ln's
-try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
-try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
-try_ln $HOMEDOTS/inputrc $HOME/.inputrc
+# Do linking
+success_msg "Linking..."
+source $HOMEDOTS/bin/link.sh
 
 # Now for Vim
 if [ -d $DOTVIM ]; then
@@ -134,12 +63,6 @@ fi
 
 git clone https://github.com/akarle/dotvim.git $DOTVIM
 success_msg "Successfully cloned dotvim to $DOTVIM. Woot!"
-
-for file in $HOMEDOTS/bash/*; do
-    [ -e "$file" ] || continue
-    try_ln $file $HOME/.$(basename $file)
-done
-unset file
 
 printf "\n\n"
 
