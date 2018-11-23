@@ -96,7 +96,7 @@ if (has("termguicolors") || has('gui_running')) &&
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
 else
-    colorscheme elflord
+    colorscheme desert
 endif
 
 set background=dark  " seems to need to be after gruvbox
@@ -205,9 +205,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Terminal mappings
+" NOTE: a couple limitations here:
+" 1) Vim interprets arrows as escape sequences --> remapping escape is no-go
+" 2) Alacritty cannot handle meta on mac (currently)
+"
+" With this in mind, the goal is to make cross-vim keys consistent
 if has('terminal') || has('nvim')
-    tnoremap <ESC> <C-\><C-n>
-    tnoremap <M-[> <ESC>
+    tnoremap <C-W> <C-\><C-N><C-W>
 endif
 
 "Map ctrl-p to toggle paste mode
