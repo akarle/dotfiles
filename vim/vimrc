@@ -188,6 +188,12 @@ function! s:InGitRepo() abort
     return 0
 endfunction
 
+function! SetPasteAndPasteFromClipboard() abort
+    set paste
+    normal! "*p
+    set nopaste
+endfunction
+
 function! s:warn(msg) abort
         echohl WarningMsg
         echo 'vimrc: ' . a:msg
@@ -215,13 +221,11 @@ if has('terminal') || has('nvim')
     tnoremap <C-W> <C-\><C-N><C-W>
 endif
 
-"Map ctrl-p to toggle paste mode
-nnoremap <C-p> :set paste!<CR>
+" Paste from clipboard without any formatting issues
+nnoremap <C-p> :call SetPasteAndPasteFromClipboard()<CR>
 
-" Elim Whitespace (through regexp)
+" Clear trailing whitespace (through regexp)
 nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
-" save session
-" nnoremap <leader>s :mksession!<CR>
 
 " edit in current buffer dir
 nnoremap <leader>e :e %:h/
@@ -266,7 +270,7 @@ nnoremap <leader>y gg"*yG<C-O><C-O>
 " }}}
 
 " COMMANDS {{{
-command! -nargs=1 GitGrep call GitGrep('<args>')
+command! -nargs=1 GitGrep call GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
 " }}}
 
