@@ -12,7 +12,7 @@ Note that the install will still download it!
 Note that bash is required for this install (as some of the interactive options depend on bash).
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/akarle/dotfiles/master/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/akarle/dotfiles/master/bin/install.sh)"
 ```
 
 ## Trying it Out
