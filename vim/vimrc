@@ -239,6 +239,9 @@ nnoremap <leader>D :set background=dark<CR>
 " toggle color column (to ensure short lines)
 nnoremap <expr> <leader>C ToggleColorColumn()
 
+" Quick open current directory of file being edited
+nnoremap <leader>d :e %:h/<CR>
+
 " easier tab switching (good for use w terminal wher gt doesn't work)
 nnoremap <C-w>t :tabnext<CR>
 
