@@ -26,6 +26,12 @@ alias glg='git log --stat'
 alias g_='git stash'
 alias g_p='git stash pop'
 
+# Git completion for aliases
+__git_complete ga _git_add
+__git_complete gco _git_checkout
+__git_complete gd _git_diff
+__git_complete ga _git_add
+
 # Alias vim / vi to nvim if there
 if [ -x "$(command -v nvim)" ]; then
   alias vi="nvim"
@@ -37,3 +43,6 @@ alias sudovim='sudo vim -u NONE'
 
 # Common cd aliases
 alias cddv='cd ~/.vim'
+
+# grep
+alias grep='grep --color'

@@ -6,7 +6,7 @@
 [[ $- == *i* ]] && stty -ixon
 
 # Load the shell dotfiles
-for file in ~/.{bash_path,bash_prompt,bash_exports,aliases}; do
+for file in ~/.bash_{path,prompt,exports}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
@@ -31,3 +31,6 @@ shopt -s checkwinsize
 
 # Git Completion
 [ -f ~/.bash/git-completion.bash ] && source ~/.bash/git-completion.bash
+
+# Source aliases (must go after git completion)
+[ -r "$HOME/.aliases" ] && source "$HOME/.aliases"
