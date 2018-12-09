@@ -117,90 +117,6 @@ if has('autocmd')
 endif
 " }}}
 
-" FUNCTIONS {{{
-" A function to execute a command and return to the old position
-" CREDIT: http://vimcasts.org/episodes/tidying-whitespace/
-function! CMDPreserve(command) abort
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    execute a:command
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-function! ToggleColorColumn() abort
-    if &colorcolumn == ""
-        set colorcolumn=80
-    else
-        set colorcolumn=""
-    endif
-endfunction
-
-" Searches all of project for word under cursor
-function! GitGrep(word) abort
-    if s:InGitRepo()
-        let raw = system('git grep -n ' . a:word)
-        let matches = split(raw, '\n')
-        let qfitems = []
-        for m in matches
-            let items = split(m, ':')
-            " Rare case that we match a binary file
-            if len(items) < 3
-                continue
-            endif
-            let d = {
-                        \'filename': items[0],
-                        \'lnum': items[1],
-                        \'text': join(items[2:], '')
-                    \}
-
-            let qfitems += [d]
-        endfor
-        call setqflist(qfitems, 'r')
-    else
-        call s:warn("called GitGrepWordUnderCursor outside of git repo")
-    endif
-endfunction
-
-function! GitGrepWordUnderCursor() abort
-    let word = substitute(expand('<cword>'), '#', '\\#', 'g')
-    call GitGrep(word)
-endfunction
-
-function! s:InGitRepo() abort
-    if has('win64') || has('win32')
-        let fsep = '\'
-    else
-        let fsep = '/'
-    endif
-    let dir_list = split(getcwd(), fsep)
-    let running_path = ''
-    for dir in dir_list
-        let running_path = join([running_path, dir], fsep)
-        if isdirectory(running_path . fsep . '.git')
-            return 1
-        endif
-    endfor
-    return 0
-endfunction
-
-function! SetPasteAndPasteFromClipboard() abort
-    set paste
-    normal! "*p
-    set nopaste
-endfunction
-
-function! s:warn(msg) abort
-        echohl WarningMsg
-        echo 'vimrc: ' . a:msg
-        echohl None
-endfunction
-" }}}
-
 " KEY MAPPINGS {{{
 " set leader to be spacebar
 let mapleader = " "
@@ -222,10 +138,10 @@ if has('terminal') || has('nvim')
 endif
 
 " Paste from clipboard without any formatting issues
-nnoremap <C-p> :call SetPasteAndPasteFromClipboard()<CR>
+nnoremap <C-p> :call vimrc#SetPasteAndPasteFromClipboard()<CR>
 
 " Clear trailing whitespace (through regexp)
-nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
+nnoremap <leader><space> :call utils#CMDPreserve("%s/\\s\\+$//e")<CR>
 
 " edit in current buffer dir
 nnoremap <leader>e :e %:h/
@@ -237,7 +153,7 @@ nnoremap <leader>L :set background=light<CR>
 nnoremap <leader>D :set background=dark<CR>
 
 " toggle color column (to ensure short lines)
-nnoremap <expr> <leader>C ToggleColorColumn()
+nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 
 " Quick open current directory of file being edited
 if isdirectory(s:vimdir . '/bundle/vim-dirvish')
@@ -267,7 +183,7 @@ nnoremap <BS> :nohlsearch<CR>
 
 " Get greppin quick! --> search word under cursor (escape # for VimL autoload)
 nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
-nnoremap <silent> <leader>G :call GitGrepWordUnderCursor()<CR>:copen<CR>
+nnoremap <silent> <leader>G :call vimrc#GitGrepWordUnderCursor()<CR>:copen<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
@@ -280,7 +196,7 @@ nnoremap <leader>V :edit $MYVIMRC<CR>
 " }}}
 
 " COMMANDS {{{
-command! -nargs=1 GitGrep call GitGrep('<args>') | copen
+command! -nargs=1 GitGrep call vimrc#GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
 " }}}
 
