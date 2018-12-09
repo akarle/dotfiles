@@ -274,6 +274,9 @@ nnoremap <leader>w :set list!<CR>
 
 " Yank entire file
 nnoremap <leader>y gg"*yG<C-O><C-O>
+
+" Edit vimrc (TODO: get working for neovim)
+nnoremap <leader>V :edit $MYVIMRC<CR>
 " }}}
 
 " COMMANDS {{{
