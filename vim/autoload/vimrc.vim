@@ -64,3 +64,11 @@ function! vimrc#SetPasteAndPasteFromClipboard() abort
     normal! "*p
     set nopaste
 endfunction
+
+" Generates helptags for all doc a la pathogen (using native Vim 8 packages)
+function! vimrc#Helptags() abort
+    let dirs = split(glob(expand('<sfile>:p:h') . '/pack/*/*/*/doc'), '\n')
+    for d in dirs
+        exe 'helptags ' . d
+    endfor
+endfunction

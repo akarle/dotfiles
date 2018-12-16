@@ -11,11 +11,6 @@ else
     let s:vimdir = expand($HOME . '/.vim')
 endif
 
-" Add all the plugins to the path
-if filereadable(s:vimdir . "/autoload/pathogen.vim")
-    execute pathogen#infect()
-endif
-
 " Space related
 set softtabstop=4                   " <TAB> is 4 spaces (when expandtab set)
 set shiftwidth=4                    " >> will indent 4 spaces
@@ -89,7 +84,7 @@ set listchars=space:·,tab:>–,trail:~,eol:¬
 " COLORSCHEME
 " if can use truecolor, do
 if (has("termguicolors") || has('gui_running')) &&
-            \ filereadable(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim")
+            \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
     set termguicolors
     colorscheme gruvbox
 
@@ -159,7 +154,7 @@ nnoremap <leader>D :set background=dark<CR>
 nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 
 " Quick open current directory of file being edited
-if isdirectory(s:vimdir . '/bundle/vim-dirvish')
+if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish')
     nnoremap <leader>d :Dirvish %:p:h<CR>
 else
     nnoremap <leader>d :Explore<CR>
@@ -201,6 +196,7 @@ nnoremap <leader>V :edit $MYVIMRC<CR>
 " COMMANDS {{{
 command! -nargs=1 GitGrep call vimrc#GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
+command! Helptags call vimrc#Helptags()
 " }}}
 
 " vim:fdm=marker:sts=4:sw=4

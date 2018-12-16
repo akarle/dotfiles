@@ -7,10 +7,8 @@ undo/
 # Ignore plugin artifacts
 .netrwhist
 
-# Ignore dependencies (TODO: use submodules?)
-autoload/pathogen.vim
-autoload/plug.vim
-bundle/
+# Ignore plugins (TODO: consider submodules)
+pack/
 
 # Ignore tags
 tags
