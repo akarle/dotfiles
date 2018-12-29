@@ -1,3 +1,21 @@
 [submodule "pack/mine/start/gruvbox"]
 	path = pack/mine/start/gruvbox
 	url = https://github.com/akarle/gruvbox
+[submodule "pack/plugins/start/vim-fugitive"]
+	path = pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "pack/plugins/start/gv.vim"]
+	path = pack/plugins/start/gv.vim
+	url = https://github.com/junegunn/gv.vim
+[submodule "pack/plugins/start/vim-dirvish"]
+	path = pack/plugins/start/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "pack/plugins/start/vim-surround"]
+	path = pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "pack/plugins/start/vim-commentary"]
+	path = pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "pack/plugins/start/vim-gitgutter"]
+	path = pack/plugins/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
