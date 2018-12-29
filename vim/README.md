@@ -11,13 +11,13 @@ repo for greater portability and a cleaner history.
 Mac/Linux:
 
 ```sh
-git clone https://github.com/akarle/dotvim ~/.vim
+git clone --recurse-submodules https://github.com/akarle/dotvim ~/.vim
 ```
 
 Windows:
 
 ```sh
-git clone https://github.com/akarle/dotvim ~\vimfiles
+git clone --recurse-submodules https://github.com/akarle/dotvim ~\vimfiles
 ```
 
 Note that in Vim 7.4 and newer **you don't need to symlink `~/.vim/vimrc` to
