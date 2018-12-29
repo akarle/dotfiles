@@ -9,6 +9,7 @@ undo/
 
 # Ignore plugins (TODO: consider submodules)
 pack/
+!pack/mine/start/gruvbox
 
 # Ignore tags
 tags
