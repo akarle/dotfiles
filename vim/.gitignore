@@ -7,9 +7,8 @@ undo/
 # Ignore plugin artifacts
 .netrwhist
 
-# Ignore plugins (TODO: consider submodules)
+# Ignore plugins
 pack/
-!pack/mine/start/gruvbox
 
 # Ignore tags
 tags
