@@ -196,6 +196,7 @@ nnoremap <leader>V :edit $MYVIMRC<CR>
 " COMMANDS {{{
 command! -nargs=1 GitGrep call vimrc#GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
+command! PDB call vimrc#PerlDebugger()
 " }}}
 
 " vim:fdm=marker:sts=4:sw=4
