@@ -25,12 +25,17 @@ alias gf='git fetch'
 alias glg='git log --stat'
 alias g_='git stash'
 alias g_p='git stash pop'
+alias gb='git branch'
+alias gr='git rebase'
 
 # Git completion for aliases
-__git_complete ga _git_add
-__git_complete gco _git_checkout
-__git_complete gd _git_diff
-__git_complete ga _git_add
+if [ -n "$(type -t __git_complete)" ] && [ "$(type -t __git_complete)" == "function" ]; then
+    __git_complete ga _git_add
+    __git_complete gco _git_checkout
+    __git_complete gd _git_diff
+    __git_complete gr _git_rebase
+    __git_complete gb _git_branch
+fi
 
 # Alias vim / vi to nvim if there
 if [ -x "$(command -v nvim)" ]; then

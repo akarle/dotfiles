@@ -17,7 +17,9 @@ if [ -n "$SSH_CLIENT" ]; then
 fi
 
 function parse_git_dirty() {
-    [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
+    if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
+        [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
+    fi
 }
 
 function parse_git_branch() {
