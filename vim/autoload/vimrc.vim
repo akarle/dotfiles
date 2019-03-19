@@ -67,11 +67,10 @@ endfunction
 
 function! vimrc#PerlDebugger() abort
     " Simple wrapper around term + syntax perl
-    tabedit
     if has('nvim')
-        terminal perl -de0
+        terminal perl -de 'use Data::Dumper'
     else
-        terminal ++curwin perl -de0
+        terminal ++curwin perl -de 'use Data::Dumper'
     end
     setlocal syntax=perl
 endfunction

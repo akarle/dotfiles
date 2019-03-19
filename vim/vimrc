@@ -68,6 +68,9 @@ let g:markdown_folding = 1
 " netrw style settings
 let g:netrw_banner=0                " disable banner
 let g:netrw_liststyle=1             " details view
+
+" Mojolicious syntax highlighting for Mojolicious::Lite
+let mojo_highlight_data = 1
 " }}}
 
 " THEME AND APPEARANCE {{{
@@ -155,6 +158,8 @@ nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 
 " Quick open current directory of file being edited
 if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish')
+    " Don't load netrw -- Dirvish #137
+    let loaded_netrwPlugin = 1
     nnoremap <leader>d :Dirvish %:p:h<CR>
 else
     nnoremap <leader>d :Explore<CR>
