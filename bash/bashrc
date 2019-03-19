@@ -1,36 +1,43 @@
 #!/usr/bin/env bash
+# .bashrc
+# The way I like to roll in the shell
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # if interactive shell, disable XON/XOFF to allow forward search w CTRL-S
 [[ $- == *i* ]] && stty -ixon
 
-# Load the shell dotfiles
-for file in ~/.bash_{path,prompt,exports}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
+# History Settings
+shopt -s histappend    # append to the history file, don't overwrite it
+HISTSIZE=10000         # Max lines in history (in memory)
+HISTFILESIZE=200000    # Max size of the history file
+HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
+HISTCONTROL=ignoreboth # Don't store (1) duplicate commands in history
+                       #   AND don't store lines beginning with space
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Other Settings
+shopt -s checkwinsize  # check win size after each cmd, update if needed
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+# Custom find function
+function ff {
+    find . -name "*$1*"
+}
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+# $EDITOR, the most important export of course
+if [ -x "$(command -v nvim)" ]; then
+  export EDITOR="nvim"
+  export MANPAGER="nvim -u NORC -c 'set ft=man' -"
+else
+  export EDITOR="vim"
+fi
 
-# ignore certain commands
-HISTIGNORE=fg:pwd:ls
+# Source helper files, both mine and other's
+function source_if_exists {
+    [ -r "$1" ] && source "$1"
+}
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# Git Completion
-[ -f ~/.bash/git-completion.bash ] && source ~/.bash/git-completion.bash
-
-# Source aliases (must go after git completion)
-[ -r "$HOME/.aliases" ] && source "$HOME/.aliases"
+source_if_exists "$HOME/.bash/git-completion.bash" # Git Completion
+source_if_exists "$HOME/.aliases"                  # Aliases (source after Git Completion!)
+source_if_exists "$HOME/.bash_prompt"              # Personal Prompt
+source_if_exists "$HOME/.bashrc.local"             # System specific settings
