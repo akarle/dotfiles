@@ -5,6 +5,9 @@
 # Set the $TERM to be screen-256color
 term screen-256color
 
+# Faster timout = faster escape in Vim
+maptimeout 30
+
 # truecolor (hopefully)
 truecolor "on"
 
