@@ -14,8 +14,6 @@ fi
 
 if [ -n "$SSH_CLIENT" ]; then
     ssh_text="[$USER@$(hostname)] "
-else
-    ssh_text=""
 fi
 
 function parse_git_dirty() {
@@ -26,9 +24,10 @@ function parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-# get colors from tput (else hardcode them)
+# Preferred Prompt: Fancy with colors from tput
 if tput setaf 1 &> /dev/null; then tput sgr0
     if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
+        SET_PREFERRED_PROMPT=1
         MAGENTA="\[$(tput setaf 5)\]"
         ORANGE="\[$(tput setaf 11)\]"
         GRAY="\[$(tput setaf 8)\]"
@@ -37,15 +36,13 @@ if tput setaf 1 &> /dev/null; then tput sgr0
         RESET="\[$(tput sgr0)\]"
 
         export PS1="$BOLD$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
-        export PS2="$ORANGE→ $RESET"
-    else
-        # TODO: write better case for too few colors...
-        export PS1="\w\n\$ "
-        export PS2="> "
+        export PS2="$ORANGE> $RESET"
     fi
-else
-    # TODO: write better case for no tput...
-    export PS1="\w\n\$ "
+fi
+
+# Fallback Option: No colors, No Git
+if [ -z $SET_PREFERRED_PROMPT ]; then
+    export PS1="\w\n${ssh_text}\$ "
     export PS2="> "
 fi
 
