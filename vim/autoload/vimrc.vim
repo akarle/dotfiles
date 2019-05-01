@@ -52,7 +52,8 @@ function! s:InGitRepo() abort
     let running_path = ''
     for dir in dir_list
         let running_path = join([running_path, dir], fsep)
-        if isdirectory(running_path . fsep . '.git')
+        let f = running_path . fsep . '.git'
+        if filereadable(f) || isdirectory(f)
             return 1
         endif
     endfor
