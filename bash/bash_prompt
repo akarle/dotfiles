@@ -26,10 +26,18 @@ function parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
+function get_error_code() {
+    err="$?"
+    if [ $err -ne "0" ]; then
+        echo "[$err] "
+    fi
+}
+
 # Preferred Prompt: Fancy with colors from tput
 if tput setaf 1 &> /dev/null; then tput sgr0
     if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
         SET_PREFERRED_PROMPT=1
+        RED="\[$(tput setaf 1)\]"
         MAGENTA="\[$(tput setaf 5)\]"
         ORANGE="\[$(tput setaf 11)\]"
         GRAY="\[$(tput setaf 8)\]"
@@ -37,7 +45,7 @@ if tput setaf 1 &> /dev/null; then tput sgr0
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
-        export PS1="$BOLD$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
+        export PS1="$BOLD$RED\$(get_error_code)$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
         export PS2="$ORANGE> $RESET"
     fi
 fi

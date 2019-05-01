@@ -23,10 +23,12 @@ alias gl='git pull'
 alias gco='git checkout'
 alias gf='git fetch'
 alias glg='git log --stat'
+alias glgr='git log --oneline | head -n 10'
 alias g_='git stash'
 alias g_p='git stash pop'
 alias gb='git branch'
 alias gr='git rebase'
+alias vlg='vim -c "GV"' # 'vim log' of a file
 
 # Git completion for aliases
 if [ -n "$(type -t __git_complete)" ] && [ "$(type -t __git_complete)" == "function" ]; then
