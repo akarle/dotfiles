@@ -38,9 +38,10 @@ set ttimeoutlen=30                  " Low keycode timeout to avoid <ESC> delay
 " Other
 set modelines=0                     " Disable modelines for security
 set encoding=utf-8                  " Encoding
-set history=1000                    " Remember last 1000 :commands
+set history=10000                   " Remember last 1000 :commands
 set scrolloff=5                     " Scroll at 5 rows from top/bot of screen
 filetype plugin indent on           " Enable filetype specific plugins/indent
+set tags+=./.vimtags,.vimtags       " Look in .vimtags files for ctags
 
 " Persistent undo
 if has('persistent_undo') && isdirectory(s:vimdir . '/undo')
