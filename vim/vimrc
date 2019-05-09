@@ -72,6 +72,9 @@ let g:netrw_liststyle=1             " details view
 
 " Mojolicious syntax highlighting for Mojolicious::Lite
 let mojo_highlight_data = 1
+
+" git-messenger with popup windows is cool!
+let g:git_messenger_always_into_popup = v:true
 " }}}
 
 " THEME AND APPEARANCE {{{
