@@ -22,7 +22,7 @@ alias gst='git status'
 alias gl='git pull'
 alias gco='git checkout'
 alias gf='git fetch'
-alias glg='git log --stat'
+alias glg='git log --stat --decorate'
 alias glgr='git log --oneline | head -n 10'
 alias g_='git stash'
 alias g_p='git stash pop'
@@ -45,11 +45,11 @@ if [ -x "$(command -v nvim)" ]; then
   alias vim="nvim"
 fi
 
-# Security aliases
+# Other Aliases
 alias sudovim='sudo vim -u NONE'
-
-# Common cd aliases
 alias cddv='cd ~/.vim'
-
-# grep
 alias grep='grep --color'
+alias make='time make'
+alias ...='cd ../../..'
+alias ....='cd ../../../..'
+alias .....='cd ../../../../..'

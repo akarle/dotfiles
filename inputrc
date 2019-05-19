@@ -13,6 +13,7 @@ Control-l: clear-screen
 
 set keymap vi-insert
 Control-l: clear-screen
+Control-x: yank-last-arg
 
 # Quicker changing of prompt after ESC
 set keyseq-timeout 30
