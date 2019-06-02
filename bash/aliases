@@ -27,7 +27,9 @@ alias glgr='git log --oneline | head -n 10'
 alias g_='git stash'
 alias g_p='git stash pop'
 alias gb='git branch'
-alias gr='git rebase'
+alias grb='git rebase'
+alias grs='git reset'
+alias gm='git merge'
 alias vlg='vim -c "GV"' # 'vim log' of a file
 
 # Git completion for aliases
@@ -53,3 +55,4 @@ alias make='time make'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
+alias rb=". ~/.bashrc" # reload bashrc

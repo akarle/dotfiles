@@ -16,6 +16,8 @@ HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
 HISTCONTROL=ignoreboth # Don't store (1) duplicate commands in history
                        #   AND don't store lines beginning with space
 
+PROMPT_COMMAND="echo; history -a"
+
 # Other Settings
 shopt -s checkwinsize  # check win size after each cmd, update if needed
 

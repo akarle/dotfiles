@@ -55,7 +55,3 @@ if [ -z $SET_PREFERRED_PROMPT ]; then
     export PS1="\w\n${ssh_text}\$ "
     export PS2="> "
 fi
-
-# This command runs after each issuing of PS1
-# Used to add a newline after each prompt
-export PROMPT_COMMAND="echo"
