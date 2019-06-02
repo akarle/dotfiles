@@ -1,0 +1,4 @@
+# The below is necessary to use the readline libary that comes with
+# bash, which has necessary features like arrow key navigation,
+# history, vi keybindings... just install it already!
+requires 'Term::ReadLine::Gnu';
