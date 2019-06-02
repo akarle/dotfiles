@@ -61,7 +61,7 @@ if [ -d $DOTVIM ]; then
     warn_msg "Backing up old $DOTVIM to $BACKUP"
 fi
 
-git clone https://github.com/akarle/dotvim.git $DOTVIM
+git clone --recurse-submodules https://github.com/akarle/dotvim.git $DOTVIM
 success_msg "Successfully cloned dotvim to $DOTVIM. Woot!"
 
 printf "\n\n"
