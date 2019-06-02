@@ -54,6 +54,9 @@ try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
 try_ln $HOMEDOTS/inputrc $HOME/.inputrc
 try_ln $HOMEDOTS/screenrc $HOME/.screenrc
+try_ln $HOMEDOTS/gdbinit $HOME/.gdbinit
+try_ln $HOMEDOTS/perl/perldb $HOME/.perldb
+try_ln $HOMEDOTS/global_gitignore $HOME/.global_gitignore
 
 # .config lns
 try_ln $HOMEDOTS/alacritty.yml $CONFDIR/alacritty/alacritty.yml
