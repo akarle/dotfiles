@@ -68,12 +68,6 @@ printf "\n\n"
 
 # Optional installs via curl:
 if [ -x "$(command -v curl)" ]; then
-    # vim-plug
-    install_via_curl \
-        "vim-pathogen" \
-        "https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim" \
-        "$HOME/.vim/autoload/pathogen.vim"
-
     # git bash/zsh completion
     install_via_curl \
         "bash completion" \
@@ -94,6 +88,3 @@ echo "${MAGENTA} _${BLUE} | (_| |   ( (_| | |  | |  __/ (_| | (_) | |_\__ \ "
 echo "${MAGENTA}(_)${BLUE} \__,_|_|\_\__,_|_|  |_|\___|\__,_|\___/ \__|___/ "
 printf ${RESET}
 echo ""
-
-# source bash
-source ~/.bashrc
