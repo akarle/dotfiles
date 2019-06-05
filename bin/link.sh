@@ -3,21 +3,21 @@
 # Handles all (re)linking of dotfiles to their appropriate place
 
 # Establish Globals
-HOMEDOTS=$HOME/.akarledots
+HOMEDOTS="$( cd "$(dirname $(dirname "$0"))" ; pwd -P )"
 CONFDIR=$HOME/.config
 
 # Load messages colors + functions
 source $HOMEDOTS/bin/messages.sh
 
 try_ln() {
-    # if it doesn't exist, just create it -- works for broken symlinks too!
-    if [ ! -f $2 ]; then
-        success_msg "Creating soft symlink from $1 to $2"
-        ln -s $1 $2
     # if its a symlink replace it
-    elif [ -L $2 ]; then
+    if [ -L $2 ]; then
         warn_msg "$2 is a symlink already, replacing it with a symlink to $1"
         rm $2
+        ln -s $1 $2
+    # if it doesn't exist, just create it -- works for broken symlinks too!
+    elif [ ! -e $2 ]; then
+        success_msg "Creating soft symlink from $1 to $2"
         ln -s $1 $2
     # if it exists but is not a symlink
     else
@@ -57,8 +57,8 @@ try_ln $HOMEDOTS/perl/perldb $HOME/.perldb
 try_ln $HOMEDOTS/git/global_gitignore $HOME/.global_gitignore
 
 # .config lns
-try_ln $HOMEDOTS/alacritty $CONFDIR
-try_ln $HOMEDOTS/nvim $CONFDIR
+try_ln $HOMEDOTS/alacritty $CONFDIR/alacritty
+try_ln $HOMEDOTS/nvim $CONFDIR/nvim
 
 # bash lns
 for file in $HOMEDOTS/bash/*; do
