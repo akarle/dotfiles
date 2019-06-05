@@ -4,7 +4,6 @@
 
 # Establish Globals
 HOMEDOTS=$HOME/.akarledots
-DOTVIM=$HOME/.vim
 CONFDIR=$HOME/.config
 
 # Load messages colors + functions
@@ -50,17 +49,16 @@ try_ln() {
 }
 
 # $HOME level ln's
-try_ln $HOMEDOTS/tmux.conf $HOME/.tmux.conf
+try_ln $HOMEDOTS/tmux/tmux.conf $HOME/.tmux.conf
 try_ln $HOMEDOTS/zsh/zshrc $HOME/.zshrc
-try_ln $HOMEDOTS/inputrc $HOME/.inputrc
-try_ln $HOMEDOTS/screenrc $HOME/.screenrc
-try_ln $HOMEDOTS/gdbinit $HOME/.gdbinit
+try_ln $HOMEDOTS/screen/screenrc $HOME/.screenrc
+try_ln $HOMEDOTS/gdb/gdbinit $HOME/.gdbinit
 try_ln $HOMEDOTS/perl/perldb $HOME/.perldb
-try_ln $HOMEDOTS/global_gitignore $HOME/.global_gitignore
+try_ln $HOMEDOTS/git/global_gitignore $HOME/.global_gitignore
 
 # .config lns
-try_ln $HOMEDOTS/alacritty.yml $CONFDIR/alacritty/alacritty.yml
-try_ln $HOMEDOTS/neovim/init.vim $CONFDIR/nvim/init.vim
+try_ln $HOMEDOTS/alacritty $CONFDIR
+try_ln $HOMEDOTS/nvim $CONFDIR
 
 # bash lns
 for file in $HOMEDOTS/bash/*; do
