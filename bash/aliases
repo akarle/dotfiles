@@ -2,9 +2,9 @@
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-  colorflag="--color"
+    colorflag="--color"
 else # macOS `ls`
-  colorflag="-G"
+    colorflag="-G"
 fi
 
 # ls aliases
@@ -43,8 +43,8 @@ fi
 
 # Alias vim / vi to nvim if there
 if [ -x "$(command -v nvim)" ]; then
-  alias vi="nvim"
-  alias vim="nvim"
+    alias vi="nvim"
+    alias vim="nvim"
 fi
 
 # Other Aliases

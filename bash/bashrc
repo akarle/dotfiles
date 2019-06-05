@@ -28,10 +28,10 @@ function ff {
 
 # $EDITOR, the most important export of course
 if [ -x "$(command -v nvim)" ]; then
-  export EDITOR="nvim"
-  export MANPAGER="nvim -u NORC -c 'set ft=man' -"
+    export EDITOR="nvim"
+    export MANPAGER="nvim -u NORC -c 'set ft=man' -"
 else
-  export EDITOR="vim"
+    export EDITOR="vim"
 fi
 
 # Source helper files, both mine and other's
