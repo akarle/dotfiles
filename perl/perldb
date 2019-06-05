@@ -1,2 +1,3 @@
 # Save all history to ~/.perldb.hist
 &parse_options("HistFile=$ENV{HOME}/.perldb.hist");
+&parse_options("HistSize=10000");
