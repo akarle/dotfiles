@@ -43,8 +43,9 @@ fi
 
 # Alias vim / vi to nvim if there
 if [ -x "$(command -v nvim)" ]; then
-    alias vi="nvim"
-    alias vim="nvim"
+    alias v="nvim"
+else
+    alias v="vim"
 fi
 
 # Other Aliases
