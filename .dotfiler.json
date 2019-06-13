@@ -1,0 +1,20 @@
+{
+    "HOME_DOTS": [
+        "bash",
+        "gdb",
+        "git",
+        "perl",
+        "screen",
+        "tmux",
+        "X11",
+        "zsh"
+    ],
+    "XDG_DOTS": [
+        "alacritty",
+        "nvim"
+    ],
+    "SKIP_FILES": [
+        "cpanfile",
+        "README.md"
+    ]
+}
