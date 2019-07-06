@@ -1,1 +1,6 @@
 xrandr --dpi 192
+
+# run slstatus in background
+slstatus &
+
+feh --bg-center ~/Pictures/BondCliffJennex.png
