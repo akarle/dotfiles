@@ -1,0 +1,51 @@
+# muttrc
+# In pursuit of an email client that sucks less
+
+################################################################################
+# General
+source ~/.config/mutt/accounts/karleco.muttrc
+
+# Appearance
+# TODO: maybe one day a color scheme...
+set sort=threads
+set sort_aux=reverse-date
+
+# Attachments
+set mailcap_path=~/.config/mutt/mailcap
+auto_view text/html # tell mutt to load HTML via mailcap
+alternative_order text/plain text/enriched text/html # prefer plaintext
+
+# Fetching Mail
+set mail_check=90       # From the manual, over IMAP, 90 reasonable value
+set timeout=15          # mutt blocks mail check if no user input
+
+# Caching (speeds up IMAP considerably to not redownload every time)
+set header_cache="~/.config/mutt/cache"
+set message_cachedir="~/.config/mutt/cache"
+
+
+################################################################################
+# Bindings
+# I've chosen to customize-as-I-go on these. Some general guiding rules:
+#   1. Vi-like
+#       - Obvious reasons
+#   2. Non-destructive
+#       - Especially as a newby, its **the worst** to have CTRL-D
+#         which I spam in Vim for half-down to delete 5-10 messages
+#         in the pager before I've realized what I've done.
+bind pager j next-line
+bind pager k previous-line
+bind index G last-entry
+bind pager G bottom
+bind index,pager g noop          # good practice, as gg prevents g from binding
+bind index gg first-entry
+bind pager gg top
+bind index,pager h help
+bind index,pager ? search-reverse
+bind index N search-opposite
+bind index,pager \CD half-down
+bind index,pager \CU half-up
+bind index,pager d half-down
+bind index,browser u half-up
+
+bind attach <return> view-mailcap

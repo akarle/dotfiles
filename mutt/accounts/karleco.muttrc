@@ -1,0 +1,17 @@
+# Account setup for my personal email
+#   Checked into git as a template for other accounts
+
+set from="alex@karle.co"
+set realname="Alex Karle"
+
+# Use the baked in IMAP (For the most part, I only check email on a network)
+set imap_user=$from
+set imap_pass=`gpg --batch --quiet --decrypt ~/.config/mutt/accounts/karleco.gpg`
+set folder="imaps://imap.fastmail.com"
+set spoolfile="=INBOX"
+set record="=Sent"
+set postponed="=Drafts"
+
+# Never had an issue with the mutt SMTP. I'm all for the UNIX philosophy
+# but since it's already there... may as well use it?
+set smtp_url="smtps://$imap_user:$imap_pass@smtp.fastmail.com:465"

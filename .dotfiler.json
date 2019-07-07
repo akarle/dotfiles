@@ -11,6 +11,7 @@
     ],
     "XDG_DOTS": [
         "alacritty",
+        "mutt",
         "nvim"
     ],
     "SKIP_FILES": [
