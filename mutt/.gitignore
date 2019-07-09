@@ -4,3 +4,6 @@
 
 # Don't check in those emails ;)
 cache
+
+# Local muttrc to determine which account to use, etc
+muttrc.local

@@ -3,12 +3,12 @@
 
 ################################################################################
 # General
-source ~/.config/mutt/accounts/karleco.muttrc
+source ~/.config/mutt/muttrc.local
 
 # Appearance
 # TODO: maybe one day a color scheme...
 set sort=threads
-set sort_aux=reverse-date
+set sort_aux=reverse-last-date-received
 
 # Attachments
 set mailcap_path=~/.config/mutt/mailcap
@@ -23,6 +23,8 @@ set timeout=15          # mutt blocks mail check if no user input
 set header_cache="~/.config/mutt/cache"
 set message_cachedir="~/.config/mutt/cache"
 
+# BCC self to show up in INBOX
+my_hdr BCC: $from
 
 ################################################################################
 # Bindings
@@ -46,6 +48,9 @@ bind index N search-opposite
 bind index,pager \CD half-down
 bind index,pager \CU half-up
 bind index,pager d half-down
-bind index,browser u half-up
+bind index,pager u half-up
+bind index,pager <up> previous-new-then-unread
+bind index,pager <down> next-new-then-unread
+bind index,pager R group-reply
 
 bind attach <return> view-mailcap
