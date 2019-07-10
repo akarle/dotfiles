@@ -26,6 +26,9 @@ set message_cachedir="~/.config/mutt/cache"
 # BCC self to show up in INBOX
 my_hdr BCC: $from
 
+# Use the `abook` program for contact management/completions
+set query_command="abook --mutt-query '%s'"
+
 ################################################################################
 # Bindings
 # I've chosen to customize-as-I-go on these. Some general guiding rules:
@@ -35,22 +38,31 @@ my_hdr BCC: $from
 #       - Especially as a newby, its **the worst** to have CTRL-D
 #         which I spam in Vim for half-down to delete 5-10 messages
 #         in the pager before I've realized what I've done.
-bind pager j next-line
-bind pager k previous-line
-bind index G last-entry
-bind pager G bottom
-bind index,pager g noop          # good practice, as gg prevents g from binding
-bind index gg first-entry
-bind pager gg top
-bind index,pager h help
-bind index,pager ? search-reverse
-bind index N search-opposite
+
+# Navigation
+bind pager       j   next-line
+bind pager       k   previous-line
+bind index       G   last-entry
+bind pager       G   bottom
+bind index,pager g   noop          # good practice, as gg prevents g from binding
+bind index       gg  first-entry
+bind pager       gg  top
 bind index,pager \CD half-down
 bind index,pager \CU half-up
-bind index,pager d half-down
-bind index,pager u half-up
-bind index,pager <up> previous-new-then-unread
-bind index,pager <down> next-new-then-unread
-bind index,pager R group-reply
+bind index,pager d   half-down
+bind index,pager u   half-up
+bind index,pager <up> previous-unread
+bind index,pager <down> next-unread
+bind index,pager <tab> next-unread
 
-bind attach <return> view-mailcap
+# Functional
+bind index,pager h help
+bind index,pager ? search-reverse
+bind index       N search-opposite
+bind index,pager R group-reply
+bind index       \CN toggle-new
+bind attach      <return> view-mailcap
+bind editor      <Tab> complete-query  # Used for contact-completion
+
+# Macros
+macro index,pager  ga "<pipe-message>abook --add-email-quiet<return>" "Add sender to abook contacts"
