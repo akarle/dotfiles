@@ -49,10 +49,8 @@ else
 fi
 
 # Other Aliases
-alias sudovim='sudo vim -u NONE'
 alias cddv='cd ~/.vim'
 alias grep='grep --color'
-alias make='time make'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
