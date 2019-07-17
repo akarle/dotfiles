@@ -26,6 +26,10 @@ function ff {
     find . -name "*$1*"
 }
 
+# Custom w3m seraches
+function aw { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
+function ddg { w3m "https://duckduckgo.com/lite?q=$1"; }
+
 # $EDITOR, the most important export of course
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
