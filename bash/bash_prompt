@@ -24,18 +24,18 @@ function get_error_code() {
 
 # Preferred Prompt: Fancy with colors from tput
 if tput setaf 1 &> /dev/null; then tput sgr0
-    if [[ $(tput colors) -ge 16 ]] 2>/dev/null; then
+    if [[ $(tput colors) -ge 8 ]] 2>/dev/null; then
         SET_PREFERRED_PROMPT=1
         RED="\[$(tput setaf 1)\]"
         MAGENTA="\[$(tput setaf 5)\]"
-        ORANGE="\[$(tput setaf 11)\]"
+        YELLOW="\[$(tput setaf 3)\]"
         GRAY="\[$(tput setaf 8)\]"
-        BLUE="\[$(tput setaf 12)\]"
+        BLUE="\[$(tput setaf 4)\]"
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
         export PS1="$BOLD$RED\$(get_error_code)$BLUE\w $RESET$GRAY${ssh_text}\$(parse_git_branch)"$'\n'"$BOLD$MAGENTA\$ $RESET"
-        export PS2="$ORANGE> $RESET"
+        export PS2="$YELLOW> $RESET"
     fi
 fi
 
