@@ -89,37 +89,31 @@ set noequalalways                   " Don't resize split on open/close event
 set listchars=space:·,tab:>–,trail:~,eol:¬
 
 " COLORSCHEME
-" if can use truecolor, do
-if (has("termguicolors") || has('gui_running')) &&
-            \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
+" Only gruv if you can handle it
+if exists("$DISPLAY") &&
+    \ (has("termguicolors") || has('gui_running')) &&
+    \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
+
     set termguicolors
     colorscheme gruvbox
 
     " See :h xterm-true-color for tmux+termguicolors
-    if &term =~# '^tmux'
+    if &term =~# '^tmux' || &term =~# '^st'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
-else
-    colorscheme desert
-endif
 
-set background=dark  " seems to need to be after gruvbox
+    set background=dark
 
-" Allow cursor to change shape: https://stackoverflow.com/questions/6488683
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-" auto commands (grouped so that re-sourcing vimrc doesn't cause duplicates!)
-if has('autocmd')
-    augroup MyCustomAucmds
-        " removes all autocmds from this group (needed when re-sourcing)
+    augroup CurLineToggle
         autocmd!
-
-        " Set cursor line when in insert mode (to indicate insert mode)
         autocmd InsertEnter,InsertLeave * set cul!
-    augroup END  " goes back to default augroup
+    augroup END
+else
+    set background=light
+    colorscheme vc
 endif
+
 " }}}
 
 " KEY MAPPINGS {{{
