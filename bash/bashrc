@@ -48,5 +48,6 @@ function source_if_exists {
 
 source_if_exists "$HOME/.bash/git-completion.bash" # Git Completion
 source_if_exists "$HOME/.aliases"                  # Aliases (source after Git Completion!)
+source_if_exists "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
 source_if_exists "$HOME/.bash_prompt"              # Personal Prompt
 source_if_exists "$HOME/.bashrc.local"             # System specific settings
