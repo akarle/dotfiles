@@ -4,9 +4,10 @@
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+[[ $- != *i* ]] && return  # I'm paranoid...
 
-# if interactive shell, disable XON/XOFF to allow forward search w CTRL-S
-[[ $- == *i* ]] && stty -ixon
+# Disable XON/XOFF to allow forward search w CTRL-S
+stty -ixon
 
 # History Settings
 shopt -s histappend    # append to the history file, don't overwrite it
