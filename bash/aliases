@@ -41,14 +41,8 @@ if [ -n "$(type -t __git_complete)" ] && [ "$(type -t __git_complete)" == "funct
     __git_complete gb _git_branch
 fi
 
-# Alias vim / vi to nvim if there
-if [ -x "$(command -v nvim)" ]; then
-    alias v="nvim"
-else
-    alias v="vim"
-fi
-
-# Other Aliases
+# Quick Actions
+alias v=$EDITOR
 alias cddv='cd ~/.vim'
 alias grep='grep --color'
 alias ...='cd ../../..'
