@@ -98,7 +98,7 @@ if exists("$DISPLAY") &&
     colorscheme gruvbox
 
     " See :h xterm-true-color for tmux+termguicolors
-    if &term =~# '^tmux' || &term =~# '^st'
+    if &term =~# '^\(tmux\|st\|screen\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
