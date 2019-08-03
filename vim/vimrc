@@ -90,7 +90,8 @@ set listchars=space:·,tab:>–,trail:~,eol:¬
 
 " COLORSCHEME
 " Only gruv if you can handle it
-if exists("$DISPLAY") &&
+" NOTE: for initial check, check $TERM, not &term, as nvim has &term=nvim
+if $TERM =~# '256color' &&
     \ (has("termguicolors") || has('gui_running')) &&
     \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
 
@@ -98,6 +99,7 @@ if exists("$DISPLAY") &&
     colorscheme gruvbox
 
     " See :h xterm-true-color for tmux+termguicolors
+    " TODO: is this safe to blindly set always (in 256 color mode)?
     if &term =~# '^\(tmux\|st\|screen\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -110,6 +112,7 @@ if exists("$DISPLAY") &&
         autocmd InsertEnter,InsertLeave * set cul!
     augroup END
 else
+    " Can't handle the gruv
     set background=light
     colorscheme vc
 endif
