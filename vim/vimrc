@@ -205,4 +205,7 @@ command! CD exe 'cd ' . expand('%:h')
 command! PDB call vimrc#PerlDebugger()
 " }}}
 
+" Load optional config (in ~/.vim)
+runtime! .vimrc.local
+
 " vim:fdm=marker:sts=4:sw=4

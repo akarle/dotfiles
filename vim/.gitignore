@@ -12,3 +12,6 @@ pack/
 
 # Ignore tags
 tags
+
+# Optional per-computer configuration
+.vimrc.local
