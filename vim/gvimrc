@@ -13,8 +13,10 @@ set guicursor=a:blinkon0        " Don't blink the cursor (not my thang)
 " Font that doesn't hurt my eyes at a size depending on the screen
 if has('gui_macvim')
     set guifont=Inconsolata:h15
-else
+elseif has('win32') || has('win64')
     set guifont=Consolas:h11
+else
+    set guifont=Inconsolata\ 14
 end
 
 " Bigger size on startup
