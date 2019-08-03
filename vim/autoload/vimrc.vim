@@ -62,7 +62,7 @@ endfunction
 
 function! vimrc#SetPasteAndPasteFromClipboard() abort
     set paste
-    normal! "*p
+    normal! "+p
     set nopaste
 endfunction
 

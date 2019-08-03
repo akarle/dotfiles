@@ -193,7 +193,7 @@ nnoremap <silent> <leader>G :call vimrc#GitGrepWordUnderCursor()<CR>:copen<CR>
 nnoremap <leader>w :set list!<CR>
 
 " Yank entire file
-nnoremap <leader>y gg"*yG<C-O><C-O>
+nnoremap <leader>y gg"+yG<C-O><C-O>
 
 " Edit vimrc (TODO: get working for neovim)
 nnoremap <leader>V :edit $MYVIMRC<CR>
