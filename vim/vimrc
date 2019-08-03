@@ -157,21 +157,6 @@ nnoremap <leader>D :set background=dark<CR>
 " toggle color column (to ensure short lines)
 nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 
-" Quick open current directory of file being edited
-if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish')
-    " Don't load netrw -- Dirvish #137
-    let loaded_netrwPlugin = 1
-    nnoremap <leader>d :Dirvish %:p:h<CR>
-else
-    nnoremap <leader>d :Explore<CR>
-endif
-
-" easier tab switching (good for use w terminal wher gt doesn't work)
-nnoremap <C-w>t :tabnext<CR>
-
-" call fzf!
-nnoremap <leader>f :FZF<CR>
-
 " 2 space / 4 space toggle
 nnoremap <leader>2 :setlocal softtabstop=2 shiftwidth=2<CR>
 nnoremap <leader>4 :setlocal softtabstop=4 shiftwidth=4<CR>
@@ -195,8 +180,8 @@ nnoremap <leader>w :set list!<CR>
 " Yank entire file
 nnoremap <leader>y gg"+yG<C-O><C-O>
 
-" Edit vimrc (TODO: get working for neovim)
-nnoremap <leader>V :edit $MYVIMRC<CR>
+" Edit vimrc
+nnoremap <leader>V :edit $HOME/.vim/vimrc<CR>
 " }}}
 
 " COMMANDS {{{
