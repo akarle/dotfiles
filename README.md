@@ -40,19 +40,3 @@ git clone https://github.com/akarle/dotfiles
 chmod +x dotfiles/bin/link.sh
 ./link.sh
 ```
-
-## Trying it Out
-
-You can try these on for size in a completely isolated environment by using
-Docker (which must be installed separately).
-
-```sh
-# From within this repo, build from Dockerfile
-docker build -t akarledots .
-
-# Run container interactively
-docker run -it akarledots
-
-# ------ INSIDE CONTAINER ------
-./install.sh
-```
