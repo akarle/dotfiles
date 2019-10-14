@@ -12,7 +12,8 @@
         "alacritty",
         "mutt",
         "nvim",
-        "git"
+        "git",
+        "offlineimap"
     ],
     "SKIP_FILES": [
         "cpanfile",

@@ -13,3 +13,7 @@ vim/.*
 Vagrantfile
 *.log
 .vagrant
+
+# Compiled python files
+*.pyc
+__pycache__
