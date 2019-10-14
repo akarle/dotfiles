@@ -1,0 +1,13 @@
+[core]
+	editor = $EDITOR
+
+[user]
+	email = alex@karle.co
+	name = Alex Karle
+
+[sendemail]
+	smtpserver = smtp.fastmail.com
+	smtpuser = alex@karle.co
+	smtpencryption = tls
+	smtpserverport = 587
+        annotate = yes

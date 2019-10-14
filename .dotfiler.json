@@ -2,7 +2,6 @@
     "HOME_DOTS": [
         "bash",
         "gdb",
-        "git",
         "perl",
         "screen",
         "tmux",
@@ -12,7 +11,8 @@
     "XDG_DOTS": [
         "alacritty",
         "mutt",
-        "nvim"
+        "nvim",
+        "git"
     ],
     "SKIP_FILES": [
         "cpanfile",
