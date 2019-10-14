@@ -1,18 +1,5 @@
-# Ignore all vim subdirectories (due to symlink ~/.vim -> HOMEDOTS/vim)
-vim/*/*
-!vim/ftplugin/*
-!vim/syntax/*
-
-# Ignore symlink artifact
-vim/vim
-
-# ignore files starting with dot in .vim
-vim/.*
-
-# Ignore the Vagrant machine stuff used in testing
-Vagrantfile
-*.log
-.vagrant
+# netrw places these files in nvim/
+.netrwhist
 
 # Compiled python files
 *.pyc
