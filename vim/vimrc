@@ -36,6 +36,7 @@ set ttimeout                        " Tell how to interpret key codes (used belo
 set ttimeoutlen=30                  " Low keycode timeout to avoid <ESC> delay
 
 " Other
+set belloff=all                     " Quiet in the Console!
 set modelines=0                     " Disable modelines for security
 set encoding=utf-8                  " Encoding
 set history=10000                   " Remember last 1000 :commands
