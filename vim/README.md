@@ -2,27 +2,27 @@
 
 My personal Vim configuration.
 
-This used to be part of my personal
-[dotfiles](https://github.com/akarle/dotfiles), but I promoted it to its own
-repo for greater portability and a cleaner history.
-
 ## Install
 
 Mac/Linux:
 
 ```sh
-git clone --recurse-submodules https://github.com/akarle/dotvim ~/.vim
+git clone --recurse-submodules https://github.com/akarle/dotfiles ~/dotfiles
+ln -s ~/dotfiles/vim ~/.vim
 ```
 
 Windows:
 
+If you can't figure out how to get symlinks to work (or they don't work, I never
+understood them on Windows), set up a minimal vimrc that uses ~/dotfiles/vim as
+the ~/vimfiles:
+
 ```sh
-git clone --recurse-submodules https://github.com/akarle/dotvim ~\vimfiles
+git clone --recurse-submodules https://github.com/akarle/dotfiles ~/dotfiles
+cat <<EOM > ~/_vimrc
+set rtp ^= ~/dotfiles/vim
+set rtp += ~/dotfiles/vim/after
+set pp = &rtp
+source ~/dotfiles/vim/vimrc
+EOM
 ```
-
-Note that in Vim 7.4 and newer **you don't need to symlink `~/.vim/vimrc` to
-`~/.vimrc`**, making a one directory repo a cleaner and more portable option!
-
-However, if an old `~/.vimrc` file exists, it will be sourced before and instead
-of `~/.vim/vimrc`. If you don't see expected behavior, you can always check the
-loaded files with `:scriptnames` to diagnose the issue.
