@@ -9,7 +9,6 @@
         "zsh"
     ],
     "XDG_DOTS": [
-        "alacritty",
         "mutt",
         "nvim",
         "git",
