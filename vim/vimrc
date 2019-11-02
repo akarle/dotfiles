@@ -72,7 +72,7 @@ let g:netrw_banner=0                " disable banner
 let g:netrw_liststyle=1             " details view
 
 " If using Dirvish, don't use netrw
-if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish')
+if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish/plugin')
     " Dirvish #137
     let loaded_netrwPlugin = 1
 endif
