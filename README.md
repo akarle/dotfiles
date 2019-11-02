@@ -2,11 +2,6 @@
 
 My dotfiles.
 
-I found that most of my customization was going to Vim, so I promoted it to its
-own repo, [dotvim](https://github.com/akarle/dotvim).
-
-Note that the install will still download it!
-
 ## Install
 
 For a full-featured install, with interactive use (bash required) and options to

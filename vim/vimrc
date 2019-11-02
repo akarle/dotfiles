@@ -1,0 +1,200 @@
+" .vimrc by Alex Karle
+" Hosted at https://github.com/akarle/dotfiles
+"
+" Inspired by tips all over the interwebs
+
+" GENERAL EDITOR SETTINGS {{{
+" Try to be platform agnostic:
+if has('win64') || has('win32')
+    let s:vimdir = expand($HOME . '/vimfiles')
+else
+    let s:vimdir = expand($HOME . '/.vim')
+endif
+
+" Add all the plugins to the path
+if filereadable(s:vimdir . "/autoload/pathogen.vim")
+    execute pathogen#infect()
+endif
+
+" Space related
+set softtabstop=4                   " <TAB> is 4 spaces (when expandtab set)
+set shiftwidth=4                    " >> will indent 4 spaces
+set expandtab                       " Needed to replace <TAB> with spaces
+set autoindent                      " Indent carries over on new line
+set smarttab                        " Use shiftwidth for <TAB> and <BS>
+
+" Search related
+set hlsearch                        " Highlight searches
+set incsearch                       " Incrementally search
+
+" Faster grepping! (use ripgrep if available for :grep and :FZF)
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
+endif
+
+" Key related behavior
+set backspace=indent,eol,start      " Backspace should function as expected
+set foldopen-=block                 " {}, (), [] commands don't open folds
+set ttimeout                        " Tell how to interpret key codes (used below)
+set ttimeoutlen=30                  " Low keycode timeout to avoid <ESC> delay
+
+" Other
+set modelines=0                     " Disable modelines for security
+set encoding=utf-8                  " Encoding
+set history=1000                    " Remember last 1000 :commands
+set scrolloff=5                     " Scroll at 5 rows from top/bot of screen
+filetype plugin indent on           " Enable filetype specific plugins/indent
+
+" Persistent undo
+if has('persistent_undo') && isdirectory(s:vimdir . '/undo')
+    exe 'set undodir='.s:vimdir.'/undo/'
+    set undofile                    " Do indeed create said files
+    set undolevels=1000             " Max # changes that can be undone
+    set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
+endif
+
+" Use ~/.vim/swp if avail (else .) for backup and swp files respectively
+exe 'set backupdir='.s:vimdir.'/swp,.'
+exe 'set directory='.s:vimdir.'/swp,.'
+" }}}
+
+" PLUGIN RELATED SETTINGS {{{
+" Set pdf viewer to skim for vimtex
+let g:vimtex_view_method='skim'
+
+" Don't use powerline font in airline (not neces. installed)
+let g:airline_powerline_fonts = 0
+" }}}
+
+" THEME AND APPEARANCE {{{
+syntax on                           " Syntax highlighting on
+set number                          " Line numbers on
+set wildmenu                        " Visual completion for command mode
+set showcmd                         " Show the command being typed
+set laststatus=2                    " Always show the statusbar
+set noequalalways                   " Don't resize split on open/close event
+
+" Whitespace chars to display with :set list
+set listchars=space:·,tab:>–,trail:~,eol:¬
+
+" COLORSCHEME
+" if can use truecolor, do
+if (has("termguicolors") || has('gui_running')) &&
+            \ filereadable(s:vimdir . "/bundle/gruvbox/colors/gruvbox.vim")
+    let g:gruvbox_italic = 1
+    set termguicolors
+    colorscheme gruvbox
+
+    " See :h xterm-true-color for tmux+termguicolors
+    if &term =~# '^tmux'
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    endif
+else
+    colorscheme elflord
+endif
+
+set background=dark  " seems to need to be after gruvbox
+
+" Allow cursor to change shape: https://stackoverflow.com/questions/6488683
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" auto commands (grouped so that re-sourcing vimrc doesn't cause duplicates!)
+if has('autocmd')
+    augroup MyCustomAucmds
+        " removes all autocmds from this group (needed when re-sourcing)
+        autocmd!
+
+        " Set cursor line when in insert mode (to indicate insert mode)
+        autocmd InsertEnter,InsertLeave * set cul!
+    augroup END  " goes back to default augroup
+endif
+" }}}
+
+" FUNCTIONS {{{
+" A function to execute a command and return to the old position
+" CREDIT: http://vimcasts.org/episodes/tidying-whitespace/
+function! CMDPreserve(command) abort
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+function! ToggleColorColumn() abort
+    if &colorcolumn == ""
+        set colorcolumn=80
+    else
+        set colorcolumn=""
+    endif
+endfunction
+" }}}
+
+" KEY MAPPINGS {{{
+" set leader to be spacebar
+let mapleader = " "
+
+"Map ctrl-i/j/k/h to switch between splits
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+if has('terminal') || has('nvim')
+    tnoremap <ESC> <C-\><C-n>
+    tnoremap <M-[> <ESC>
+endif
+
+"Map ctrl-p to toggle paste mode
+nnoremap <C-p> :set paste!<CR>
+
+" Elim Whitespace (through regexp)
+nnoremap <leader><space> :call CMDPreserve("%s/\\s\\+$//e")<CR>
+" save session
+" nnoremap <leader>s :mksession!<CR>
+
+" edit in current buffer dir
+nnoremap <leader>e :e %:h/
+nnoremap <leader>v :vsp %:h/
+nnoremap <leader>s :sp %:h/
+
+" quick toggle for light/dark background
+nnoremap <leader>L :set background=light<CR>
+nnoremap <leader>D :set background=dark<CR>
+
+" toggle color column (to ensure short lines)
+nnoremap <expr> <leader>C ToggleColorColumn()
+
+" easier tab switching (good for use w terminal wher gt doesn't work)
+nnoremap <C-w>t :tabnext<CR>
+
+" call fzf!
+nnoremap <leader>f :FZF<CR>
+
+" 2 space / 4 space toggle
+nnoremap <leader>2 :setlocal softtabstop=2 shiftwidth=2<CR>
+nnoremap <leader>4 :setlocal softtabstop=4 shiftwidth=4<CR>
+
+" Faster file navigation
+nnoremap <LEFT> :cprev<CR>
+nnoremap <RIGHT> :cnext<CR>
+nnoremap <UP> :prev<CR>
+nnoremap <DOWN> :next<CR>
+
+" Clear that highlight!
+nnoremap <BS> :nohlsearch<CR>
+
+" Get greppin quick! --> search word under cursor (escape # for VimL autoload)
+nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
+
+" Toggle whitespace
+nnoremap <leader>w :set list!<CR>
+" }}}
