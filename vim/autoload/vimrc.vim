@@ -65,13 +65,3 @@ function! vimrc#SetPasteAndPasteFromClipboard() abort
     normal! "+p
     set nopaste
 endfunction
-
-function! vimrc#PerlDebugger() abort
-    " Simple wrapper around term + syntax perl
-    if has('nvim')
-        terminal perl -de 'use Data::Dumper'
-    else
-        terminal ++curwin perl -de 'use Data::Dumper'
-    end
-    setlocal syntax=perl
-endfunction

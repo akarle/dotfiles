@@ -194,7 +194,6 @@ nnoremap <leader>V :edit $HOME/.vim/vimrc<CR>
 " COMMANDS {{{
 command! -nargs=1 GitGrep call vimrc#GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
-command! PDB call vimrc#PerlDebugger()
 " }}}
 
 " Load optional config (in ~/.vim)
