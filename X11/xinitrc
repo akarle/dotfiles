@@ -1,0 +1,10 @@
+# This is the config I use for dwm + startx
+# (which is in the xorg-xinit package I believe)
+setxkbmap -option caps:ctrl_modifier
+slstatus &
+
+if [ -e ~/Pictures/BondCliffJennex.jpg ]; then
+    feh --bg-fill ~/Pictures/BondCliffJennex.jpg
+fi
+
+exec dwm
