@@ -95,8 +95,7 @@ set listchars=space:·,tab:>–,trail:~,eol:¬
 " COLORSCHEME
 " Only gruv if you can handle it
 " NOTE: for initial check, check $TERM, not &term, as nvim has &term=nvim
-if $TERM =~# '256color' &&
-    \ (has("termguicolors") || has('gui_running')) &&
+if (($TERM =~# '256color' && has("termguicolors")) || has('gui_running')) &&
     \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
 
     set termguicolors
