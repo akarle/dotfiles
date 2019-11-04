@@ -164,18 +164,12 @@ nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 nnoremap <leader>2 :setlocal softtabstop=2 shiftwidth=2<CR>
 nnoremap <leader>4 :setlocal softtabstop=4 shiftwidth=4<CR>
 
-" Faster file navigation
-nnoremap <LEFT> :cprev<CR>
-nnoremap <RIGHT> :cnext<CR>
-nnoremap <UP> :prev<CR>
-nnoremap <DOWN> :next<CR>
-
 " Clear that highlight!
 nnoremap <BS> :nohlsearch<CR>
 
 " Get greppin quick! --> search word under cursor (escape # for VimL autoload)
 nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
-nnoremap <silent> <leader>G :call vimrc#GitGrepWordUnderCursor()<CR>:copen<CR>
+nnoremap <silent> <leader>G :Ggrep! <cword><CR>:copen<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
@@ -185,6 +179,9 @@ nnoremap <leader>y gg"+yG<C-O><C-O>
 
 " Edit vimrc
 nnoremap <leader>V :edit $HOME/.vim/vimrc<CR>
+
+" From defaults.vim: breaks the undo chain so we can undo <C-U>
+inoremap <C-U> <C-G>u<C-U>
 " }}}
 
 " COMMANDS {{{
