@@ -102,7 +102,6 @@ if (($TERM =~# '256color' && has("termguicolors")) || has('gui_running')) &&
     colorscheme gruvbox
 
     " See :h xterm-true-color for tmux+termguicolors
-    " TODO: is this safe to blindly set always (in 256 color mode)?
     if &term =~# '^\(tmux\|st\|screen\)'
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -119,7 +118,6 @@ else
     set background=light
     colorscheme vc
 endif
-
 " }}}
 
 " KEY MAPPINGS {{{
@@ -132,18 +130,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Terminal mappings
-" NOTE: a couple limitations here:
-" 1) Vim interprets arrows as escape sequences --> remapping escape is no-go
-" 2) Alacritty cannot handle meta on mac (currently)
-"
-" With this in mind, the goal is to make cross-vim keys consistent
-if has('terminal') || has('nvim')
-    tnoremap <C-W> <C-\><C-N><C-W>
-endif
-
 " Paste from clipboard without any formatting issues
-nnoremap <C-p> :call vimrc#SetPasteAndPasteFromClipboard()<CR>
+nnoremap <C-p> :set paste \| put + \| set nopaste<CR>
 
 " Clear trailing whitespace (through regexp)
 nnoremap <leader><space> :call utils#CMDPreserve("%s/\\s\\+$//e")<CR>
@@ -152,10 +140,6 @@ nnoremap <leader><space> :call utils#CMDPreserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>e :e %:h/
 nnoremap <leader>v :vsp %:h/
 nnoremap <leader>s :sp %:h/
-
-" quick toggle for light/dark background
-nnoremap <leader>L :set background=light<CR>
-nnoremap <leader>D :set background=dark<CR>
 
 " toggle color column (to ensure short lines)
 nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
@@ -175,7 +159,7 @@ nnoremap <silent> <leader>G :Ggrep! <cword><CR>:copen<CR>
 nnoremap <leader>w :set list!<CR>
 
 " Yank entire file
-nnoremap <leader>y gg"+yG<C-O><C-O>
+nnoremap <leader>y :0,$y +<CR>
 
 " Edit vimrc
 nnoremap <leader>V :edit $HOME/.vim/vimrc<CR>
@@ -185,7 +169,6 @@ inoremap <C-U> <C-G>u<C-U>
 " }}}
 
 " COMMANDS {{{
-command! -nargs=1 GitGrep call vimrc#GitGrep('<args>') | copen
 command! CD exe 'cd ' . expand('%:h')
 " }}}
 
