@@ -1,21 +1,45 @@
-#!/usr/bin/env bash
-# simple install via dotfiler
-# PREREQS: git
+#!/bin/sh
+# Minimal install (no prereqs, just the basics)
+# Intended to be run on a new account, NOT for long term management
+# However, should be safe to rerun to fix/tune-up an existing install
 
-if ! [ -x "$(command -v git)" ]; then
-  echo "Error: git is not installed. Aborting..." >&2
-  exit 1
-fi
+DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 
+# ln with the right settings and a nicer message
+try_ln() {
+    if [ -e "$2" ]; then
+        if [ -h "$2" ]; then
+            ln -sfT $1 $2
+            echo "[Updated Link] $2" | sed "s#$HOME#~#"
+        else
+            echo "[Fail:Exists ] $2" | sed "s#$HOME#~#"
+            return
+        fi
+    else
+        # Use 'T' to prevent nesting if the dir already exists
+        ln -sT $1 $2
+        echo "[New         ] $2" | sed "s#$HOME#~#"
+    fi
+}
+
+# Top level dirs
+try_ln $DOTFILES/vim $HOME/.vim
+
+# bin scripts
+mkdir -p $HOME/bin
+for f in $DOTFILES/bin/*; do
+    try_ln $f $HOME/bin/`basename $f`
+done
+
+# XDG_CONFIG_HOME dirs
 mkdir -p $HOME/.config
-mkdir -p $HOME/dev/proj
+for d in mutt offlineimap git nvim; do
+    try_ln $DOTFILES/$d $HOME/.config/$d
+done
 
-echo "Installing dotfiler -> $HOME/dev/proj/dotfiler"
-git clone https://github.com/akarle/dotfiler $HOME/dev/proj/dotfiler || exit 1
-
-echo "Using dotfiler to link bash (bare minimum)"
-PATH=$HOME/dev/proj/dotfiler:$PATH
-dotfiler.pl -d $HOME/dev/dotfiles -l bash tmux
-
-# dotfiler doesn't support .vim yet...
-ln -s $HOME/dev/dotfiles/vim $HOME/.vim
+# Traditional dotfiles
+for d in bash tmux gdb X11; do
+    for f in $DOTFILES/$d/*; do
+        try_ln $f $HOME/.`basename $f`
+    done
+done
