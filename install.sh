@@ -22,9 +22,6 @@ try_ln() {
     fi
 }
 
-# Top level dirs
-try_ln $DOTFILES/vim $HOME/.vim
-
 # bin scripts
 mkdir -p $HOME/bin
 for f in $DOTFILES/bin/*; do
@@ -43,3 +40,7 @@ for d in bash tmux gdb X11; do
         try_ln $f $HOME/.`basename $f`
     done
 done
+
+# Special cases
+try_ln $DOTFILES/vim $HOME/.vim
+try_ln $DOTFILES/deps/pash/pash $HOME/bin/pash

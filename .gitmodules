@@ -19,3 +19,6 @@
 [submodule "vim/pack/plugins/start/vim-gitgutter"]
 	path = vim/pack/plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "deps/pash"]
+	path = deps/pash
+	url = https://github.com/dylanaraps/pash

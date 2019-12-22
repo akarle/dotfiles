@@ -4,7 +4,7 @@
 from subprocess import check_output
 
 def get_pass():
-    return check_output("gpg -dq ~/.config/mutt/accounts/karleco.gpg", shell=True).strip("\n")
+    return check_output("pash show mail/karleco", shell=True).strip("\n")
 
 # If called via CLI, output the password to STDOUT
 # Useful for things like GIT_ASKPASS
