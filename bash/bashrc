@@ -16,33 +16,29 @@ HISTFILESIZE=200000    # Max size of the history file
 HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
 HISTCONTROL=ignoreboth # Don't store (1) duplicate commands in history
                        #   AND don't store lines beginning with space
-
 PROMPT_COMMAND="echo; history -a"
 
 # Other Settings
 shopt -s checkwinsize  # check win size after each cmd, update if needed
 
-# Put ~/bin on the path to facilitate personal customizations
-export PATH=$HOME/bin:$PATH
+# Exports
+export PATH=$HOME/bin:$PATH # Put ~/bin on the for personal scripts
+export EDITOR='vi'          # $EDITOR, the most important (personal) of exports
+export VISUAL='vi'          # Some programs give priority to this
 
-# Custom find function
+# Custom functions
 function ff {
     find . -name "*$1*"
 }
 
-# Custom w3m seraches
-function aw { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
-function ddg { w3m "https://duckduckgo.com/lite?q=$1"; }
+function aw {
+    w3m "https://wiki.archlinux.org/index.php?search=$1"
+}
 
-# $EDITOR, the most important export of course
-if [[ -x "$(command -v nvim)" && -n "$DISPLAY" ]]; then
-    export EDITOR="nvim"
-    export MANPAGER="nvim -u NORC -c 'set ft=man' -"
-else
-    export EDITOR="vim"
-fi
+function ddg {
+    w3m "https://duckduckgo.com/lite?q=$1"
+}
 
-# Source helper files, both mine and other's
 function source_if_exists {
     if [ -r "$1" ]; then
         source "$1"
