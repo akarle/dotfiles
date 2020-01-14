@@ -3,8 +3,7 @@
 # The way I like to roll in the shell
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-[[ $- != *i* ]] && return  # I'm paranoid...
+[[ $- != *i* ]] && return
 
 # Disable XON/XOFF to allow forward search w CTRL-S
 stty -ixon
@@ -20,11 +19,6 @@ PROMPT_COMMAND="echo; history -a"
 
 # Other Settings
 shopt -s checkwinsize  # check win size after each cmd, update if needed
-
-# Exports
-export PATH=$HOME/bin:$PATH # Put ~/bin on the for personal scripts
-export EDITOR='vi'          # $EDITOR, the most important (personal) of exports
-export VISUAL='vi'          # Some programs give priority to this
 
 # Custom functions
 function ff {
@@ -45,8 +39,9 @@ function source_if_exists {
     fi
 }
 
+source_if_exists "$HOME/.profile"                  # Common shell configuration
 source_if_exists "$HOME/.bash/git-completion.bash" # Git Completion
-source_if_exists "$HOME/.aliases"                  # Aliases (source after Git Completion!)
+source_if_exists "$HOME/.bash_aliases"             # Bash aliases (uses git completion!)
 source_if_exists "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
-source_if_exists "$HOME/.bash_prompt"              # Personal Prompt
+source_if_exists "$HOME/.bash_prompt"              # Fancy tput-colored prompt!
 source_if_exists "$HOME/.bashrc.local"             # System specific settings
