@@ -25,9 +25,6 @@ shopt -s checkwinsize  # check win size after each cmd, update if needed
 # Put ~/bin on the path to facilitate personal customizations
 export PATH=$HOME/bin:$PATH
 
-# Setup for pash password manager
-export PASH_KEYID='alex@karle.co'
-
 # Custom find function
 function ff {
     find . -name "*$1*"
