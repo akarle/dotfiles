@@ -17,7 +17,7 @@ try_ln() {
         fi
     else
         # Use 'T' to prevent nesting if the dir already exists
-        ln -sT $1 $2
+        ln -sfT $1 $2
         echo "[New         ] $2" | sed "s#$HOME#~#"
     fi
 }

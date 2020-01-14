@@ -1,7 +1,6 @@
 #!/bin/sh
 # ~/.profile -- the sh profile
 # To be used as a base for all other shell rc's
-echo $PS1
 [ -z "$PS1" ] && return
 
 # Crucial exports
@@ -11,22 +10,20 @@ VISUAL='vi'              # Some programs give priority to this
 
 # Build up a somewhat fancy prompt (with SSH and error code indicators!)
 if [ -n "$SSH_CLIENT" ]; then
-    ssh_text="[$USER@$(hostname)] "
+    SSH_PROMPT="[$USER@$(hostname)] "
 fi
 
-get_error_code() {
+last_err() {
     err="$?"
     if [ $err -ne "0" ]; then
         echo "[$err] "
     fi
 }
 
-PS1='$(get_error_code)$PWD $SSH_PROMPT
+PS1='$(last_err)$PWD $SSH_PROMPT
 $ '
 PS2="> "
 
 export PATH EDITOR VISUAL PS1 PS2 SSH_PROMPT
 
-if [ -e "$HOME/.aliases" ]; then
-    . "$HOME/.aliases"
-fi
+[ -r "$HOME/.aliases" ] && . "$HOME/.aliases"

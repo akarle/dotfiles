@@ -5,43 +5,61 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Disable XON/XOFF to allow forward search w CTRL-S
-stty -ixon
-
-# History Settings
+# Settings
+stty -ixon             # Disable XON/XOFF to allow forward search w CTRL-S
+shopt -s checkwinsize  # check win size after each cmd, update if needed
 shopt -s histappend    # append to the history file, don't overwrite it
 HISTSIZE=10000         # Max lines in history (in memory)
 HISTFILESIZE=200000    # Max size of the history file
 HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
-HISTCONTROL=ignoreboth # Don't store (1) duplicate commands in history
-                       #   AND don't store lines beginning with space
-PROMPT_COMMAND="echo; history -a"
-
-# Other Settings
-shopt -s checkwinsize  # check win size after each cmd, update if needed
+HISTCONTROL=ignoreboth # Don't store duped / whitespace-led commands in history
+PROMPT_COMMAND="echo; history -a" # Record history after each command
 
 # Custom functions
-function ff {
-    find . -name "*$1*"
-}
+aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
+ddg() { w3m "https://duckduckgo.com/lite?q=$1"; }
+include() { [ -r "$1" ] && source "$1"; }
 
-function aw {
-    w3m "https://wiki.archlinux.org/index.php?search=$1"
-}
+include "$HOME/.profile"                  # Common shell configuration
+include "$HOME/.bash/git-completion.bash" # Git Completion
+include "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
+include "$HOME/.bashrc.local"             # System specific settings
 
-function ddg {
-    w3m "https://duckduckgo.com/lite?q=$1"
-}
-
-function source_if_exists {
-    if [ -r "$1" ]; then
-        source "$1"
+parse_git_dirty() {
+    if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
+        [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
     fi
 }
 
-source_if_exists "$HOME/.profile"                  # Common shell configuration
-source_if_exists "$HOME/.bash/git-completion.bash" # Git Completion
-source_if_exists "$HOME/.bash_aliases"             # Bash aliases (uses git completion!)
-source_if_exists "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
-source_if_exists "$HOME/.bash_prompt"              # Fancy tput-colored prompt!
-source_if_exists "$HOME/.bashrc.local"             # System specific settings
+git_info() {
+    git branch --no-color 2> /dev/null |
+        sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
+
+# Preferred Prompt: fancy with colors from tput
+if tput setaf 1 &> /dev/null; then
+    tput sgr0 # reset effects of test command
+    RED="\[$(tput setaf 1)\]"
+    MAGENTA="\[$(tput setaf 5)\]"
+    YELLOW="\[$(tput setaf 3)\]"
+    GRAY="\[$(tput setaf 8)\]"
+    BLUE="\[$(tput setaf 4)\]"
+    BOLD="\[$(tput bold)\]"
+    RESET="\[$(tput sgr0)\]"
+
+    PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY$SSH_PROMPT\$(git_info)"
+    export PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
+    export PS2="$YELLOW> $RESET"
+fi
+
+# Git completion for ~/.aliases
+if [ -n "$(type -t __git_complete)" ] &&
+   [ "$(type -t __git_complete)" == "function" ]; then
+    __git_complete ga _git_add
+    __git_complete gco _git_checkout
+    __git_complete gd _git_diff
+    __git_complete gr _git_rebase
+    __git_complete gb _git_branch
+fi
+
+alias rb='source ~/.bashrc'
