@@ -37,9 +37,6 @@ set pager_index_lines=10
 # Enables shelling out in macros without a pause
 set wait_key=no
 
-# For pandoc, we need an extra line before the block quotes
-set attribution="On %d, %n wrote:\n"
-
 ################################################################################
 # Bindings
 # I've chosen to customize-as-I-go on these. Some general guiding rules:
@@ -78,4 +75,5 @@ bind editor      <Tab> complete-query  # Used for contact-completion
 # Macros
 macro index,pager  ga "<pipe-message>abook --add-email-quiet<return>" "Add sender to abook contacts"
 
-macro compose K "|pandoc -s -H ~/.config/mutt/header.html -o /tmp/mutt-alt.html<enter><attach-file>/tmp/mutt-alt.html<enter><tag-entry><previous-entry><tag-entry>"
+set send_multipart_alternative=ask-no
+set send_multipart_alternative_filter=markdown2html
