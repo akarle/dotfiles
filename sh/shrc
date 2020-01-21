@@ -1,0 +1,28 @@
+#!/bin/sh
+# ~/.shrc -- a config for all POSIX shells
+[ -z "$PS1" ] && return  # Exit early if non-interactive
+
+# Crucial exports
+PATH=$HOME/bin:$PATH     # Put ~/bin on the for personal scripts
+EDITOR='vi'              # $EDITOR, the most important (personal) of exports
+VISUAL='vi'              # Some programs give priority to this
+
+# Build up a somewhat fancy prompt (with SSH and error code indicators!)
+if [ -n "$SSH_CLIENT" ]; then
+    SSH_PROMPT="[$USER@$(hostname)] "
+fi
+
+last_err() {
+    err="$?"
+    if [ $err -ne "0" ]; then
+        echo "[$err] "
+    fi
+}
+
+PS1='$(last_err)$PWD $SSH_PROMPT
+$ '
+PS2="> "
+
+export PATH EDITOR VISUAL PS1 PS2 SSH_PROMPT
+
+[ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
