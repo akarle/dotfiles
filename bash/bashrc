@@ -48,8 +48,8 @@ if tput setaf 1 &> /dev/null; then
     RESET="\[$(tput sgr0)\]"
 
     PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY$SSH_PROMPT\$(git_info)"
-    export PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
-    export PS2="$YELLOW> $RESET"
+    PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
+    PS2="$YELLOW> $RESET"
 fi
 
 # Git completion for ~/.aliases

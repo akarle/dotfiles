@@ -23,6 +23,6 @@ PS1='$(last_err)$PWD $SSH_PROMPT
 $ '
 PS2="> "
 
-export PATH EDITOR VISUAL PS1 PS2 SSH_PROMPT
+export PATH EDITOR VISUAL
 
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
