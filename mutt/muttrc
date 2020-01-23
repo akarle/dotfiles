@@ -76,5 +76,5 @@ bind editor      <Tab> complete-query  # Used for contact-completion
 macro index,pager  ga "<pipe-message>abook --add-email-quiet<return>" "Add sender to abook contacts"
 macro index  g$ "<shell-escape>offlineimap<return>" "Sync with OfflineIMAP"
 
-set send_multipart_alternative=ask-no
-set send_multipart_alternative_filter=markdown2html
+# set send_multipart_alternative=ask-no
+# set send_multipart_alternative_filter=markdown2html
