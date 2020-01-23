@@ -9,15 +9,14 @@ DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 try_ln() {
     if [ -e "$2" ]; then
         if [ -h "$2" ]; then
-            ln -sfT $1 $2
+            ln -snf $1 $2
             echo "[Updated Link] $2" | sed "s#$HOME#~#"
         else
             echo "[Fail:Exists ] $2" | sed "s#$HOME#~#"
             return
         fi
     else
-        # Use 'T' to prevent nesting if the dir already exists
-        ln -sfT $1 $2
+        ln -snf $1 $2
         echo "[New         ] $2" | sed "s#$HOME#~#"
     fi
 }
