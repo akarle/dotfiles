@@ -2,15 +2,24 @@
 # Minimal install (no prereqs, just the basics)
 # Intended to be run on a new account, NOT for long term management
 # However, should be safe to rerun to fix/tune-up an existing install
+set -e
 
 DOTFILES="$( cd "$(dirname "$0")" ; pwd -P )"
 
 # ln with the right settings and a nicer message
 try_ln() {
+    # bail out early if source doesn't exist
+    [ -e "$1" ] || return 0
+
+    # we know source is legit, set up dest
     if [ -e "$2" ]; then
         if [ -h "$2" ]; then
-            ln -snf $1 $2
-            echo "[Updated Link] $2" | sed "s#$HOME#~#"
+            if [ `readlink $2` = "$1" ]; then
+                echo "[Up to Date  ] $2" | sed "s#$HOME#~#"
+            else
+                ln -snf $1 $2
+                echo "[Updated Link] $2" | sed "s#$HOME#~#"
+            fi
         else
             echo "[Fail:Exists ] $2" | sed "s#$HOME#~#"
             return
