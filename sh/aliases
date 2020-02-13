@@ -31,6 +31,7 @@ alias gb='git branch'
 alias grb='git rebase'
 alias grs='git reset'
 alias gm='git merge'
+alias gg='git grep'
 alias vlg='vim -c "GV"' # 'vim log' of a file
 
 # Quick Actions
@@ -38,6 +39,7 @@ alias cddv='cd ~/.vim'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
+alias curljson='curl -H "Content-Type: application/json"'
 
 # Lightweight funcs
 aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
