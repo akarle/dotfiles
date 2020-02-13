@@ -38,3 +38,7 @@ alias cddv='cd ~/.vim'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias .....='cd ../../../../..'
+
+# Lightweight funcs
+aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
+ddg() { w3m "https://duckduckgo.com/lite?q=$1"; }

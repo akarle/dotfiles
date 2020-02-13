@@ -6,10 +6,13 @@
 PATH=$HOME/bin:$PATH     # Put ~/bin on the for personal scripts
 EDITOR='vi'              # $EDITOR, the most important (personal) of exports
 VISUAL='vi'              # Some programs give priority to this
+MANPAGER="less"          # less is more
+
+export PATH EDITOR VISUAL MANPAGER
 
 # Build up a somewhat fancy prompt (with SSH and error code indicators!)
 if [ -n "$SSH_CLIENT" ]; then
-    SSH_PROMPT="[$USER@$(hostname)] "
+    SSH_PROMPT="$USER@$(hostname -s):"
 fi
 
 last_err() {
@@ -19,10 +22,7 @@ last_err() {
     fi
 }
 
-PS1='$(last_err)$PWD $SSH_PROMPT
-$ '
+PS1='$(last_err)[${SSH_PROMPT}${PWD}]\$ '
 PS2="> "
-
-export PATH EDITOR VISUAL
 
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"

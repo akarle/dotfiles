@@ -15,11 +15,8 @@ HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
 HISTCONTROL=ignoreboth # Don't store duped / whitespace-led commands in history
 PROMPT_COMMAND="echo; history -a" # Record history after each command
 
-# Custom functions
-aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
-ddg() { w3m "https://duckduckgo.com/lite?q=$1"; }
+# Includes
 include() { [ -r "$1" ] && source "$1"; }
-
 include "$HOME/.shrc"                     # Common shell configuration
 include "$HOME/.bash/git-completion.bash" # Git Completion
 include "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
