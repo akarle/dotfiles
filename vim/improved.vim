@@ -8,6 +8,9 @@ else
     let s:vimdir = expand($HOME . '/.vim')
 endif
 
+" Line numbers on -- helpful for debugging, not needed in `vi`
+set number
+
 " Faster grepping! (use ripgrep if available for :grep and :FZF)
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading

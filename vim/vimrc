@@ -11,11 +11,9 @@ set incsearch                  " Incrementally search
 set backspace=indent,eol,start " Backspace should function as expected
 set ttimeout                   " Timeout on esc keycodes
 set ttimeoutlen=30             " Low timeout to avoid <ESC> delay
-set belloff=all                " Quiet in the Console!
 set modelines=0                " Disable modelines for security
 set history=10000              " Remember last 1000 :commands
 set scrolloff=3                " Scroll at 3 rows from edge of screen
-set number                     " Line numbers on
 set wildmenu                   " Visual completion for command mode
 set showcmd                    " Show the command being typed
 set laststatus=2               " Always show the statusbar
@@ -24,7 +22,7 @@ set listchars=tab:>-,trail:~,eol:$  " Nicer whitespace
 
 if v:progname =~# 'vim$'
     runtime! improved.vim        " put the IM in VIM
-else
+elseif has('packages')
     set pp-=~/.vim
     set pp-=~/.vim/after
 endif
