@@ -1,10 +1,23 @@
 # This is the config I use for dwm + startx
-# (which is in the xorg-xinit package I believe)
 setxkbmap -option caps:ctrl_modifier
 slstatus &
 
-if [ -e ~/Pictures/BondCliffJennex.jpg ]; then
-    feh --bg-fill ~/Pictures/BondCliffJennex.jpg
+[ -e ~/background.png ] && feh --bg-center ~/background.png
+
+if [ $(uname) = "OpenBSD" ]; then
+    # On my thinkpad, I seem to need these xinput calls to get
+    # middle click scroll to work on OpenBSD. Linux is fine
+    xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
+    xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
+    xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+
+    # since xenodm is run as root, we need to export ENV
+    # ~/.shrc otherwise the interactive shells spawned in st
+    # won't have the right profile
+    export ENV=~/.shrc
+
+    # Prefer UTF-8 in X for unicode character support
+    export LC_CTYPE="en_US.UTF-8"
 fi
 
 exec dwm
