@@ -1,0 +1,23 @@
+# mbsyncrc -- see `man mbsync`
+IMAPAccount karleco
+User alex@karle.co
+Host imap.fastmail.com
+SSLType IMAPS
+PassCmd "+pash show mail/karleco"
+
+IMAPStore karleco-fastmail
+Account karleco
+
+MaildirStore karleco-local
+Path ~/mail/karleco/
+Inbox ~/mail/karleco/INBOX
+Flatten .
+
+Channel karleco
+Master :karleco-fastmail:
+Slave :karleco-local:
+Patterns *
+SyncState *
+Sync All
+Create Both
+CopyArrivalDate yes

@@ -43,7 +43,7 @@ for d in mutt offlineimap git nvim; do
 done
 
 # Traditional dotfiles
-for d in bash tmux gdb X11 sh vi; do
+for d in bash tmux gdb X11 sh vi mbsync; do
     for f in $DOTFILES/$d/*; do
         try_ln $f $HOME/.`basename $f`
     done
