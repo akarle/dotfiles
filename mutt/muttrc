@@ -32,10 +32,13 @@ my_hdr BCC: $from
 set query_command="abook --mutt-query '%s'"
 
 # Show some index in the pager
-set pager_index_lines=10
+# set pager_index_lines=10
 
 # Enables shelling out in macros without a pause
 set wait_key=no
+
+# Basic colors...
+color index yellow black ~U
 
 ################################################################################
 # Bindings
@@ -74,7 +77,7 @@ bind editor      <Tab> complete-query  # Used for contact-completion
 
 # Macros
 macro index,pager  ga "<pipe-message>abook --add-email-quiet<return>" "Add sender to abook contacts"
-macro index  g$ "<shell-escape>offlineimap<return>" "Sync with OfflineIMAP"
+macro index  g$ "<sync-mailbox><shell-escape>mbsync -a<return>" "Sync with mbsync"
 
 # set send_multipart_alternative=ask-no
 # set send_multipart_alternative_filter=markdown2html

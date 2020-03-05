@@ -4,14 +4,13 @@
 set from="alex@karle.co"
 set realname="Alex Karle"
 
-# Use the baked in IMAP (For the most part, I only check email on a network)
+# Use a local copy of my mail (for speed and offline-access)
 set mbox_type="Maildir"
-set folder="~/mail"
+set folder="~/mail/karleco/"
 set spoolfile="=INBOX"
 set record="=Sent"
 set postponed="=Drafts"
 
-# Never had an issue with the mutt SMTP. I'm all for the UNIX philosophy
-# but since it's already there... may as well use it?
-set smtp_pass=`pash show mail/karleco`
-set smtp_url="smtps://$from:$smtp_pass@smtp.fastmail.com:465"
+# Uncomment if sendmail not configured on machine
+# set smtp_pass=`pash show mail/karleco`
+# set smtp_url="smtps://$from:$smtp_pass@smtp.fastmail.com:465"
