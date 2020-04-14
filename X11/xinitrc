@@ -2,7 +2,7 @@
 setxkbmap -option caps:ctrl_modifier
 slstatus &
 
-[ -e ~/background.png ] && feh --bg-center ~/background.png
+[ -e ~/background.png ] && feh --bg-fill ~/background.png
 
 if [ $(uname) = "OpenBSD" ]; then
     # On my thinkpad, I seem to need these xinput calls to get
@@ -18,6 +18,9 @@ if [ $(uname) = "OpenBSD" ]; then
 
     # Prefer UTF-8 in X for unicode character support
     export LC_CTYPE="en_US.UTF-8"
-fi
 
-exec dwm
+    # xenodm handles ssh-agent for us
+    exec dwm
+else
+    ssh-agent dwm
+fi
