@@ -6,23 +6,21 @@
 PATH=$HOME/bin:$PATH     # Put ~/bin on the for personal scripts
 EDITOR='vi'              # $EDITOR, the most important (personal) of exports
 VISUAL='vi'              # Some programs give priority to this
-MANPAGER="less"          # less is more
+PAGER='less'             # less is more
+export PATH EDITOR VISUAL PAGER
 
-export PATH EDITOR VISUAL MANPAGER
+# Shell vars
+HISTFILE=${HISTFILE:="$HOME/.sh_histo"}  # Don't override bash_history
+HOSTNAME="$(hostname -s)"
 
-# Build up a somewhat fancy prompt (with SSH and error code indicators!)
-if [ -n "$SSH_CLIENT" ]; then
-    SSH_PROMPT="$USER@$(hostname -s):"
-fi
-
+# Prompt
 last_err() {
     err="$?"
     if [ $err -ne "0" ]; then
-        echo "[$err] "
+        echo "($err)"
     fi
 }
+PS1='$(last_err)[${USER}@${HOSTNAME}]\$ '
 
-PS1='$(last_err)[${SSH_PROMPT}${PWD}]\$ '
-PS2="> "
-
+# Includes
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
