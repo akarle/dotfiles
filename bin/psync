@@ -1,0 +1,30 @@
+#!/bin/sh
+# Synchronize pash passwords with a central host
+PHOST=${PSYNC_HOST:="raspberrypi"}
+PUSER=${PSYNC_USER:="pi"}
+
+die() {
+    echo "$1" 1>&2
+    exit 1
+}
+
+push() {
+    rsync -av $HOME/.local/share/pash/ $PUSER@$PHOST:.local/share/pash/ 
+}
+
+pull() {
+    rsync -av $PUSER@$PHOST:.local/share/pash/ $HOME/.local/share/pash/
+}
+
+sync() {
+    # Assume current passwords are latest (push then pull)
+    push
+    pull
+}
+
+case "$1" in
+    push) push ;;
+    pull) pull ;;
+    sync) sync ;;
+    *) die "usage: psync push|pull|sync"
+esac
