@@ -38,12 +38,12 @@ done
 
 # XDG_CONFIG_HOME dirs
 mkdir -p $HOME/.config
-for d in mutt offlineimap git nvim; do
+for d in mutt git nvim; do
     try_ln $DOTFILES/$d $HOME/.config/$d
 done
 
 # Traditional dotfiles
-for d in bash tmux gdb X11 sh vi mbsync; do
+for d in bash tmux X11 sh vi; do
     for f in $DOTFILES/$d/*; do
         try_ln $f $HOME/.`basename $f`
     done
