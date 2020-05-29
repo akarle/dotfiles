@@ -22,31 +22,33 @@ include "$HOME/.bash/git-completion.bash" # Git Completion
 include "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
 include "$HOME/.bashrc.local"             # System specific settings
 
-parse_git_dirty() {
-    if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
-        [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
+if [ -n "$USE_FANCY_PROMPT" ]; then
+    parse_git_dirty() {
+        if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
+            [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
+        fi
+    }
+
+    git_info() {
+        git branch --no-color 2> /dev/null |
+            sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+    }
+
+    # Preferred Prompt: fancy with colors from tput
+    if tput setaf 1 &> /dev/null; then
+        tput sgr0 # reset effects of test command
+        RED="\[$(tput setaf 1)\]"
+        MAGENTA="\[$(tput setaf 5)\]"
+        YELLOW="\[$(tput setaf 3)\]"
+        GRAY="\[$(tput setaf 8)\]"
+        BLUE="\[$(tput setaf 4)\]"
+        BOLD="\[$(tput bold)\]"
+        RESET="\[$(tput sgr0)\]"
+
+        PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY$SSH_PROMPT\$(git_info)"
+        PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
+        PS2="$YELLOW> $RESET"
     fi
-}
-
-git_info() {
-    git branch --no-color 2> /dev/null |
-        sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
-
-# Preferred Prompt: fancy with colors from tput
-if tput setaf 1 &> /dev/null; then
-    tput sgr0 # reset effects of test command
-    RED="\[$(tput setaf 1)\]"
-    MAGENTA="\[$(tput setaf 5)\]"
-    YELLOW="\[$(tput setaf 3)\]"
-    GRAY="\[$(tput setaf 8)\]"
-    BLUE="\[$(tput setaf 4)\]"
-    BOLD="\[$(tput bold)\]"
-    RESET="\[$(tput sgr0)\]"
-
-    PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY$SSH_PROMPT\$(git_info)"
-    PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
-    PS2="$YELLOW> $RESET"
 fi
 
 # Git completion for ~/.aliases
