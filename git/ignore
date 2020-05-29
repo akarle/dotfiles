@@ -8,8 +8,9 @@
 tags
 TAGS
 
-# Vim files
+# Backup files
 *.swp
+*~
 
 # OS Junk
 .DS_Store
