@@ -13,7 +13,7 @@ HISTSIZE=10000         # Max lines in history (in memory)
 HISTFILESIZE=200000    # Max size of the history file
 HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
 HISTCONTROL=ignoreboth # Don't store duped / whitespace-led commands in history
-PROMPT_COMMAND="echo; history -a" # Record history after each command
+PROMPT_COMMAND="history -a" # Record history after each command
 
 # Includes
 include() { [ -r "$1" ] && source "$1"; }
