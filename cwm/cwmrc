@@ -1,0 +1,32 @@
+# Commands (for menu-cmd)
+command firefox firefox
+command term    /usr/local/bin/st
+command lock    /usr/local/bin/slock
+command top     "/usr/local/bin/st -e top"
+command htop    "/usr/local/bin/st -e htop"
+command mutt    "/usr/local/bin/st -e mutt"
+
+# Global keys
+bind-key 4S-e      quit
+bind-key 4S-r      restart
+
+# App spawns
+bind-key 4S-Return terminal
+bind-key 4-w       firefox
+bind-key 4-p       menu-cmd
+bind-key 4S-p      menu-exec
+bind-key 4S-w      menu-window
+bind-key 4S-g      menu-group
+bind-key 4-semicolon lock
+
+# Window manipulation
+bind-key 4-Return  window-fullscreen
+bind-key 4-j       window-cycle
+bind-key 4-k       window-rcycle
+bind-key 4S-j      group-cycle
+bind-key 4S-k      group-rcycle
+bind-key 4S-q      window-close
+
+# Mouse it
+bind-mouse 4-1     window-move
+bind-mouse 4-3     window-resize

@@ -20,7 +20,7 @@ if [ $(uname) = "OpenBSD" ]; then
     export LC_CTYPE="en_US.UTF-8"
 
     # xenodm handles ssh-agent for us
-    exec dwm
+    exec cwm
 else
     ssh-agent dwm
 fi
