@@ -11,3 +11,5 @@
 	smtpencryption = tls
 	smtpserverport = 587
         annotate = yes
+[pull]
+	ff = only
