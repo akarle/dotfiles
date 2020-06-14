@@ -35,11 +35,8 @@ alias gg='git grep'
 alias vlg='vim -c "GV"' # 'vim log' of a file
 
 # Quick Actions
-alias cddv='cd ~/.vim'
-alias ...='cd ../../..'
-alias ....='cd ../../../..'
-alias .....='cd ../../../../..'
 alias curljson='curl -H "Content-Type: application/json"'
+alias sysmail='mutt -f /var/mail/$USER'
 
 # Lightweight funcs
 aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
