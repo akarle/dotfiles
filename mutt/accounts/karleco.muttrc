@@ -1,7 +1,7 @@
 # Account setup for my personal email
 #   Checked into git as a template for other accounts
 
-set from="alex@karle.co"
+set from="alex@alexkarle.com"
 set realname="Alex Karle"
 
 # Use a local copy of my mail (for speed and offline-access)
