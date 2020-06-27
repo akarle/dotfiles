@@ -2,12 +2,12 @@
 	editor = $EDITOR
 
 [user]
-	email = git@alexkarle.com
+	email = alex@alexkarle.com
 	name = Alex Karle
 
 [sendemail]
 	smtpserver = smtp.fastmail.com
-	smtpuser = git@alexkarle.com
+	smtpuser = alex@alexkarle.com
 	smtpencryption = tls
 	smtpserverport = 587
         annotate = yes
