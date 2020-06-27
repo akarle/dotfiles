@@ -25,3 +25,4 @@ PS1='$(last_err)[${USER}@${HOSTNAME}]\$ '
 
 # Includes
 [ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
+[ -r "$HOME/.shrc.local" ] && . "$HOME/.shrc.local"
