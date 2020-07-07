@@ -32,7 +32,7 @@ my_hdr BCC: $from
 set query_command="abook --mutt-query '%s'"
 
 # Show some index in the pager
-# set pager_index_lines=10
+set pager_index_lines=6
 
 # Enables shelling out in macros without a pause
 set wait_key=no
