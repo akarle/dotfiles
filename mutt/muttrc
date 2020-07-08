@@ -2,15 +2,10 @@
 # In pursuit of an email client that sucks less
 
 ################################################################################
-# General
+# General / Behavior
 source ~/.config/mutt/muttrc.local
 
 set ssl_force_tls = yes # Require encrypted connection
-
-# Appearance
-# TODO: maybe one day a color scheme...
-set sort=threads
-set sort_aux=reverse-last-date-received
 
 # Attachments
 set mailcap_path=~/.config/mutt/mailcap
@@ -31,14 +26,35 @@ my_hdr BCC: $from
 # Use the `abook` program for contact management/completions
 set query_command="abook --mutt-query '%s'"
 
-# Show some index in the pager
-set pager_index_lines=6
-
 # Enables shelling out in macros without a pause
 set wait_key=no
 
-# Basic colors...
+################################################################################
+# Appearance / Layout
+set sort=threads
+set sort_aux=reverse-last-date-received
+
+# Show some index in the pager
+set pager_index_lines=6
+
+# Restrict quotes to |, :, and >  (default has } and # which match code)
+set quote_regexp="^([ \t]*[|>:])+"
 color index yellow black ~U
+color quoted green black
+color quoted1 blue black
+color quoted2 magenta black
+color quoted3 yellow black
+color quoted4 red black
+
+# Patch highting
+color body green black "^\\+.*"
+color body red black "^-.*"
+color body magenta black "^\\+\\+\\+ b/.*"
+color body magenta black "^--- a/.*"
+color body magenta black "^@@.*@@"
+color body magenta black "^@@.*@@"
+color body magenta black "^diff --git.*"
+color body magenta black "^index [0-9a-z]{7}\\.\\.[0-9a-z]{7}.*"
 
 ################################################################################
 # Bindings
