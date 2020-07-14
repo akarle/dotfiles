@@ -52,3 +52,6 @@ done
 # Special cases
 try_ln $DOTFILES/vim $HOME/.vim
 try_ln $DOTFILES/deps/pash/pash $HOME/bin/pash
+
+# Touch files expected to be in the install
+touch $HOME/.config/mutt/muttrc.local
