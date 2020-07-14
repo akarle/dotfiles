@@ -24,5 +24,6 @@ last_err() {
 PS1='$(last_err)[${USER}@${HOSTNAME}]\$ '
 
 # Includes
-[ -r "$HOME/.aliases" ] && . "$HOME/.aliases"
-[ -r "$HOME/.shrc.local" ] && . "$HOME/.shrc.local"
+include() { if [ -r "$1" ]; then . "$1"; fi }
+include "$HOME/.aliases"
+include "$HOME/.shrc.local"
