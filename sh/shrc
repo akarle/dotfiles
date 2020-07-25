@@ -8,7 +8,8 @@ EDITOR='vi'              # $EDITOR, the most important (personal) of exports
 VISUAL='vi'              # Some programs give priority to this
 PAGER='less'             # less is more
 PERL5LIB=$HOME/perl5/lib/perl5  # default cpanminus location
-export PATH EDITOR VISUAL PAGER PERL5LIB
+MANPATH=":$HOME/share/man"
+export PATH EDITOR VISUAL PAGER PERL5LIB MANPATH
 
 # Shell vars
 HISTFILE=${HISTFILE:="$HOME/.sh_histo"}  # Don't override bash_history
