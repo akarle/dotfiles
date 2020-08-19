@@ -13,16 +13,15 @@ export PATH EDITOR VISUAL PAGER PERL5LIB MANPATH
 
 # Shell vars
 HISTFILE=${HISTFILE:="$HOME/.sh_histo"}  # Don't override bash_history
-HOSTNAME="$(hostname -s)"
 
 # Prompt
 last_err() {
     err="$?"
     if [ $err -ne "0" ]; then
-        echo "($err)"
+        echo "($err) "
     fi
 }
-PS1='$(last_err)[${USER}@${HOSTNAME}]\$ '
+PS1='$(last_err)\w \$ '
 
 # Includes
 include() { if [ -r "$1" ]; then . "$1"; fi }
