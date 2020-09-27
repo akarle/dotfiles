@@ -1,6 +1,1 @@
-# netrw places these files in nvim/
-.netrwhist
-
-# Compiled python files
-*.pyc
-__pycache__
+*
