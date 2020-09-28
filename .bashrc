@@ -19,7 +19,7 @@ PROMPT_COMMAND="history -a" # Record history after each command
 include() { [ -r "$1" ] && source "$1"; }
 include "$HOME/.shrc"                     # Common shell configuration
 include "$HOME/.bash/git-completion.bash" # Git Completion
-include "$HOME/.console_theme"            # Virtual Console colors (if TERM == "linux")
+include "$HOME/etc/console_theme.sh"      # Virtual Console colors (if TERM == "linux")
 include "$HOME/.bashrc.local"             # System specific settings
 
 if [ -n "$USE_FANCY_PROMPT" ]; then

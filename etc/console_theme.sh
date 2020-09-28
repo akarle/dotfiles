@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bash/console_theme
+# console_theme.sh
 # A small script to set the Virtual Console to use Gruvbox colors.
 # Colors originally from https://github.com/morhetz/gruvbox by Pavel Pertsev
 # For more on escape sequences see console_codes(4)
