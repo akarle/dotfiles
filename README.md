@@ -16,7 +16,6 @@ This all said, to set up a new machine I run:
 
 ```sh
 $ git clone --bare https://github.com/akarle/dotfiles ~/.cfg
-$ git -C ~/.cfg config status.showUntrackedFiles no
-$ alias cfg='git --git-dir=$HOME/.cfg --work-tree=$HOME'
+$ alias cfg='git --git-dir=$HOME/.cfg --work-tree=$HOME'  # one time only
 $ cfg checkout # resolve any conflicts from existing files...
 ```
