@@ -1,0 +1,7 @@
+$include ~/.inputrc
+
+# Since this is ed(1) we want to use C-n/C-p for
+# completion (tabs should be tabs)
+Control-n: complete
+Control-p: complete-backward
+TAB: tab-insert

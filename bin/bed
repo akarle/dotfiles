@@ -1,0 +1,17 @@
+#!/bin/sh
+# bed -- [slightly] better ed
+for f in .tags tags; do
+    if [ -e "$f" ]; then
+        echo "using tags from ./$f"
+        COMP="$COMP --file=$f"
+    fi
+done
+
+export INPUTRC="$HOME/etc/edinputrc"
+
+exec rlwrap \
+    --complete-filenames \
+    --logfile /tmp/rled.log \
+    --histsize 10000 $COMP \
+    --extra-char-after-completion '' \
+    ed -v -p"> " "$@"
