@@ -9,9 +9,14 @@ done
 
 export INPUTRC="$HOME/etc/edinputrc"
 
+# Only include -v if using GNU ed
+if ed --version >/dev/null 2>&1 ; then
+    VERBOSE="-v"
+fi
+
 exec rlwrap \
     --complete-filenames \
     --logfile /tmp/rled.log \
     --histsize 10000 $COMP \
     --extra-char-after-completion '' \
-    ed -v -p"> " "$@"
+    ed $VERBOSE -p"> " "$@"
