@@ -15,8 +15,8 @@ if ed --version >/dev/null 2>&1 ; then
 fi
 
 exec rlwrap \
+    --no-warnings \
     --complete-filenames \
-    --logfile /tmp/rled.log \
     --histsize 10000 $COMP \
     --extra-char-after-completion '' \
     ed $VERBOSE -p"> " "$@"
