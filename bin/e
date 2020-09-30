@@ -1,5 +1,5 @@
 #!/bin/sh
-# bed -- [slightly] better ed
+# e -- slightly improved ed(1) wrapper
 for f in .tags tags; do
     if [ -e "$f" ]; then
         echo "using tags from ./$f"
