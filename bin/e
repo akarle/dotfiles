@@ -1,5 +1,13 @@
 #!/bin/sh
 # e -- slightly improved ed(1) wrapper
+set -e
+
+# short circuit fallback to ed(1) if no rlwrap present
+if ! command -v rlwrap >/dev/null; then
+    echo "warning: rlwrap not found, falling back to regular ed" 1>&2
+    exec ed
+fi
+
 for f in .tags tags; do
     if [ -e "$f" ]; then
         echo "using tags from ./$f"
