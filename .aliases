@@ -38,9 +38,6 @@ alias vlg='vim -c "GV"' # 'vim log' of a file
 alias curljson='curl -H "Content-Type: application/json"'
 alias sysmail='mutt -f /var/mail/$USER'
 
-# Dotfile management
-alias cfg='git --git-dir=$HOME/.cfg --work-tree=$HOME'
-
 # Lightweight funcs
 aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
 ddg() { w3m "https://duckduckgo.com/lite?q=$1"; }

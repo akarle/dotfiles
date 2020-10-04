@@ -1,0 +1,3 @@
+#!/bin/sh
+# cfg -- manage dotfiles with pure git
+exec git --git-dir=$HOME/.cfg --work-tree=$HOME "$@"
