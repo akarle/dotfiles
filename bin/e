@@ -5,7 +5,7 @@ set -e
 # short circuit fallback to ed(1) if no rlwrap present
 if ! command -v rlwrap >/dev/null; then
     echo "warning: rlwrap not found, falling back to regular ed" 1>&2
-    exec ed
+    exec ed -p'> ' "$@"
 fi
 
 for f in .tags tags; do
