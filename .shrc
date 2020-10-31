@@ -21,7 +21,7 @@ last_err() {
         echo "($err) "
     fi
 }
-PS1='$(last_err)\w \$ '
+PS1='$(last_err)\u@\h:\w \$ '
 
 # Includes
 include() { if [ -r "$1" ]; then . "$1"; fi }
