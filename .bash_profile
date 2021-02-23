@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# sourced by login shells (not interactive shells)
+# sourced by non-interactive login shells
 # Example:
 #   - ssh to Linux --> run bash_profile on login
 #   - open new tmux window --> run bashrc

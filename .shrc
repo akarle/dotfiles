@@ -1,29 +1,21 @@
 #!/bin/sh
-# ~/.shrc -- a config for all POSIX shells
-[ -z "$PS1" ] && return  # Exit early if non-interactive
+# ~/.shrc -- a base config for all POSIX shells
+# "the /etc/skel to my .bashrc"
 
-# Crucial exports
-PATH=$HOME/bin:$PATH     # Put ~/bin on the for personal scripts
-EDITOR='vi'              # $EDITOR, the most important (personal) of exports
-VISUAL='vi'              # Some programs give priority to this
-PAGER='less'             # less is more
-PERL5LIB=$HOME/perl5/lib/perl5  # default cpanminus location
-MANPATH=":$HOME/share/man"
-export PATH EDITOR VISUAL PAGER PERL5LIB MANPATH
-
-# Shell vars
+# Shell vars (non-exported)
+PS1='\u@\h:\w \$ '
 HISTFILE=${HISTFILE:="$HOME/.sh_histo"}  # Don't override bash_history
+HISTSIZE=10000
 
-# Prompt
-last_err() {
-    err="$?"
-    if [ $err -ne "0" ]; then
-        echo "($err) "
-    fi
-}
-PS1='$(last_err)\u@\h:\w \$ '
+# Exports
+export PATH="$HOME/bin:$PATH"  # Put ~/bin on the for personal scripts
+export EDITOR=vi               # vi(1) starts faster than vim(1)
+export VISUAL=vi               # Some programs give priority to this
+export PAGER=less              # less is more
+export PERL5LIB="$HOME/perl5/lib/perl5"  # default cpanminus location
+export MANPATH=":$HOME/share/man"
 
-# Includes
-include() { if [ -r "$1" ]; then . "$1"; fi }
-include "$HOME/.aliases"
-include "$HOME/.shrc.local"
+# Aliases
+alias l='ls -1AhF'
+alias ll='ls -lAhF'
+alias g='git'

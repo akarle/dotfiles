@@ -5,7 +5,21 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Settings
+# Functions
+include() { [ -r "$1" ] && source "$1"; }
+aw()  { w3m "https://wiki.archlinux.org/index.php?search=$1"; }
+ddg() { w3m "https://duckduckgo.com/lite?q=$1"; }
+last_err() {
+    err="$?"
+    if [ $err -ne "0" ]; then
+        echo "($err) "
+    fi
+}
+
+# Load ~/.shrc from $ENV (similar to sh(1)'s init)
+include "$ENV"
+
+# Settings / Shell Variables
 stty -ixon             # Disable XON/XOFF to allow forward search w CTRL-S
 shopt -s checkwinsize  # check win size after each cmd, update if needed
 shopt -s histappend    # append to the history file, don't overwrite it
@@ -15,13 +29,11 @@ HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
 HISTCONTROL=ignoreboth # Don't store duped / whitespace-led commands in history
 PROMPT_COMMAND="history -a" # Record history after each command
 
-# Includes
-include() { [ -r "$1" ] && source "$1"; }
-include "$HOME/.shrc"                     # Common shell configuration
-include "$HOME/etc/console_theme.sh"      # Virtual Console colors (if TERM == "linux")
-include "$HOME/.bashrc.local"             # System specific settings
+if [ -n "$PRETTY_COLORS" ]; then
+    if command -v colorls >/dev/null; then
+	alias ls=colorls
+    fi
 
-if [ -n "$USE_FANCY_PROMPT" ]; then
     parse_git_dirty() {
         if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
             [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
@@ -49,3 +61,6 @@ if [ -n "$USE_FANCY_PROMPT" ]; then
         PS2="$YELLOW> $RESET"
     fi
 fi
+
+# Include .local version last as override mechanism
+include "$HOME/.bashrc.local"
