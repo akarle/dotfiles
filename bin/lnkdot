@@ -12,13 +12,18 @@ if [ "$#" = "0" ]; then
 fi
 
 DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
+RELDIR="$(echo $DIR | sed "s#^$HOME/##")"
 
 lnk() {
 	printf "$1 ... "
 	if [ -e "$HOME/$1" -a ! -L "$HOME/$1" ]; then
 		echo "failed"
 	else
-		ln -snf $DIR/$1 $HOME/$1
+		root=$RELDIR
+		case $1 in
+			*/*) root=$DIR ;;
+		esac
+		ln -snf $root/$1 $HOME/$1
 		echo "linked"
 	fi
 }
