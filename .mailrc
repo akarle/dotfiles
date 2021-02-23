@@ -1,4 +1,0 @@
-# hold     -- don't move read mail to user's mbox
-# keepsave -- don't move write/save'd mail to user's mbox
-set hold
-set keepsave
