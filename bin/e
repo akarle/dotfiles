@@ -15,7 +15,9 @@ for f in .tags tags; do
     fi
 done
 
-export INPUTRC="$HOME/etc/edinputrc"
+DOTDIR="$(dirname $(dirname $(readlink -f "$0")))"
+echo "$DOTDIR"
+export INPUTRC="$DOTDIR/etc/edinputrc"
 
 # Only include -v if using GNU ed
 if ed --version >/dev/null 2>&1 ; then

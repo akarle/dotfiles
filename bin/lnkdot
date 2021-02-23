@@ -1,0 +1,32 @@
+#!/bin/sh
+# lnkdot -- link a dotfile
+set -e
+
+die() {
+	echo "$1" 1>&2
+	exit 1
+}
+
+if [ "$#" = "0" ]; then
+	die "usage: linkdot DOTFILE [DOTFILE ...]"
+fi
+
+DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
+
+lnk() {
+	printf "$1 ... "
+	if [ -e "$HOME/$1" -a ! -L "$HOME/$1" ]; then
+		echo "failed"
+	else
+		ln -snf $DIR/$1 $HOME/$1
+		echo "linked"
+	fi
+}
+
+for f in "$@"; do
+	if [ -e "$DIR/$f" ]; then
+		lnk "$f"
+	else
+		die "dotfile doesn't exist: $f"
+	fi
+done
