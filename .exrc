@@ -5,9 +5,5 @@ set ruler
 set autoindent
 set searchincr
 set showmode
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set wraplen=72
 
 map gg 1G
