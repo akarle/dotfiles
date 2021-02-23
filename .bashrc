@@ -30,8 +30,13 @@ HISTCONTROL=ignoreboth # Don't store duped / whitespace-led commands in history
 PROMPT_COMMAND="history -a" # Record history after each command
 
 if [ -n "$PRETTY_COLORS" ]; then
-    if command -v colorls >/dev/null; then
-	alias ls=colorls
+    # ls colors
+    if ls --color >/dev/null 2>&1; then
+	alias ls='ls --color'
+    elif ls -G >/dev/null 2>&1; then
+	alias ls='ls -G'
+    elif colorls -G >/dev/null 2>&1; then
+	alias ls='colorls -G'
     fi
 
     parse_git_dirty() {
