@@ -31,23 +31,22 @@ PROMPT_COMMAND="history -a" # Record history after each command
 
 if [ -n "$PRETTY_COLORS" ]; then
     # ls colors
-    if ls --color >/dev/null 2>&1; then
-	alias ls='ls --color'
-    elif ls -G >/dev/null 2>&1; then
-	alias ls='ls -G'
-    elif colorls -G >/dev/null 2>&1; then
-	alias ls='colorls -G'
+    if ls --color &>/dev/null; then
+        alias ls='ls --color'
+    elif ls -G &>/dev/null; then
+        alias ls='ls -G'
+    elif colorls -G &>/dev/null; then
+        alias ls='colorls -G'
     fi
 
     parse_git_dirty() {
         if [ -z "$BASH_PROMPT_NO_GSTATUS" ]; then
-            [ "$(git status --porcelain=v1 2> /dev/null)" ] && echo "*"
+            [ -n "$(git status --porcelain=v1 2>/dev/null)" ] && echo "*"
         fi
     }
 
     git_info() {
-        git branch --no-color 2> /dev/null |
-            sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+        echo "$(git branch --show-current 2>/dev/null)$(parse_git_dirty)"
     }
 
     # Preferred Prompt: fancy with colors from tput
@@ -61,9 +60,11 @@ if [ -n "$PRETTY_COLORS" ]; then
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
-        PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY$SSH_PROMPT\$(git_info)"
+        PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY\$(git_info) [\u@\h]"
         PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
         PS2="$YELLOW> $RESET"
+    else
+        PS1="\$(last_err)\w \$(git_info) [\u@\h]\n\$ "
     fi
 fi
 
