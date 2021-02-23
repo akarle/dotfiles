@@ -46,7 +46,7 @@ if [ -n "$PRETTY_COLORS" ]; then
     }
 
     git_info() {
-        echo "$(git branch --show-current 2>/dev/null)$(parse_git_dirty)"
+        echo " $(git branch --show-current 2>/dev/null)$(parse_git_dirty)"
     }
 
     # Preferred Prompt: fancy with colors from tput
@@ -60,11 +60,11 @@ if [ -n "$PRETTY_COLORS" ]; then
         BOLD="\[$(tput bold)\]"
         RESET="\[$(tput sgr0)\]"
 
-        PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY\$(git_info) [\u@\h]"
+        PS1_TOP="$BOLD$RED\$(last_err)$BLUE\w $RESET$GRAY[\u@\h]\$(git_info)"
         PS1="$PS1_TOP\n$BOLD$MAGENTA\$ $RESET"
         PS2="$YELLOW> $RESET"
     else
-        PS1="\$(last_err)\w \$(git_info) [\u@\h]\n\$ "
+        PS1="\$(last_err)\w [\u@\h]\$(git_info)\n\$ "
     fi
 fi
 
