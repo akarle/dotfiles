@@ -1,0 +1,9 @@
+# Not worth checking in encrypted passwords, as FastMail requires a different
+# password for each client anyways...
+*.gpg
+
+# Don't check in those emails ;)
+cache
+
+# Local muttrc to determine which account to use, etc
+muttrc.local
