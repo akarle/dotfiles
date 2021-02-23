@@ -1,6 +1,3 @@
-[core]
-	editor = $EDITOR
-
 [user]
 	email = alex@alexkarle.com
 	name = Alex Karle
@@ -13,3 +10,17 @@
         annotate = yes
 [pull]
 	ff = only
+[alias]
+	s = status -s
+	ss = status
+	l = log --stat
+	d = diff
+	c = commit
+	a = add
+	f = fetch
+	rb = rebase
+	co = checkout
+	g = grep
+	rs = reset
+	p = push
+	b = branch

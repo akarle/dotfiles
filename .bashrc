@@ -18,7 +18,6 @@ PROMPT_COMMAND="history -a" # Record history after each command
 # Includes
 include() { [ -r "$1" ] && source "$1"; }
 include "$HOME/.shrc"                     # Common shell configuration
-include "$HOME/.bash/git-completion.bash" # Git Completion
 include "$HOME/etc/console_theme.sh"      # Virtual Console colors (if TERM == "linux")
 include "$HOME/.bashrc.local"             # System specific settings
 
@@ -50,15 +49,3 @@ if [ -n "$USE_FANCY_PROMPT" ]; then
         PS2="$YELLOW> $RESET"
     fi
 fi
-
-# Git completion for ~/.aliases
-if [ -n "$(type -t __git_complete)" ] &&
-   [ "$(type -t __git_complete)" == "function" ]; then
-    __git_complete ga _git_add
-    __git_complete gco _git_checkout
-    __git_complete gd _git_diff
-    __git_complete gr _git_rebase
-    __git_complete gb _git_branch
-fi
-
-alias rb='source ~/.bashrc'
