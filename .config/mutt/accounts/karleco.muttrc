@@ -12,5 +12,5 @@ set record="=Sent"
 set postponed="=Drafts"
 
 # Uncomment if sendmail not configured on machine
-# set smtp_pass=`pash show mail/karleco`
+# set smtp_pass=`pass show mail/karleco`
 # set smtp_url="smtps://$from:$smtp_pass@smtp.fastmail.com:465"

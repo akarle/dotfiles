@@ -3,7 +3,7 @@ IMAPAccount karleco
 User alex@karle.co
 Host imap.fastmail.com
 SSLType IMAPS
-PassCmd "+pash show mail/karleco"
+PassCmd "+pass show mail/karleco"
 
 IMAPStore karleco-fastmail
 Account karleco
