@@ -1,0 +1,6 @@
+! Xdefaults -- currently just settings for xterm(1)
+! What: homebrew colors for the nostalgic!
+XTerm*loginShell:true
+XTerm*foreground: green
+XTerm*background: black
+XTerm*faceName: Consolas:size=12:antialias=true
