@@ -2,7 +2,11 @@
 setxkbmap -option caps:ctrl_modifier
 slstatus &
 
-[ -e ~/background.png ] && feh --bg-fill ~/background.png
+if [ -e ~/background.png ]; then
+    feh --bg-fill ~/background.png
+else
+    xsetroot -solid black
+fi
 
 if [ $(uname) = "OpenBSD" ]; then
     # On my thinkpad, I seem to need these xinput calls to get
