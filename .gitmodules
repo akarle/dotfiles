@@ -19,3 +19,9 @@
 [submodule ".vim/pack/plugins/start/vim-gitgutter"]
 	path = .vim/pack/plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".vim/pack/plugins/start/vim-rhubarb"]
+	path = .vim/pack/plugins/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
+[submodule ".vim/pack/plugins/start/vim-repeat"]
+	path = .vim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
