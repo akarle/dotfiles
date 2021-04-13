@@ -53,6 +53,9 @@ let mojo_highlight_data = 1
 
 " git-messenger with popup windows is cool!
 let g:git_messenger_always_into_popup = v:true
+
+let g:ale_set_loclist = 1
+let g:ale_python_flake8_options = '--ignore "E501,E302"'
 " }}}
 
 " COLORSCHEME {{{
