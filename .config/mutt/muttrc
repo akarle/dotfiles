@@ -1,4 +1,4 @@
 # Source common config and local config
 # common should *not* source local to enable multiple muttrc's to coexist
-source ~/.config/mutt/common.muttrc
 source ~/.config/mutt/muttrc.local
+source ~/.config/mutt/common.muttrc
