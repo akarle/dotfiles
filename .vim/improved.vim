@@ -56,6 +56,9 @@ let g:git_messenger_always_into_popup = v:true
 
 let g:ale_set_loclist = 1
 let g:ale_python_flake8_options = '--ignore "E501,E302"'
+let g:ale_linters = { 'javascript': ['eslint'], 'python': ['flake8'] }
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black'] }
+let g:ale_fix_on_save = 1
 " }}}
 
 " COLORSCHEME {{{
