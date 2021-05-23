@@ -19,6 +19,7 @@ set showcmd                    " Show the command being typed
 set laststatus=2               " Always show the statusbar
 set noequalalways              " Don't resize split on open/close event
 set listchars=tab:>-,trail:~,eol:$  " Nicer whitespace
+set hidden                     " Allow unsaved buffers
 
 if v:progname =~# 'vim$'
     runtime! improved.vim        " put the IM in VIM
