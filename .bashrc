@@ -23,6 +23,7 @@ include "$ENV"
 stty -ixon             # Disable XON/XOFF to allow forward search w CTRL-S
 shopt -s checkwinsize  # check win size after each cmd, update if needed
 shopt -s histappend    # append to the history file, don't overwrite it
+shopt -s direxpand     # expand variables in directory names
 HISTSIZE=10000         # Max lines in history (in memory)
 HISTFILESIZE=200000    # Max size of the history file
 HISTIGNORE=fg:pwd:ls   # Don't store common commands in history
