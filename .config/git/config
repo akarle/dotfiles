@@ -24,3 +24,5 @@
 	rs = reset
 	p = push
 	b = branch
+[init]
+	defaultBranch = main
