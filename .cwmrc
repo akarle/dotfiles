@@ -1,7 +1,7 @@
 # Commands (for menu-cmd)
 command firefox firefox
 command term    /usr/local/bin/st
-command lock    /usr/local/bin/slock
+command lock    xlock
 command top     "/usr/local/bin/st -e top"
 command htop    "/usr/local/bin/st -e htop"
 command mutt    "/usr/local/bin/st -e mutt"
