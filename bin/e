@@ -16,8 +16,11 @@ for f in .tags tags; do
 done
 
 DOTDIR="$(dirname $(dirname $(readlink -f "$0")))"
-echo "$DOTDIR"
 export INPUTRC="$DOTDIR/etc/edinputrc"
+
+# Don't want to pop open vi(1)!
+export EDITOR=e
+export VISUAL=e
 
 # Only include -v if using GNU ed
 if ed --version >/dev/null 2>&1 ; then
