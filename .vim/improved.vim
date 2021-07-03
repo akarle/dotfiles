@@ -1,8 +1,13 @@
 " .vim/improved.vim -- putting the IM in VIM
 
 " GENERAL EDITOR SETTINGS {{{
-" Line numbers on -- helpful for debugging, not needed in `vi`
-set number
+set number                      " Line numbers
+set undodir=~/.vim/undo/        " Persistent undo
+set undofile                    " Do indeed create said files
+set undolevels=1000             " Max # changes that can be undone
+set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
+set backupdir=~/.vim/swp,.      " Backup files in ~/.vim/swp
+set directory=~/.vim/swp,.      " Swap files in ~/.vim/swp
 
 " Faster grepping! (use ripgrep if available for :grep and :FZF)
 if executable('rg')
@@ -10,16 +15,6 @@ if executable('rg')
     set grepformat=%f:%l:%c:%m,%f:%l:%m
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 endif
-
-" Persistent undo
-set undodir=~/.vim/undo/
-set undofile                    " Do indeed create said files
-set undolevels=1000             " Max # changes that can be undone
-set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
-
-" Use ~/.vim/swp if avail (else .) for backup and swp files respectively
-set backupdir=~/.vim/swp,.
-set directory=~/.vim/swp,.
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
