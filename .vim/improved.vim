@@ -18,13 +18,6 @@ endif
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
-" Don't use powerline font in airline (not neces. installed)
-let g:airline_powerline_fonts = 0
-
-" This enables folding in the built in markdown ftplugin
-let g:markdown_folding = 1
-let g:markdown_fenced_languages = ['sh', 'bash=sh', 'perl', 'python', 'vim']
-
 " If using Dirvish, don't use netrw
 if isdirectory(expand('~/.vim/pack/plugins/start/vim-dirvish/plugin'))
     " Dirvish #137
@@ -33,12 +26,6 @@ else
     let g:netrw_banner=0                " disable banner
     let g:netrw_liststyle=1             " details view
 endif
-
-" Mojolicious syntax highlighting for Mojolicious::Lite
-let mojo_highlight_data = 1
-
-" git-messenger with popup windows is cool!
-let g:git_messenger_always_into_popup = v:true
 
 let g:ale_set_loclist = 1
 let g:ale_python_flake8_options = '--ignore "E501,E302"'
