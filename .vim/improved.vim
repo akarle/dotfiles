@@ -104,25 +104,14 @@ nnoremap <leader>s :sp %:h/
 " toggle color column (to ensure short lines)
 nnoremap <expr> <leader>C vimrc#ToggleColorColumn()
 
-" 2 space / 4 space toggle
-nnoremap <leader>2 :setlocal softtabstop=2 shiftwidth=2<CR>
-nnoremap <leader>4 :setlocal softtabstop=4 shiftwidth=4<CR>
-
 " Clear that highlight!
 nnoremap <BS> :nohlsearch<CR>
 
 " Get greppin quick! --> search word under cursor (escape # for VimL autoload)
-nnoremap <leader>g :exe "grep " . substitute(expand('<cword>'), '#', '\\#', 'g')<CR>
 nnoremap <silent> <leader>G :Ggrep! <cword><CR>:copen<CR>
 
 " Toggle whitespace
 nnoremap <leader>w :set list!<CR>
-
-" Yank entire file
-nnoremap <leader>y :0,$y +<CR>
-
-" Edit vimrc
-nnoremap <leader>V :edit $HOME/.vim/vimrc<CR>
 
 " From defaults.vim: breaks the undo chain so we can undo <C-U>
 inoremap <C-U> <C-G>u<C-U>
@@ -134,5 +123,3 @@ command! CD exe 'cd ' . expand('%:h')
 
 " Load optional config (in ~/.vim)
 runtime! .vimrc.local
-
-" vim:fdm=marker:sts=4:sw=4
