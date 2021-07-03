@@ -1,13 +1,6 @@
 " .vim/improved.vim -- putting the IM in VIM
 
 " GENERAL EDITOR SETTINGS {{{
-" Try to be platform agnostic:
-if has('win64') || has('win32')
-    let s:vimdir = expand($HOME . '/vimfiles')
-else
-    let s:vimdir = expand($HOME . '/.vim')
-endif
-
 " Line numbers on -- helpful for debugging, not needed in `vi`
 set number
 
@@ -19,16 +12,14 @@ if executable('rg')
 endif
 
 " Persistent undo
-if has('persistent_undo') && isdirectory(s:vimdir . '/undo')
-    exe 'set undodir='.s:vimdir.'/undo/'
-    set undofile                    " Do indeed create said files
-    set undolevels=1000             " Max # changes that can be undone
-    set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
-endif
+set undodir=~/.vim/undo/
+set undofile                    " Do indeed create said files
+set undolevels=1000             " Max # changes that can be undone
+set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
 
 " Use ~/.vim/swp if avail (else .) for backup and swp files respectively
-exe 'set backupdir='.s:vimdir.'/swp,.'
-exe 'set directory='.s:vimdir.'/swp,.'
+set backupdir=~/.vim/swp,.
+set directory=~/.vim/swp,.
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
@@ -40,7 +31,7 @@ let g:markdown_folding = 1
 let g:markdown_fenced_languages = ['sh', 'bash=sh', 'perl', 'python', 'vim']
 
 " If using Dirvish, don't use netrw
-if isdirectory(s:vimdir . '/pack/plugins/start/vim-dirvish/plugin')
+if isdirectory(expand('~/.vim/pack/plugins/start/vim-dirvish/plugin'))
     " Dirvish #137
     let loaded_netrwPlugin = 1
 else
@@ -65,7 +56,7 @@ let g:ale_fix_on_save = 1
 " Only gruv if you can handle it
 " NOTE: for initial check, check $TERM, not &term, as nvim has &term=nvim
 if (($TERM =~# '256color' && has("termguicolors")) || has('gui_running')) &&
-    \ filereadable(s:vimdir . "/pack/mine/start/gruvbox/colors/gruvbox.vim")
+    \ filereadable(expand("~/.vim/pack/mine/start/gruvbox/colors/gruvbox.vim"))
 
     set termguicolors
     colorscheme gruvbox
