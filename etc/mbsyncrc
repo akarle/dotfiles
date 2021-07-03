@@ -1,9 +1,9 @@
 # mbsyncrc -- see `man mbsync`
 IMAPAccount karleco
-User alex@karle.co
+User alex@alexkarle.com
 Host imap.fastmail.com
 SSLType IMAPS
-PassCmd "+pass show mail/karleco"
+PassCmd "+pass show mail/karleco-ro"
 
 IMAPStore karleco-fastmail
 Account karleco
@@ -14,8 +14,8 @@ Inbox ~/mail/karleco/INBOX
 Flatten .
 
 Channel karleco
-Master :karleco-fastmail:
-Slave :karleco-local:
+Far :karleco-fastmail:
+Near :karleco-local:
 Patterns *
 SyncState *
 Sync All
