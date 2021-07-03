@@ -94,7 +94,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-p> :set paste \| put + \| set nopaste<CR>
 
 " Clear trailing whitespace (through regexp)
-nnoremap <leader><space> :call vimrc#CMDPreserve("%s/\\s\\+$//e")<CR>
+nnoremap <leader><space> :%s/\s\+$//e<CR>
 
 " edit in current buffer dir
 nnoremap <leader>e :e %:h/
