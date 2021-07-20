@@ -1,4 +1,0 @@
-include "/usr/share/kbd/keymaps/i386/qwerty/us.map.gz"
-
-# Who uses Caps Lock, anyways?
-keycode 58 = Control
