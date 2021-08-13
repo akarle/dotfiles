@@ -3,11 +3,12 @@
 	name = Alex Karle
 
 [sendemail]
-	smtpserver = smtp.fastmail.com
-	smtpuser = alex@alexkarle.com
-	smtpencryption = tls
-	smtpserverport = 587
-        annotate = yes
+	# smtpserver = smtp.fastmail.com
+	# smtpuser = alex@alexkarle.com
+	# smtpencryption = tls
+	# smtpserverport = 587
+	annotate = yes
+	confirm = always
 [pull]
 	ff = only
 [alias]
