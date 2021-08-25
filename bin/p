@@ -1,0 +1,3 @@
+#!/bin/sh
+# p - pager, script over alias for availability in ed(1)
+exec ${PAGER:-less} "$@"
