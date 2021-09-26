@@ -30,3 +30,12 @@ bind-key 4-q      window-close
 # Mouse it
 bind-mouse 4-1     window-move
 bind-mouse 4-3     window-resize
+
+# -------------
+# Linux-only Brightness and Volume keys (works out-of-box on OpenBSD)
+# bind-key XF86AudioMute "pulsemixer --toggle-mute"
+# bind-key XF86AudioLowerVolume "pulsemixer --change-volume -10"
+# bind-key XF86AudioRaiseVolume "pulsemixer --change-volume +10"
+# bind-key XF86MonBrightnessDown "light -U 10"
+# bind-key XF86MonBrightnessUp "light -A 10"
+# -------------
