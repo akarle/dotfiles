@@ -1,0 +1,11 @@
+#!/bin/sh
+# ic -- taking the simple out of sic(1)
+set -e
+mkdir -p "$HOME/.irc"
+LOG="$HOME/.irc/$(date +%Y-%m-%d).log"
+
+if [ -z "$NOCOLOR" ]; then
+    rlwrap sic "$@" | tee -a "$LOG" | siccolor
+else
+    rlwrap sic "$@" | tee -a "$LOG"
+fi

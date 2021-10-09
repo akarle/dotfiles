@@ -1,0 +1,51 @@
+#!/usr/bin/env perl
+# siccolor -- colorize sic(1) output
+use strict;
+use warnings;
+use Term::ANSIColor;
+
+# No black (bg), white (text/msg), bright white, or bright black (time)
+my @colors = qw(
+	green
+	yellow
+	blue
+	magenta
+	cyan
+	bright_green
+	bright_yellow
+	bright_blue
+	bright_magenta
+	bright_cyan
+);
+
+our $i = 0;
+our %user_colors;
+main();
+
+sub main {
+    while (my $line = <>) {
+            if ($line =~ m{^([^:]+):\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d) (<[^>]+>)(.*)}) {
+                    my ($channel, $time, $user, $msg) = ($1, $2, $3, $4);
+                    print get_color($channel) . "$channel";
+                    print color("bright_black");
+                    print ": $time ";
+                    print get_color($user) . "$user";
+                    print color("reset");
+                    print "$msg\n";
+            } else {
+                    # Don't know how to colorize!
+                    print color("bright_black");
+                    print "$line";
+                    print color("reset");
+            }
+    }
+}
+
+sub get_color {
+	my ($val) = @_;
+	if (!exists $user_colors{$val}) {
+		$user_colors{$val} = $colors[$i % @colors];
+		$i++;
+	}
+	return color($user_colors{$val});
+}
