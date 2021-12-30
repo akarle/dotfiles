@@ -24,6 +24,9 @@ if [ $(uname) = "OpenBSD" ]; then
     # Prefer UTF-8 in X for unicode character support
     export LC_CTYPE="en_US.UTF-8"
 
+    # Lock on 5m idle
+    xidle -program "/usr/X11R6/bin/xlock" -timeout 300 &
+
     # xenodm handles ssh-agent for us
     exec cwm
 else
