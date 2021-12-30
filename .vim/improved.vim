@@ -8,13 +8,6 @@ set undolevels=1000             " Max # changes that can be undone
 set undoreload=10000            " Saves undofile on reload (:e) if < 10k LOC
 set backupdir=~/.vim/swp,.      " Backup files in ~/.vim/swp
 set directory=~/.vim/swp,.      " Swap files in ~/.vim/swp
-
-" Faster grepping! (use ripgrep if available for :grep and :FZF)
-if executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
-endif
 " }}}
 
 " PLUGIN RELATED SETTINGS {{{
@@ -37,6 +30,7 @@ let g:ale_fix_on_save = 1
 " COLORSCHEME {{{
 " Only gruv if you can handle it
 " NOTE: for initial check, check $TERM, not &term, as nvim has &term=nvim
+set background=dark
 if (($TERM =~# '256color' && has("termguicolors")) || has('gui_running')) &&
     \ filereadable(expand("~/.vim/pack/mine/start/gruvbox/colors/gruvbox.vim"))
 
@@ -49,16 +43,10 @@ if (($TERM =~# '256color' && has("termguicolors")) || has('gui_running')) &&
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
 
-    set background=dark
-
     augroup CurLineToggle
         autocmd!
         autocmd InsertEnter,InsertLeave * set cul!
     augroup END
-else
-    " Can't handle the gruv
-    set background=light
-    colorscheme vc
 endif
 " }}}
 
