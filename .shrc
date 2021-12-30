@@ -14,6 +14,7 @@ export VISUAL=vi               # Some programs give priority to this
 export PAGER=less              # less is more
 export PERL5LIB="$HOME/perl5/lib/perl5"  # default cpanminus location
 export MANPATH=":$HOME/share/man"
+export PERLDB_OPTS="HistFile=$HOME/.perldb_histo HistSize=10000"
 
 # Aliases
 alias l='ls -1AhF'
