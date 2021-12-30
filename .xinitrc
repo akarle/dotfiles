@@ -17,8 +17,9 @@ if [ $(uname) = "OpenBSD" ]; then
 
     # since xenodm is run as root, we need to export ENV
     # ~/.shrc otherwise the interactive shells spawned in st
-    # won't have the right profile
-    export ENV=~/.shrc
+    # won't have the right profile. Sourcing .profile should do it
+    # and get local aliases, etc
+    . $HOME/.profile
 
     # Prefer UTF-8 in X for unicode character support
     export LC_CTYPE="en_US.UTF-8"
