@@ -1,7 +1,0 @@
-#!/bin/sh
-# tmic -- ic(1) in tmux(1)
-# argv is passed to ic!
-tmux new-session \
-	'log="$HOME/.irc/$(date +%F).log"; touch $log && tail -f $log | siccolor' \; \
-	split-pane "env NOCOLOR=1 ic $* >/dev/null" \; \
-	resize-pane -y 1

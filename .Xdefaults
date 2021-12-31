@@ -1,6 +1,0 @@
-! Xdefaults -- currently just settings for xterm(1)
-XTerm*loginShell:true
-XTerm*foreground: lightgray
-XTerm*background: black
-XTerm*faceName: Consolas:size=9:antialias=true
-XTerm*metaSendsEscape: true

@@ -1,7 +1,0 @@
-#!/bin/sh
-# rmake -- make at the repo root
-if ! git rev-parse --show-toplevel >/dev/null 2>&1; then
-	echo "Not in a git repo!" >&2
-	exit 1
-fi
-make -C $(git rev-parse --show-toplevel)
