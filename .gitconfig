@@ -1,0 +1,22 @@
+[core]
+	editor = ed
+
+[user]
+	email = alex@alexkarle.com
+	name = Alex Karle
+
+[alias]
+	co = checkout
+	b = branch
+	s = status --short
+	ss = status
+	p = push
+	l = log --stat
+	a = add
+	rb = rebase
+	rs = reset
+	d = diff
+	c = commit
+
+[pull]
+	ff = only

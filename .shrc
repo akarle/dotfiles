@@ -1,0 +1,10 @@
+# .shrc -- interactive sh/ksh config (via $ENV)
+PS1='\u@\h:\w \$ '
+HISTFILE="$HOME/.sh_history"
+HISTSIZE=100000
+
+export EDITOR=ed
+export VISUAL=vi
+
+alias ll='ls -lahF'
+alias g='git'
