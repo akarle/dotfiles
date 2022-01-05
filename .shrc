@@ -7,4 +7,3 @@ export EDITOR=ed
 export VISUAL=vi
 
 alias ll='ls -lahF'
-alias g='git'
