@@ -1,0 +1,30 @@
+#!/bin/sh
+# fned -- file:number editor
+# reads file:number:blah (grep-style) from stdin or ARGV and opens
+# the file in $EDITOR at that point (for vi/m). Other editors just
+# open the file & print the line
+#
+# example:
+#
+#    fned "$(git grep -n 'pattern' | fzf)"
+#
+# see also: gge(1)
+#
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+[ -z "$1" ] && die "usage: fned 'file:line:desc'"
+
+fstr="$*"
+file=${fstr%%:*}
+nofile=${fstr##$file:}
+line=${nofile%%:*}
+
+case ${EDITOR:-vi} in
+	vi*) $EDITOR -c "$line" "$file" ;;
+	*)
+		echo "fned: $EDITOR doesn't support line jumps. Go to $line"
+		$EDITOR "$file"
+		;;
+esac

@@ -17,6 +17,7 @@
 	rs = reset
 	d = diff
 	c = commit
+	g = grep -n
 
 [pull]
 	ff = only

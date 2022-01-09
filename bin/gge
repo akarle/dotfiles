@@ -1,0 +1,24 @@
+#!/bin/sh
+# gge -- git grep -> editor
+#
+# small ease-of-use tool that combines git-grep and fned
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+
+# Reuse last pattern
+if [ -z "$1" ]; then
+	if [ ! -e /tmp/gge ]; then
+		die "No previous search, run with 'gge PATTERN'"
+	fi
+else
+	git grep -n "$@" > /tmp/gge
+fi
+
+[ ! -s /tmp/gge ] && die "no matches, exiting"
+
+choice=$(fzf < /tmp/gge)
+[ -z "$choice" ] && exit 1
+
+fned "$choice"
