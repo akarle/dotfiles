@@ -1,0 +1,38 @@
+# .mbsyncrc -- local IMAP configuration for FastMail
+#
+# INSTALL:
+#
+#    1. Get an "Application Password" from FastMail
+#    2. Put it in /etc/mail/imap-pass (make sure readable only by your user!)
+#       recommend only giving IMAP permission (no SMTP)
+#
+#        echo "password" | doas tee /etc/mail/imap-pass
+#        doas chmod 400 /etc/mail/imap-pass
+#        doas chown user:user /etc/mail/imap-pass
+#
+#    3. Cron it up!
+#
+#        crontab -e
+#        mbsync -a -q -c /path/to/this/file
+#
+IMAPStore fastmail
+Host imap.fastmail.com
+Port 993
+User alex@alexkarle.com
+PassCmd "cat /etc/mail/imap-pass"
+SSLType IMAPS
+SSLVersions TLSv1.3
+
+MaildirStore local
+Path ~/mail/
+Inbox ~/mail/INBOX
+Flatten .
+
+Channel fullsync
+Far :fastmail:
+Near :local:
+Patterns *
+Sync All
+Create Both
+SyncState *
+CopyArrivalDate yes
