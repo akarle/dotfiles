@@ -18,6 +18,7 @@
 	d = diff
 	c = commit
 	g = grep -n
+	f = fetch
 
 [pull]
 	ff = only
