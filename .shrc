@@ -3,7 +3,7 @@ PS1='\u@\h:\w \$ '
 HISTFILE="$HOME/.sh_history"
 HISTSIZE=100000
 
-export EDITOR=ed
-export VISUAL=vi
+export EDITOR=${EDITOR:-ed}
+export VISUAL=${VISUAL:-vi}
 
 alias ll='ls -lahF'
