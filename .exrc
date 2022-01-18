@@ -4,3 +4,5 @@
 " if this file is chosen for vim initialization too.
 set ruler
 set autoindent
+set showmatch
+set autoindent
