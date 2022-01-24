@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# NOTE: disabling rlwrap for now due to TAB being captured :(
+# exec rlwrap ed -p'> ' "$@"
+
+exec ed -p'> ' "$@"
