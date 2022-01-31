@@ -1,0 +1,24 @@
+# .cwmrc -- cwm(1) config
+
+# Settings/Commands
+command term /usr/local/bin/st
+command firefox /usr/local/bin/firefox
+
+# Bindings
+# start fresh -- no alarms and no surprises
+unbind-key all
+unbind-mouse all
+
+bind-key 4-Return terminal
+bind-key 4S-Return window-maximize
+bind-key 4-r restart
+bind-key 4S-e quit
+bind-key 4-p menu-cmd
+bind-key 4S-p menu-exec
+bind-key 4-j window-cycle
+bind-key 4-k window-rcycle
+bind-key 4-c lock
+
+bind-mouse 4-1 window-move
+bind-mouse 4-2 window-lower
+bind-mouse 4-3 window-resize
