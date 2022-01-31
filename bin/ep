@@ -1,0 +1,14 @@
+#!/bin/sh
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+
+[ -z "$1" ] && die "usage: $0 COMMAND"
+
+comm="$(command -v "$1")"
+if [ -n "$comm" ]; then
+	exec "$EDITOR" "$comm"
+else
+	die "File '$1' not on \$PATH"
+fi
