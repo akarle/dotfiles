@@ -14,5 +14,20 @@ xsetroot -solid "#1E1F21"
 # (also for cwm's program launcher to find things)
 . "$HOME/.profile"
 
+if [ "$(uname)" = "OpenBSD" ]; then
+	# Enable middle click + trackpoint scrolling. Doc in ws(4) and xinput(1)
+	#
+	#   `xinput --list` shows /dev/wsmouse to be our mouse device
+	#
+	# ws(4) shows the accepted values/desc for the device!
+	#  * Wheel Emulation -- mouse acts like a scroll wheel when Button pressed (1 for true)
+	#  * Wheel Em Button -- button that enables the Wheel Emulation (2 for middle)
+	#  * Wheel Em Axes   -- buttons that represent Xup/down Yup/down. 4/5 is scroll
+	#                       up/down 6/7 is "thumb" (side) up/down.
+	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
+	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
+	xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+fi
+
 # Finally, launch my preferred desktop--currently cwm(1)
 exec cwm
