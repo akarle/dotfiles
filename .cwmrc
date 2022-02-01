@@ -18,6 +18,8 @@ bind-key 4S-p menu-exec
 bind-key 4-j window-cycle
 bind-key 4-k window-rcycle
 bind-key 4-c lock
+bind-key 4-q window-close
+bind-key 4S-j window-vtile
 
 bind-mouse 4-1 window-move
 bind-mouse 4-2 window-lower
