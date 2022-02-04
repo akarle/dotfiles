@@ -2,26 +2,22 @@
 ------------------
 2022, the year of the dotfile rewrite.
 
-This repo's got a _lot_ of history, and
-I use these configs daily. In 2022 though,
-I wanted to start from scratch to both:
+This repo's got a _lot_ of history, and I use these configs daily.
+In 2022 though, I wanted to start from scratch to both:
 
   1. License them from the get-go
   2. Re-evaluate what I really use
 
-Dotfiles have a funny way of going stale.
-Here's to a fresh start!
+Dotfiles have a funny way of going stale.  Here's to a fresh start!
 
 Usage:
 ------
-There's really two settings where these
-are used:
+There's really two settings where these are used:
 
-* System administration -- really only
-  need shell / primitive vi config
-* Programming -- I need the whole 9 yards
-  for my dayjob. Linting, completion, etc
+* System administration -- really only need shell / vi / tmux
 
-The first is mostly complete (I don't need
-much), but the second is a work-in-progress
-as I retool under a OSI-approved license!
+* Programming -- I need the whole 9 yards for my dayjob.
+  Linting, completion, etc
+
+The first is mostly complete (I don't need much), but the second
+is a work-in-progress as I retool under a OSI-approved license!
