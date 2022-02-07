@@ -1,0 +1,33 @@
+# .muttrc -- mutt(1) config
+
+# Account setup (see also: .mbsyncrc)
+set from="alex@alexkarle.com"
+set realname="Alex Karle"
+set mbox_type="Maildir"
+set folder="~/mail"
+set spoolfile="=INBOX"
+set record="=Sent"
+set postponed="=Drafts"
+
+# Cache headers for a speedier startup
+set header_cache="~/.cache/mutt"
+
+# Bcc myself so I show up in the INBOX threads
+my_hdr Bcc: $from
+
+# Sort by threads, then by date
+set sort=threads
+set sort_aux=reverse-last-date-received
+
+# I don't use IMAP/SMTP in mutt, but if I decide to, force TLS (can't hurt to set!)
+set ssl_force_tls=yes
+
+# Show a bit of the index in the pager (nice to see position in thread)
+set pager_index_lines=6
+
+# Monochrome coloring
+color index bold white black ~N
+
+# Convert text/html to plaintext via mailcap, but prefer plaintext if there
+auto_view text/html
+alternative_order text/plain text/html

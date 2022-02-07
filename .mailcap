@@ -1,0 +1,2 @@
+# .mailcap -- tell mutt how to open MIME types
+text/html; w3m -T text/html; copiousoutput
