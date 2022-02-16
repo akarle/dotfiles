@@ -6,5 +6,6 @@ HISTSIZE=100000
 export EDITOR=${EDITOR:-ed}
 export VISUAL=${VISUAL:-vi}
 export PAGER=${PAGER:-less}
+export NO_COLOR=1
 
 alias ll='ls -lahF'

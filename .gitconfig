@@ -5,6 +5,9 @@
 	email = alex@alexkarle.com
 	name = Alex Karle
 
+[color]
+	ui = false
+
 [alias]
 	co = checkout
 	b = branch
