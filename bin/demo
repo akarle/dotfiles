@@ -8,7 +8,7 @@ PS1='\$ '
 EOM
 
 export ENV=/tmp/demo.env
-script /tmp/demo.out
+script -c /bin/sh /tmp/demo.out
 
 if command -v xclip >/dev/null; then
 	sed -e '1d' -e '/^\$ ^D/d' -e '$d' /tmp/demo.out | tr -d '\r' | xclip
