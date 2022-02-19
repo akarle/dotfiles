@@ -1,1 +1,4 @@
-.mblaze/mless
+# mblaze stores things like the current sequence in this dir
+.mblaze/*
+!.mblaze/mless.in
+!.mblaze/filter
