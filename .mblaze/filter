@@ -1,0 +1,3 @@
+# .mblaze/filter -- used by mshow(1) to display certain MIME types
+# (hint: run mless(1) and toggle HTML-view with `H` (lesskey must be installed)
+text/html: w3m -T text/html
