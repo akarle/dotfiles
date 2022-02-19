@@ -2,3 +2,5 @@
 .mblaze/*
 !.mblaze/mless.in
 !.mblaze/filter
+!.mblaze/headers
+!.mblaze/profile
