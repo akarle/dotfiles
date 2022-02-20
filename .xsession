@@ -6,8 +6,8 @@
 setxkbmap -option ctrl:nocaps
 
 # Set the background to something that isn't the default
-# (this color is from www.openbsd.org's dark theme!)
-xsetroot -solid "#1E1F21"
+# (this color is from plan9's rio(1) default background )
+xsetroot -solid "#777777"
 
 # Source ~/.profile to set up the PATH so terminals like st(1)
 # that don't spawn login shells get the env vars they expect
