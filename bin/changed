@@ -1,0 +1,16 @@
+#!/bin/sh
+# changed -- diff against the merge-base
+die() {
+	echo "ERROR: $*" 1>&2
+	exit 1
+}
+
+REPO=$(git rev-parse --show-toplevel 2>/dev/null)
+BASE=${BASE:-master}
+if [ -n "$REPO" ]; then
+	MBASE="$(git merge-base origin/$BASE HEAD 2>/dev/null)"
+	[ -z "$MBASE" ] && die "origin/$BASE doesn't exist; set \$BASE and try again"
+	git diff "$@" "$MBASE"
+else
+	die "not in a git repo"
+fi
