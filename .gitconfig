@@ -7,6 +7,10 @@
 
 [diff]
 	tool = vimdiff
+
+[difftool.vimdiff]
+        path = nvim
+
 [color]
 	ui = false
 
