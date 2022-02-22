@@ -1,16 +1,14 @@
 #!/bin/sh
 # plumb -- plumber for tmux's copy-pipe
 # reads the item to plumb from stdin, optionally takes a working dir
-IFS='
-'
 read ITEM
 
 if [ -n "$1" ]; then
 	cd "$1"
 fi
 
-# trim whitespace off the ITEM
-ITEM=$(echo "$ITEM" | xargs)
+# only accept first argument (by whitespace)
+ITEM=$(echo "$ITEM" | awk '{ print $1 }')
 
 case "$ITEM" in
 	http*) firefox "$ITEM" ;;
