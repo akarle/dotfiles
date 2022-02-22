@@ -27,6 +27,8 @@ vim.opt.background = 'light'
 
 vim.highlight.create('StatusLine', { ctermbg = 14, ctermfg = 0, cterm = "None" })
 vim.highlight.create('StatusLineNC', { ctermbg = 12, ctermfg = 0, cterm = "None"  })
-vim.highlight.create('VertSplit', { ctermbg = 12, ctermfg = 0, cterm = "None"  })
+vim.highlight.create('TabLineFill', { ctermbg = 12, ctermfg = 0, cterm = "None"  })
+vim.highlight.create('VertSplit', { ctermbg = 15, ctermfg = 14, cterm = "None"  })
 vim.highlight.create('Visual', { ctermbg = 11, ctermfg = 0, cterm = "None"  })
+vim.highlight.create('LineNr', { ctermbg = 15, ctermfg = 8, cterm = "None"  })
 vim.highlight.create('LineNr', { ctermbg = 15, ctermfg = 8, cterm = "None"  })
