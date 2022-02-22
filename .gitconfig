@@ -5,6 +5,8 @@
 	email = alex@alexkarle.com
 	name = Alex Karle
 
+[diff]
+	tool = vimdiff
 [color]
 	ui = false
 
