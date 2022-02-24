@@ -32,3 +32,6 @@ vim.highlight.create('VertSplit', { ctermbg = 15, ctermfg = 14, cterm = "None"  
 vim.highlight.create('Visual', { ctermbg = 11, ctermfg = 0, cterm = "None"  })
 vim.highlight.create('LineNr', { ctermbg = 15, ctermfg = 8, cterm = "None"  })
 vim.highlight.create('LineNr', { ctermbg = 15, ctermfg = 8, cterm = "None"  })
+vim.highlight.create('NonText', { ctermbg = 15, ctermfg = 8, cterm = "None"  })
+vim.highlight.create('Pmenu', { ctermbg = 10, ctermfg = 0, cterm = "None"  })
+vim.highlight.create('PmenuSel', { ctermbg = 11, ctermfg = 0, cterm = "None"  })
