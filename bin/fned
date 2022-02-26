@@ -8,7 +8,7 @@
 #
 #    fned "$(git grep -n 'pattern' | fzf)"
 #
-# see also: gge(1)
+# see also: plumb(1)
 #
 die() {
 	echo "$*" 1>&2
