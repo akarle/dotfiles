@@ -1,21 +1,42 @@
 #!/bin/sh
 # plumb -- plumber for tmux's copy-pipe
 # reads the item to plumb from stdin, optionally takes a working dir
-# and arguments for split-window (i.e. to split above or set size)
-read ITEM
+# most items open in a new tmux split, or new window if -w given
+args=$(getopt w $*)
+if [ "$?" != "0" ]; then
+	echo "usage: plumb [-w] [directory]" 1>&2
+	exit 1
+fi
+
+set -- $args
+while [ "$#" != "0" ]; do
+	case "$1" in
+		-w) NEW_WINDOW=1 ; shift ;;
+		--) shift ; break ;;
+	esac
+done
 
 if [ -n "$1" ]; then
 	cd "$1"
+	shift
 fi
-shift
+
+tmuxdo() {
+	if [ "$NEW_WINDOW" = "1" ]; then
+		tmux new-window sh -c "$1"
+	else
+		tmux split-window sh -c "$1"
+	fi
+}
 
 # only accept first argument (by whitespace)
+read ITEM
 ITEM=$(echo "$ITEM" | awk '{ print $1 }')
 
 case "$ITEM" in
-	http*) firefox "$ITEM" ;;
+	http*) xdg-open "$ITEM" ;;
 	[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*) \
-		tmux split-window "$@" sh -c "git show $ITEM 2>&1 | less" ;;
-	[a-zA-Z0-9.]*:[0-9]*:*) tmux split-window "$@" sh -c "fned \"$ITEM\"" ;;
-	*) tmux split-window "$@" sh -c "vi $ITEM" ;;
+		tmuxdo "git show $ITEM 2>&1 | less" ;;
+	[a-zA-Z0-9.]*:[0-9]*:*) tmuxdo "fned \"$ITEM\"" ;;
+	*) tmuxdo "vi $ITEM" ;;
 esac
