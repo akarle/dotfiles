@@ -1,0 +1,22 @@
+#!/bin/sh
+# bak -- move a file to file.bak (or back)
+set -e
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+
+[ -z "$1" ] && die "usage: bak FILE"
+
+BAK="$1.bak"
+if [ -e "$BAK" ] && [ -e "$1" ]; then
+	die "$1 and $BAK exist, unable to bak or unbak"
+elif [ -e "$BAK" ]; then
+	mv "$BAK" "$1"
+	echo "$BAK -> $1"
+elif [ -e "$1" ]; then
+	mv "$1" "$BAK"
+	echo "$1 -> $BAK"
+else
+	die "Neither $1 nor $BAK exist, unable to bak or unbak"
+fi
