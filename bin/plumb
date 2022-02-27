@@ -31,12 +31,18 @@ tmuxdo() {
 
 # only accept first argument (by whitespace)
 read ITEM
-ITEM=$(echo "$ITEM" | awk '{ print $1 }')
+ITEM=$(echo "$ITEM" | awk '{ sub("^~", ENVIRON["HOME"], $1); print $1 }')
 
 case "$ITEM" in
 	http*) xdg-open "$ITEM" ;;
 	[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*) \
 		tmuxdo "git show $ITEM 2>&1 | less" ;;
 	[a-zA-Z0-9.]*:[0-9]*:*) tmuxdo "fned \"$ITEM\"" ;;
-	*) tmuxdo "vi $ITEM" ;;
+	*)
+		if [ -d "$ITEM" ]; then
+			tmuxdo "cd $ITEM && $SHELL"
+		elif [ -e "$ITEM" ]; then
+			tmuxdo "vi $ITEM"
+		fi
+		;;
 esac
