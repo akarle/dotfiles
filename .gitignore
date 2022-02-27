@@ -4,3 +4,6 @@
 !.mblaze/filter
 !.mblaze/headers
 !.mblaze/profile
+
+# Local nvim config
+.config/nvim/local.lua
