@@ -37,7 +37,10 @@ case "$ITEM" in
 	http*) xdg-open "$ITEM" ;;
 	[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*) \
 		tmuxdo "git show $ITEM 2>&1 | less" ;;
-	[a-zA-Z0-9.]*:[0-9]*:*) tmuxdo "fned \"$ITEM\"" ;;
+	[a-zA-Z0-9._-]*:[0-9]*:*) tmuxdo "fned \"$ITEM\"" ;;
+	[a-zA-Z0-9._-]*\([1-9]\))
+		PAGE=${ITEM%%\([1-9]\)}
+		tmuxdo "man \"$PAGE\"" ;;
 	*)
 		if [ -d "$ITEM" ]; then
 			tmuxdo "cd $ITEM && $SHELL"
