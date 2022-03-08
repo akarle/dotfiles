@@ -1,19 +1,5 @@
 #!/bin/sh
 # demo -- script(1) wrapper with shell config for better copy/pasta
-set -e
-die() {
-	echo "$*" 1>&2
-	exit 1
-}
-
-[ -z "$1" ] && die "usage: demo 'brief description'"
-
-desc=$(printf "$*" | tr '[[:space:]]' '_')
-OUT=$HOME/demo/$desc.script
-if [ -e "$OUT" ]; then
-	die "ERROR: demo file $OUT already exists"
-fi
-
 cat <<EOM >/tmp/demo.env
 export TERM=dumb
 export PAGER=cat
@@ -21,6 +7,5 @@ alias g="echo 'Use the full command during demo(1)!'"
 PS1='\$ '
 EOM
 
-mkdir -p "$HOME/demo"
 export ENV=/tmp/demo.env
-script -c /bin/sh "$OUT"
+script -c /bin/sh /tmp/demo.script
