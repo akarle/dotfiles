@@ -45,7 +45,7 @@ case "$ITEM" in
 		if [ -d "$ITEM" ]; then
 			tmuxdo "cd $ITEM && $SHELL"
 		elif [ -e "$ITEM" ]; then
-			tmuxdo "vi $ITEM"
+			tmuxdo "${EDITOR:-vi} $ITEM"
 		fi
 		;;
 esac
