@@ -25,6 +25,7 @@
 vim.cmd [[syntax off]]
 vim.opt.background = 'light'
 
+vim.highlight.create('Normal', { ctermbg = 15, ctermfg = 0, cterm = "None" })
 vim.highlight.create('StatusLine', { ctermbg = 14, ctermfg = 0, cterm = "None" })
 vim.highlight.create('StatusLineNC', { ctermbg = 12, ctermfg = 0, cterm = "None"  })
 vim.highlight.create('TabLineFill', { ctermbg = 12, ctermfg = 0, cterm = "None"  })
