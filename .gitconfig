@@ -11,9 +11,6 @@
 [difftool.vimdiff]
         path = nvim
 
-[color]
-	ui = false
-
 [alias]
 	co = checkout
 	b = branch

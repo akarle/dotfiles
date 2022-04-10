@@ -4,11 +4,6 @@
 command term /usr/local/bin/st
 command firefox /usr/local/bin/firefox
 
-# Look (plan9 rio(1) inspired)
-borderwidth 4
-color activeborder "#55aaaa"
-color inactiveborder "#9eeeee"
-
 # Bindings
 # start fresh -- no alarms and no surprises
 unbind-key all

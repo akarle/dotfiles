@@ -20,15 +20,8 @@ Some mildly-interesting reasons to look inside:
 
 * I'm slowly integrating a plan9-style plumber with tmux(1)
 
-* As of 2022-02, I'm piloting NO_COLOR=1 to see what all the
-  hype is about [1]. I'm using acme(1) inspired tones from
-  plan9 and go-fonts for fun [2].
-
 * Configs are tested on OpenBSD and Linux. Most scripts are
   POSIX sh(1) though and should be portable.
 
 * There's an emphasis on small, reusable, and keyboard-driven
   tools.
-
-[1]: https://no-color.org
-[2]: https://go.dev/blog/go-fonts

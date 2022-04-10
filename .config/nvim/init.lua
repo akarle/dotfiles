@@ -1,5 +1,5 @@
 -- init.lua ; my nvim config
-vim.cmd [[colorscheme acme]]
+vim.cmd [[colorscheme default]]
 
 -- Persistent undo files in ~/.local/share/nvim/undo
 vim.opt.undofile = true
