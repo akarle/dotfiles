@@ -3,6 +3,7 @@
 cat <<EOM >/tmp/demo.env
 export TERM=dumb
 export PAGER=cat
+export HISTSIZE=10000
 alias g="echo 'Use the full command during demo(1)!'"
 PS1='\$ '
 EOM
