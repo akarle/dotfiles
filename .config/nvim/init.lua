@@ -1,6 +1,9 @@
 -- init.lua ; my nvim config
 vim.cmd [[colorscheme default]]
 
+-- Line numbers essential for pairing
+vim.opt.number = true
+
 -- Persistent undo files in ~/.local/share/nvim/undo
 vim.opt.undofile = true
 
@@ -15,6 +18,8 @@ vim.cmd [[autocmd FileType markdown        setlocal et sw=4 sts=4 tw=80 ]]
 vim.cmd [[autocmd FileType python          setlocal et sw=4 sts=4]]
 vim.cmd [[autocmd FileType javascript      setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType typescriptreact setlocal et sw=2 sts=2]]
+vim.cmd [[autocmd BufRead,BufNewFile *.jsx set filetype=javascript]]
+
 
 -- Switch between windows with Ctrl-h/j/k/l
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true })

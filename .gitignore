@@ -7,3 +7,7 @@
 
 # Local nvim config
 .config/nvim/local.lua
+
+# Local nvim plugins
+.config/nvim/pack
+
