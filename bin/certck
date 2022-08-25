@@ -1,0 +1,19 @@
+#!/bin/sh
+# view the details of a site's certificate
+#
+# Inspired by https://stackoverflow.com/questions/42635253/ but modified to be
+# more robust (drops HTML output, strips https:// so any URL is valid, etc)!
+set -e
+die() {
+	echo "$*" 1>&2
+}
+
+[ -z "$1" ] && die "usage: $0 domain.com"
+case "$1" in
+    https://*) DOMAIN=${1##https://} ;;
+    *) DOMAIN=${1} ;;
+esac
+
+# Use --insecure so that we can troubleshoot expired / otherwise bad certs
+curl --verbose --insecure "https://$DOMAIN" 2>&1 1>/dev/null \
+    | grep -E '(Connected to|subject:|date:|issuer)'
