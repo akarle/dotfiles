@@ -16,6 +16,8 @@ vim.opt.linebreak = true
 -- Space and Tab settings for various filetypes
 vim.cmd [[autocmd FileType markdown        setlocal et sw=4 sts=4 tw=80 ]]
 vim.cmd [[autocmd FileType python          setlocal et sw=4 sts=4]]
+vim.cmd [[autocmd FileType sql             setlocal et sw=4 sts=4]]
+vim.cmd [[autocmd FileType yaml            setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType javascript      setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType typescriptreact setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd BufRead,BufNewFile *.jsx set filetype=javascript]]
