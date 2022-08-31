@@ -1,0 +1,4 @@
+#!/bin/sh
+# gv -- imitation of :GV! vim plugin
+file=${1:-$samfile}
+glo -- "$file"

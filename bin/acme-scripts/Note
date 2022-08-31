@@ -1,0 +1,3 @@
+#!/bin/sh
+name=${1:-scratch-$(/usr/bin/date +%F).txt}
+(date; echo) | plumb -i -d edit -a "action=showdata filename=$HOME/notes/$name"

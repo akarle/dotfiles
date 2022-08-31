@@ -1,2 +1,2 @@
 #!/bin/sh
-exec gl --oneline
+exec gl --oneline "$@"
