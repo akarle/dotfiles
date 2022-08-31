@@ -1,0 +1,14 @@
+#!/bin/sh
+# nas -- new acme script
+DIR=$(dirname "$(readlink -f "$0")")
+
+if [ -z "$1" ]; then
+	echo "usage: nas FILE" 1>&2
+	exit 1
+fi
+
+file="$DIR/$1"
+
+touch "$file"
+chmod +x "$file"
+B "$file"

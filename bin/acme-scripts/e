@@ -1,0 +1,3 @@
+#!/bin/sh
+# e -- shortcut for editinacme
+exec editinacme "$@"

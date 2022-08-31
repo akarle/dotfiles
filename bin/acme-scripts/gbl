@@ -1,0 +1,9 @@
+#!/bin/sh
+# git blame, in acme!
+if [ -z "$1" ]; then
+	echo "usage: gbl FILE" 1>&2
+	exit 1
+fi
+
+file=$1
+git blame --date="short" "$file" | plumb -i -d edit -a "action=showdata filename=$file:BLAME"

@@ -1,0 +1,9 @@
+#!/bin/sh
+export PAGER=nobs
+export EDITOR=editinacme  # from 9fans.net/go
+unset VISUAL
+export TERM=dumb
+export NO_COLOR=1
+export SHELL=/usr/lib/plan9/bin/rc
+export PATH="$(dirname "$(readlink -f "$0")")/acme-scripts:$PATH"
+acme -f /mnt/font/GoMono/12a/font -a "$@"

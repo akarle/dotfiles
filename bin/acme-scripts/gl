@@ -1,0 +1,5 @@
+#!/bin/sh
+# git-log, but piped through plumb so that it:
+#   1. doesn't scroll to the end
+#   2. has the proper "filename" so that plumbing SHA's works
+git log "$@" | plumb -i -d edit -a "action=showdata filename=/$(pwd)/git-log"
