@@ -1,0 +1,19 @@
+#!/bin/sh
+# wiseman -- for the plumber, use the correct man for plan9 vs unix
+set -e
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+
+[ -z "$1" ] && die "usage: wiseman SECTION NAME"
+[ -z "$2" ] && die "usage: wiseman SECTION NAME"
+
+section="$1"
+page="$2"
+
+if [ -e "$PLAN9/man/man$section/$page.$section" ]; then
+	9 man "$section" "$page"
+else
+	/usr/bin/man "$section" "$page"
+fi

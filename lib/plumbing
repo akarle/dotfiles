@@ -26,10 +26,10 @@ data matches '([a-zA-Z0-9_\-./]+)\.(pdf|PDF)'
 arg isfile	$0
 plumb start chromium $file
 
-# man pages use system man (but searches plan9 too!)
+# man pages use wiseman to support both system and plan9 roff formats
 type is text
 data matches '([a-zA-Z¡-￿0-9_\-./]+)\(([1-8])\)'
-plumb start rc -c '/usr/bin/man -m /usr/lib/plan9/man '$2' '$1' >[2=1] | nobs | plumb -i -d edit -a ''action=showdata filename=/man/'$1'('$2')'''
+plumb start rc -c 'wiseman '$2' '$1' >[2=1] | nobs | plumb -i -d edit -a ''action=showdata filename=/man/'$1'('$2')'''
 
 # sha1's to git
 type is text
