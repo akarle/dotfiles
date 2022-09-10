@@ -1,3 +1,12 @@
 #!/bin/sh
 name=${1:-scratch-$(/usr/bin/date +%F).txt}
-(date; echo) | plumb -i -d edit -a "action=showdata filename=$HOME/notes/$name"
+
+file=$HOME/notes/$name
+
+if [ -e $file ]; then
+	# Just open the existing file!
+	plumb -d edit $file
+else
+	# Open in a buffer but don't save to the file yet -- will likely rename!
+	(date; echo) | plumb -i -d edit -a "action=showdata filename=$HOME/notes/$name"
+fi

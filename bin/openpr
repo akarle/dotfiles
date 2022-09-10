@@ -1,0 +1,22 @@
+#!/bin/sh
+# openpr -- open a pr from GitHub
+set -e
+die() {
+	echo "$*" 1>&2
+	exit 1
+}
+
+[ -z "$1" ] && logger "openpr-die" && die "usage: openpr NUM"
+logger "openpr: $1"
+
+logger "openpr-wdir: $wdir"
+logger `pwd`
+num=${1###}
+logger "openpr-num: $num"
+
+url=$(git remote get-url origin | sed -e 's/^git@//' -e 's@:@/@' -e 's/\.git$//')
+
+logger "openpr-url: $url"
+[ -z "$url" ] && die "not in a repo?"
+
+${BROWSER:-firefox} "https://$url/pull/$num"

@@ -36,5 +36,10 @@ type is text
 data matches '[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]+'
 plumb start rc -c 'git -C '$wdir' show '$0' >[2=1] | plumb -i -d edit -a ''action=showdata filename=/'$wdir'/'$0''''
 
+# #PR numbers to openpr (for work)
+type is text
+data matches '#([0-9]+)'
+plumb start rc -c 'cd '$wdir' && openpr '$1'
+
 editor = acme
 include basic
