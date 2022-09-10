@@ -6,17 +6,12 @@ die() {
 	exit 1
 }
 
-[ -z "$1" ] && logger "openpr-die" && die "usage: openpr NUM"
-logger "openpr: $1"
+[ -z "$1" ] && die "usage: openpr NUM"
 
-logger "openpr-wdir: $wdir"
-logger `pwd`
 num=${1###}
-logger "openpr-num: $num"
 
 url=$(git remote get-url origin | sed -e 's/^git@//' -e 's@:@/@' -e 's/\.git$//')
 
-logger "openpr-url: $url"
 [ -z "$url" ] && die "not in a repo?"
 
 ${BROWSER:-firefox} "https://$url/pull/$num"
