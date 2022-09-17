@@ -1,5 +1,5 @@
 #!/bin/sh
-name=${1:-scratch-$(/usr/bin/date +%F).txt}
+name=${1:-scratch/$(/usr/bin/date +%F).txt}
 
 file=$HOME/notes/$name
 
