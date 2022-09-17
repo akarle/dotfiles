@@ -6,4 +6,6 @@ export TERM=dumb
 export NO_COLOR=1
 export SHELL=/usr/lib/plan9/bin/rc
 export PATH="$(dirname "$(readlink -f "$0")")/acme-scripts:$PATH"
-acme -f /mnt/font/GoMono/12a/font -a "$@"
+acme -b -a \
+    -f /mnt/font/AtkinsonHyperlegible-Regular/12a/font \
+    -F /mnt/font/GoMono/10a/font "$@"
