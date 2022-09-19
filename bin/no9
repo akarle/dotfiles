@@ -1,0 +1,10 @@
+#!/bin/sh
+# no9 -- opposite of 9 (strip plan9 tools from path)
+#
+# helpful to spawn a shell with system tools for sharing with others
+#
+#    % no9 bash -l
+#    $ which rc # empty
+PATH=$(echo $PATH | sed -e "s@$PLAN9/bin@@g" -e 's/::/:/' -e 's/:$//')
+export PATH
+exec "$@"
