@@ -20,6 +20,8 @@ vim.cmd [[autocmd FileType sql             setlocal et sw=4 sts=4]]
 vim.cmd [[autocmd FileType yaml            setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType javascript      setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType typescriptreact setlocal et sw=2 sts=2]]
+vim.cmd [[autocmd FileType scheme          setlocal et sw=2 sts=2]]
+vim.cmd [[autocmd FileType html            setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd BufRead,BufNewFile *.jsx set filetype=javascript]]
 
 
