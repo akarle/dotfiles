@@ -1,5 +1,5 @@
 [core]
-	editor = ed
+	editor = vi
 
 [user]
 	email = alex@alexkarle.com
