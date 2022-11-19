@@ -1,0 +1,8 @@
+(import (chicken process-context))
+
+;; emacs sets TERM=dumb
+(if (not (equal? (get-environment-variable "TERM") "dumb"))
+  (begin
+    (require-library chicken-doc)
+    (import linenoise)
+    (current-input-port (make-linenoise-port))))
