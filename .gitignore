@@ -9,5 +9,4 @@
 .config/nvim/local.lua
 
 # Local nvim plugins
-.config/nvim/pack
-
+.config/nvim/pack/plugins-local

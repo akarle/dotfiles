@@ -1,0 +1,18 @@
+[submodule ".config/nvim/pack/plugins/start/gruvbox"]
+	path = .config/nvim/pack/plugins/start/gruvbox
+	url = https://github.com/akarle/gruvbox
+[submodule ".config/nvim/pack/plugins/start/vim-commentary"]
+	path = .config/nvim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule ".config/nvim/pack/plugins/start/vim-fugitive"]
+	path = .config/nvim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule ".config/nvim/pack/plugins/start/vim-repeat"]
+	path = .config/nvim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule ".config/nvim/pack/plugins/start/vim-surround"]
+	path = .config/nvim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".config/nvim/pack/plugins/start/vim-dirvish"]
+	path = .config/nvim/pack/plugins/start/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
