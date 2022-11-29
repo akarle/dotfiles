@@ -31,5 +31,9 @@ vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true })
 
+-- Fast git-grepping
+vim.cmd [[let mapleader = " "]]
+vim.api.nvim_set_keymap("n", "<leader>G", ":Ggrep! <cword><CR>:copen<CR>", { noremap = true })
+
 -- Lastly, source a local config, if it exists
 vim.cmd [[runtime! local.lua]]
