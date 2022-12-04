@@ -3,7 +3,7 @@ PS1='\u@\h:\w \$ '
 HISTFILE="$HOME/.sh_history"
 HISTSIZE=100000
 
-export EDITOR=${EDITOR:-ed}
+export EDITOR=${EDITOR:-vi}
 export VISUAL=${VISUAL:-vi}
 export PAGER=${PAGER:-less}
 
