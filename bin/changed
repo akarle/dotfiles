@@ -6,7 +6,7 @@ die() {
 }
 
 REPO=$(git rev-parse --show-toplevel 2>/dev/null)
-BASE=${BASE:-master}
+BASE=${BASE:-main}
 if [ -n "$REPO" ]; then
 	MBASE="$(git merge-base origin/$BASE HEAD 2>/dev/null)"
 	[ -z "$MBASE" ] && die "origin/$BASE doesn't exist; set \$BASE and try again"
