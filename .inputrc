@@ -1,0 +1,9 @@
+# inputrc -- readline config
+set bell-style none
+set blink-matching-paren on
+set editing-mode vi
+set keyseq-timeout 5
+set show-mode-in-prompt on
+set vi-cmd-mode-string ":"
+set vi-ins-mode-string ""
+Control-l: clear-screen
