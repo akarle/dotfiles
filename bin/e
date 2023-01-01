@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# NOTE: disabling rlwrap for now due to TAB being captured :(
-# exec rlwrap ed -p'> ' "$@"
-
-exec ed -p'> ' "$@"
+if command -v rlwrap >/dev/null; then
+	exec env INPUTRC=$HOME/.ed_inputrc rlwrap \
+		--no-warnings \
+		--complete-filenames ed -p'> ' "$@"
+else
+	exec ed -p'> ' "$@"
+fi

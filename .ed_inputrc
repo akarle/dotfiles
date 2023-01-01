@@ -1,0 +1,5 @@
+# inputrc -- readline config for rlwrap(1) for ed(1) usage
+$include ~/.inputrc
+
+Control-n: menu-complete
+TAB: self-insert

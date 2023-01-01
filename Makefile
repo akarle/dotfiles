@@ -1,6 +1,6 @@
 # Makefile -- to compile and install dotfiles
 ALL = .cwmrc .exrc .gitconfig .mbsyncrc .shrc .tmux.conf .xsession \
-      .mailcap .muttrc .config/nvim .mblaze .csirc
+      .mailcap .muttrc .config/nvim .mblaze .csirc .ed_inputrc .inputrc
 
 # CURDIR is gmake, .CURDIR is bmake. One will exist!
 DOTS = $(CURDIR)$(.CURDIR)
