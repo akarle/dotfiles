@@ -1,6 +1,10 @@
 #!/bin/sh
 # .xsession - xenodm(8) user session script
 
+# Old Xorg default DPI, looks good on my laptop
+# https://marc.info/?l=openbsd-tech&m=163674121630769&w=2
+xrandr --dpi 96
+
 # Most importantly -- make caps a ctrl!
 # see xkeyboard-config(7) for other options!
 setxkbmap -option ctrl:nocaps
