@@ -26,7 +26,8 @@ set ssl_force_tls=yes
 set pager_index_lines=6
 
 # Monochrome coloring
-color index bold white black ~N
+color normal default default
+color index bold black white ~N
 
 # Convert text/html to plaintext via mailcap, but prefer plaintext if there
 auto_view text/html
