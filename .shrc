@@ -5,6 +5,11 @@ HISTSIZE=100000
 
 export EDITOR=${EDITOR:-vi}
 export VISUAL=${VISUAL:-vi}
-export PAGER=${PAGER:-less}
+
+if [ "$TERM" = "dumb" ]; then
+	export PAGER=cat
+else
+	export PAGER=${PAGER:-less}
+fi
 
 alias ll='ls -lahF'
