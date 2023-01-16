@@ -1,7 +1,6 @@
 # .cwmrc -- cwm(1) config
 
 # Settings/Commands
-command term /usr/local/bin/st
 command firefox /usr/local/bin/firefox
 
 # Bindings

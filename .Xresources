@@ -1,0 +1,30 @@
+!! ~/.Xresources
+!!
+!! to update: $ xrdb -merge ~/.Xresources
+
+! XTerm config
+XTerm*termName: xterm-256color
+XTerm*faceName: GoMono-12:style=regular:antialias=true:autohint=true
+XTerm*metaSendsEscape: true
+
+! acme(1) inspired colorscheme
+XTerm*foreground: black
+XTerm*background: #ffffea
+! bold != bright (use 0-7 instead of 8-15)
+XTerm*boldColors: false
+XTerm*color0: #000000
+XTerm*color1: #ad4f4f
+XTerm*color2: #468747
+XTerm*color3: #8f7734
+XTerm*color4: #268bd2
+XTerm*color5: #888aca
+XTerm*color6: #6aa7a8
+XTerm*color7: #f3f3d3
+XTerm*color8: #878781
+XTerm*color9: #ffdddd
+XTerm*color10: #ebffeb
+XTerm*color11: #edeea5
+XTerm*color12: #ebffff
+XTerm*color13: #96d197
+XTerm*color14: #a1eeed
+XTerm*color15: #ffffeb
