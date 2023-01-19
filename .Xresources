@@ -10,6 +10,9 @@ XTerm*metaSendsEscape: true
 ! acme(1) inspired colorscheme
 XTerm*foreground: black
 XTerm*background: #ffffea
+XTerm*highlightColorMode: true
+XTerm*highlightColor: #eeeda0
+XTerm*highlightTextColor: black
 ! bold != bright (use 0-7 instead of 8-15)
 XTerm*boldColors: false
 XTerm*color0: #000000
