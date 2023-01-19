@@ -13,6 +13,8 @@ XTerm*background: #ffffea
 XTerm*highlightColorMode: true
 XTerm*highlightColor: #eeeda0
 XTerm*highlightTextColor: black
+! setting this to 'black' causes it to go white-on-white during selection
+XTerm*cursorColor: #000001
 ! bold != bright (use 0-7 instead of 8-15)
 XTerm*boldColors: false
 XTerm*color0: #000000
