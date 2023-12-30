@@ -1,7 +1,0 @@
-#!/bin/sh
-# Bhist -- capture buffer history
-set -e
-mkdir -p "$HOME/.cache/acme"
-echo "Bhist start: $(date)" >> "$HOME/.cache/acme/buffer_history.txt"
-9p read acme/log | grep '^[0-9]* new' \
-	| sed -l 's/^[0-9]* new//' >> "$HOME/.cache/acme/buffer_history.txt"

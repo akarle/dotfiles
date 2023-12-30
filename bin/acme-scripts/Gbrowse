@@ -1,8 +1,0 @@
-#!/bin/sh
-set -e
-REPO=$(git rev-parse --show-toplevel)
-[ -z "$REPO" ] && exit 1
-FILE=${1:-$(readlink -f $samfile)}
-resource=${FILE##$REPO/}
-url=$(git remote get-url origin | sed -e 's/^git@//' -e 's@:@/@' -e 's/\.git$//')
-${BROWSER:-firefox} "https://$url/blob/master/$resource"

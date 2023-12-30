@@ -1,4 +1,0 @@
-#!/bin/sh
-# gg -- git grep with numbers. Not a git alias for use with acme(1)
-# (which works best with commands with no spaces)
-exec git grep -n "$@"

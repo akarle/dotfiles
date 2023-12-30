@@ -12,16 +12,3 @@ These are MIT-licensed dragons, so hack away!
 I'm in a transitionary period where I started fresh in 2022
 with a clean-room reimplementation of my old dotfiles (to
 relicense them as FOSS), so some areas are a bit in-flux.
-
-That said, starting fresh has been a good excuse to make some
-radical changes!
-
-Some mildly-interesting reasons to look inside:
-
-* I'm slowly integrating a plan9-style plumber with tmux(1)
-
-* Configs are tested on OpenBSD and Linux. Most scripts are
-  POSIX sh(1) though and should be portable.
-
-* There's an emphasis on small, reusable, and keyboard-driven
-  tools.

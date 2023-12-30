@@ -1,3 +1,0 @@
-#!/bin/sh
-# t2s -- tabs to spaces
-sed 's/	/    /g' "$@"

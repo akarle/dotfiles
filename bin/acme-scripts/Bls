@@ -1,4 +1,0 @@
-#!/bin/sh
-# Bls -- list buffer history
-tail -r "$HOME/.cache/acme/buffer_history.txt" | uniq \
-	| plumb -i -d edit -a 'action=showdata filename=+BufferHistory'

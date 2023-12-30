@@ -1,4 +1,0 @@
-#!/bin/sh
-# git blame, in acme!
-file=${1:-$samfile}
-git blame --date="short" "$file" | plumb -i -d edit -a "action=showdata filename=$file:BLAME"
