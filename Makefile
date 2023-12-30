@@ -1,16 +1,14 @@
 # Makefile -- to compile and install dotfiles
 ALL = .cwmrc .exrc .gitconfig .mbsyncrc .shrc .tmux.conf .xsession \
-      .mailcap .muttrc .config/nvim .mblaze .csirc .ed_inputrc .inputrc \
+      .mailcap .muttrc .config/nvim .csirc .ed_inputrc .inputrc \
       .Xresources
 
 # CURDIR is gmake, .CURDIR is bmake. One will exist!
 DOTS = $(CURDIR)$(.CURDIR)
 
-.PHONY: build
-build: .mblaze/mless
-
-.mblaze/mless: .mblaze/mless.in
-	lesskey -o $@ .mblaze/mless.in
+.PHONY: help
+help:
+	@echo run \"make install\" to symlink dotfiles to $(HOME)
 
 .PHONY: install
 install: build
