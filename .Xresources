@@ -4,7 +4,8 @@
 
 ! XTerm config
 XTerm*termName: xterm-256color
-XTerm*faceName: GoMono-12:style=regular:antialias=true:autohint=true
+XTerm*faceName: GoMono:style=regular:antialias=true:autohint=true
+XTerm*faceSize: 12
 XTerm*metaSendsEscape: true
 
 ! acme(1) inspired colorscheme
