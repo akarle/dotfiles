@@ -33,3 +33,9 @@ XTerm*color12: #ebffff
 XTerm*color13: #96d197
 XTerm*color14: #a1eeed
 XTerm*color15: #ffffeb
+
+! Copy/Paste support with Ctrl-Shift-C/V for the Clipboard
+! See: xterm(1) Custom Key Bindings
+XTerm*VT100*translations: #override \
+	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
