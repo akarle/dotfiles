@@ -1,0 +1,7 @@
+== Dotfiles for Plan 9
+
+I'm running 9front.org on my laptop every once
+and a while and I don't fully trust the filesystem
+(or my rc(1) skills yet).. so as I start to get
+valuable configuration, I'm checking it in here so
+I don't lose it!
