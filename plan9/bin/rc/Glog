@@ -1,0 +1,2 @@
+#!/bin/rc
+git/log -s | plumb -i -d edit -a 'action=showdata filename=Glog'
