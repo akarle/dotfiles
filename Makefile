@@ -11,7 +11,7 @@ help:
 	@echo run \"make install\" to symlink dotfiles to $(HOME)
 
 .PHONY: install
-install: build
+install:
 	@mkdir -p $$HOME/.config
 	@for f in $(ALL); do \
 		if [ -e "$$HOME/$$f" ]; then \
