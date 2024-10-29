@@ -1,0 +1,5 @@
+#!/bin/sh
+# venvme - run the rest of the command in the venv
+. .venv/bin/activate
+exec "$@"
+
