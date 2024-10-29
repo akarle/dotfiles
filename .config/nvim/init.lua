@@ -24,6 +24,7 @@ vim.cmd [[autocmd FileType typescriptreact setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType scheme          setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType html            setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd FileType css             setlocal et sw=2 sts=2]]
+vim.cmd [[autocmd FileType kotlin          setlocal et sw=2 sts=2]]
 vim.cmd [[autocmd BufRead,BufNewFile *.jsx set filetype=javascript]]
 
 
