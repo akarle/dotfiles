@@ -1,10 +1,15 @@
-# .mbsyncrc -- local IMAP configuration for FastMail
+# .mbsyncrc -- local IMAP configuration for Migadu
 #
 # INSTALL:
 #
-#    1. Get an "Application Password" from FastMail
-#    2. Put it in /etc/mail/imap-pass (make sure readable only by your user!)
-#       recommend only giving IMAP permission (no SMTP)
+#    1. Migadu has no "Application Password", but it does
+#       have the concept of "identities" that can be
+#       locked down to IMAP access with a custom password
+#
+#    2. Put it in /etc/mail/imap-pass; note that all
+#       processes for your user can read this, which
+#       isn't ideal, but if hacked, they can also read
+#       your email (~/mail) anyways...
 #
 #        echo "password" | doas tee /etc/mail/imap-pass
 #        doas chmod 400 /etc/mail/imap-pass
@@ -15,13 +20,13 @@
 #        crontab -e
 #        mbsync -a -q -c /path/to/this/file
 #
-IMAPStore fastmail
-Host imap.fastmail.com
+IMAPStore migadu
+Host imap.migadu.com
 Port 993
-User alex@alexkarle.com
+User isync@alexkarle.com
 PassCmd "cat /etc/mail/imap-pass"
-SSLType IMAPS
-SSLVersions TLSv1.3
+TLSType IMAPS
+TLSVersions -1.0 -1.1 -1.2 +1.3
 
 MaildirStore local
 Path ~/mail/
@@ -29,7 +34,7 @@ Inbox ~/mail/INBOX
 Flatten .
 
 Channel fullsync
-Far :fastmail:
+Far :migadu:
 Near :local:
 Patterns *
 Sync All
